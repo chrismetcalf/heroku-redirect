@@ -16,7 +16,7 @@ toto = Toto::Server.new do
   #
   # Add your settings here
   # set [:setting], [value]
-  # 
+  #
   # set :author,    ENV['USER']                               # blog author
   # set :title,     Dir.pwd.split('/').last                   # site title
   # set :root,      "index"                                   # page to load on /
@@ -30,6 +30,17 @@ toto = Toto::Server.new do
   set :date, lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
 end
 
-run toto
+# Add a few rack-redirect rules
+gem 'rack-rewrite'
+require 'rack-rewrite'
+use Rack::Rewrite do
+  # Toto really wants the root to be the blog, but we want to move it to /blog
+  rewrite %r{/blog(.*)}, '/$1'
+  r301 %r{(\d{4}/.*)}, '/blog/$1'
 
+  # We want the root to be our "home" page
+  rewrite '/', '/home'
+end
+
+run toto
 

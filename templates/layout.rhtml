@@ -1,18 +1,90 @@
-<!doctype html>
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="alternate" type="application/atom+xml" title="<%= title %> - feed" href="/index.xml" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+  <head profile="http://gmpg.org/xfn/11">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title><%= title %></title>
-  </head>
-  <body>
-    <section>
-      <%= yield %> 
-    </section>
-    <footer>
-      powered by <a href="http://cloudhead.io/toto">toto</a>
-    </footer>
-  </body>
-</html>
 
+    <meta name="robots" content="noodp, noydir" />
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen, projection" />
+    <![endif]-->
+    <link rel="stylesheet" href="/css/custom.css" type="text/css" media="screen, projection" />
+    <link rel='stylesheet' id='sociable-front-css-css'  href='/css/sociable.css' type='text/css' media='' />
+
+    <link rel="canonical" href="http://dev.socrata.com/" />
+
+    <%# TODO: Update me when we have feedburner on the dev blog
+    <link rel="alternate" type="application/rss+xml" title="Socrata Developers RSS Feed" href="http://dev.socrata.com/feed/" />
+    %>
+
+    <script src="/js/jquery-1.4.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/jquery.socrata.js" type="text/javascript"></script>
+  </head>
+
+  <body class="custom <%= @path.gsub(/\//, '_') %>">
+    <div id="hd" class="clearfix">
+      <h1 class="logo"><a href="/"></a></h1>
+      <ul>
+        <li id="linkcat-7" class="widget widget_links">
+          <h3>Header Links</h3>
+          <ul class='xoxo blogroll'>
+            <li><a href="http://www.socrata.com/api/docs/">API Documentation</a></li>
+            <li><a href="http://www.socrata.com/about">What is Socrata?</a></li>
+            <li><a href="http://www.socrata.com">www.socrata.com</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div id="container">
+      <div id="page">
+        <ul class="menu">
+          <li class="tab tab-1 current"><a href="/" title="Home">Home</a></li>
+          <li class="tab tab-2"><a href="/getting-started/" title="Getting Started">Getting Started</a></li>
+          <li class="tab tab-3"><a href="/blog/" title="Developer Blog">Developer Blog</a></li>
+          <li><a href="http://community.socrata.com/socrata/products/socrata_socrata_open_data_api" title="Socrata Community" target="_blank">Discussion</a></li>
+          <li class="search">
+            <form method="get" class="search_form" action="http://dev.socrata.com/">
+              <input class="text_input" type="text" value="To search, type and hit enter" name="s" id="s" onfocus="if (this.value == 'To search, type and hit enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'To search, type and hit enter';}" />
+              <input type="hidden" id="searchsubmit" value="Search" />
+            </form>
+          </li>
+        </ul>
+
+      <div id="header">
+      </div>
+
+      <div id="content_box" class="no_sidebars">
+        <div id="content">
+          <%# Content goes here! %>
+          <%= yield %>
+        </div>
+      </div>
+
+      <div id="footer">
+        <ul class="clearfix">
+          <li id="text-4" class="widget widget_text">
+          <div class="textwidget"><ul>
+              <li class="poweredBy"><a href="http://www.socrata.com"></a></li>
+              <li class="copyright"><p>&copy;
+              <script type="text/javascript">var d = new Date()
+                document.write(d.getFullYear())</script>
+              Socrata, Inc.</p><p>This API documentation is licensed as <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons By-Attribution 3.0</a></p></li>
+              <li class="twitter"><a href="http://twitter.com/socrata_dot_com" target="_blank"></a></li>
+              <li class="facebook"><a href="http://www.facebook.com/socrata" target="_blank"></a></li>
+          </ul></div>
+          </li>
+        </ul>
+        <script type='text/javascript' src='http://dev.socrata.com/wp-includes/js/jquery/jquery.form.js?ver=2.02m'></script>
+        <script type='text/javascript' src='http://dev.socrata.com/wp-content/plugins/contact-form-7/scripts.js?ver=2.2'></script>
+      </div>
+    </div>
+  </div>
+  <!--[if lte IE 8]>
+  <div id="ie_clear"></div>
+  <![endif]-->
+</body>
+</html>
