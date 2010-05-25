@@ -18,7 +18,6 @@ toto = Toto::Server.new do
   # set [:setting], [value]
   #
   # set :author,    ENV['USER']                               # blog author
-  # set :title,     Dir.pwd.split('/').last                   # site title
   # set :root,      "index"                                   # page to load on /
   # set :date,      lambda {|now| now.strftime("%d/%m/%Y") }  # date format for articles
   # set :markdown,  :smart                                    # use markdown + smart-mode
@@ -27,7 +26,9 @@ toto = Toto::Server.new do
   # set :ext,       'txt'                                     # file extension for articles
   # set :cache,      28800                                    # cache duration, in seconds
 
-  set :date, lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
+  set :title,       "Socrata Open Data API"
+  set :date,        lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
+  set :github,      {:user => "socrata", :repos => ['socrata-ruby'], :ext => 'textile'}
 end
 
 # Add a few rack-redirect rules
