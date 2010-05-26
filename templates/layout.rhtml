@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen, projection" />
     <![endif]-->
     <link rel="stylesheet" href="/css/custom.css" type="text/css" media="screen, projection" />
-    <link rel='stylesheet' id='sociable-front-css-css'  href='/css/sociable.css' type='text/css' media='' />
+    <link rel="stylesheet" href="/css/coderay.css" type="text/css" media="screen, projection" />
 
     <link rel="canonical" href="http://dev.socrata.com/" />
 
@@ -21,7 +21,7 @@
     %>
 
     <script src="/js/jquery-1.4.1.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/js/jquery.socrata.js" type="text/javascript"></script>
+    <script src="/js/jquery.console-client.js" type="text/javascript"></script>
   </head>
 
   <body class="custom <%= @path.gsub(/\//, '_') %>">
@@ -42,43 +42,43 @@
     <div id="container">
       <div id="page">
         <ul class="menu">
-          <li class="tab tab-1 current"><a href="/" title="Home">Home</a></li>
-          <li class="tab tab-2"><a href="/getting-started/" title="Getting Started">Getting Started</a></li>
-          <li class="tab tab-3"><a href="/blog/" title="Developer Blog">Developer Blog</a></li>
-          <li><a href="http://community.socrata.com/socrata/products/socrata_socrata_open_data_api" title="Socrata Community" target="_blank">Discussion</a></li>
+          <li class="tab"><a href="/" title="Home">Home</a></li>
+          <li class="tab"><a href="/getting-started/" title="Getting Started">Getting Started</a></li>
+          <li class="tab"><a href="/blog/" title="Developer Blog">Developer Blog</a></li>
+          <li class="tab"><a href="http://community.socrata.com/socrata/products/socrata_socrata_open_data_api" title="Socrata Community" target="_blank">Discussion</a></li>
         </ul>
 
-      <div id="header">
-      </div>
+        <div id="header">
+        </div>
 
-      <div id="content_box" class="no_sidebars">
-        <div id="content">
-          <%# Content goes here! %>
-          <%= yield %>
+        <div id="content_box" class="no_sidebars">
+          <div id="content">
+            <%# Content goes here! %>
+            <%= yield %>
+          </div>
+        </div>
+
+        <div id="footer">
+          <ul class="clearfix">
+            <li id="text-4" class="widget widget_text">
+              <div class="textwidget">
+                <ul>
+                  <li class="poweredBy"><a href="http://www.socrata.com"></a></li>
+                  <li class="copyright">
+                    <p>&copy; 2010 Socrata, Inc.</p>
+                    <p>This API documentation is licensed as <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons By-Attribution 3.0</a></p>
+                  </li>
+                  <li class="twitter"><a href="http://twitter.com/socrata_dot_com" target="_blank"></a></li>
+                  <li class="facebook"><a href="http://www.facebook.com/socrata" target="_blank"></a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
-
-      <div id="footer">
-        <ul class="clearfix">
-          <li id="text-4" class="widget widget_text">
-          <div class="textwidget"><ul>
-              <li class="poweredBy"><a href="http://www.socrata.com"></a></li>
-              <li class="copyright"><p>&copy;
-              <script type="text/javascript">var d = new Date()
-                document.write(d.getFullYear())</script>
-              Socrata, Inc.</p><p>This API documentation is licensed as <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons By-Attribution 3.0</a></p></li>
-              <li class="twitter"><a href="http://twitter.com/socrata_dot_com" target="_blank"></a></li>
-              <li class="facebook"><a href="http://www.facebook.com/socrata" target="_blank"></a></li>
-          </ul></div>
-          </li>
-        </ul>
-        <script type='text/javascript' src='http://dev.socrata.com/wp-includes/js/jquery/jquery.form.js?ver=2.02m'></script>
-        <script type='text/javascript' src='http://dev.socrata.com/wp-content/plugins/contact-form-7/scripts.js?ver=2.2'></script>
-      </div>
     </div>
-  </div>
-  <!--[if lte IE 8]>
-  <div id="ie_clear"></div>
-  <![endif]-->
-</body>
+    <!--[if lte IE 8]>
+      <div id="ie_clear"></div>
+    <![endif]-->
+  </body>
 </html>

@@ -97,10 +97,9 @@ body {
   background: -webkit-gradient(linear, left bottom, left top, from(#032555), to(#1a548c));
 }
 .menu li.tab a:hover, .menu li.cat-item a:hover, .menu li a:hover {
-  background: #fff;
-  background: -moz-linear-gradient(bottom, #f1f1f1, #fff);
-  background: -webkit-gradient(linear, left bottom, left top, from(#f1f1f1), to(#fff));
-  color:#333;
+  background: #204375;
+  background: -moz-linear-gradient(bottom, #204375, #5384b3);
+  background: -webkit-gradient(linear, left bottom, left top, from(#204375), to(#5384b3));
   cursor:pointer;
 }
 .menu ul.submenu {
@@ -114,7 +113,6 @@ body {
 .menu .submenu li a {
   font-size:1.2em;
   background:none;
-  color:#333;
   border:none;
   -moz-box-shadow:none;
   -webkit-box-shadow:none;
