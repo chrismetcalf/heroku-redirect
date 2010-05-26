@@ -1,8 +1,30 @@
+<script>
+  function profile() {
+    document.body.firstChild.contentWindow.postMessage("socrata-exec:'hello, world'", "*")
+  }
+</script>
+
 <div class="post_box top" id="post-80">
   <div class="headline_area">
     <h1>SODA API Console</h1>
   </div>
   <div class="format_text">
     <p>Details on the console go here.</p>
+
+    <h2>Example Queries</h2>
+
+    <ul>
+      <li><code>GET</code> user profile for <code>chris.metcalf</code>: <code>get("/users/chris.metcalf.json")</code></li>
+      <li><code>GET</code> metadata for view <code>n5m4-mism</code> (Nominations &amp; Appointments): <code>get("/views/n5m4-mism.json")</code></li>
+      <li><code>GET</code> metadata for view <code>n5m4-mism</code> (Nominations &amp; Appointments): <code>get("/views/n5m4-mism.json")</code></li>
+      <li><code>GET</code> five rows from view <code>n5m4-mism</code> (Nominations &amp; Appointments): <code>get("/views/n5m4-mism/rows.json?max_rows=5")</code></li>
+    </ul>
+
+    <!--
+    <ul>
+      <li>User profile for <code>chris.metcalf</code>: <a href="javascript:profile()">execute</a></li>
+    </ul>
+    -->
+    <iframe src="http://www.socrata.com/console.html" width="900" height="400"></iframe>
   </div>
 </div>
