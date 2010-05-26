@@ -43,5 +43,17 @@ use Rack::Rewrite do
   rewrite '/', '/home'
 end
 
+# Set up code highlighting
+gem 'coderay'
+require 'coderay'
+gem 'rack-codehighlighter'
+require 'rack/codehighlighter'
+
+use Rack::Codehighlighter, :coderay,
+  :markdown => true,
+  :element => "pre>code",
+  :pattern => /\A:::(\w+)\s*(\n|&#x000A;)/i,
+  :logging => true
+
 run toto
 
