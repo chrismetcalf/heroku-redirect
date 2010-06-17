@@ -6,18 +6,27 @@
 
 <div class="post_box top" id="post-80">
   <div class="headline_area">
-    <h1>SODA API Console</h1>
+    <h1>SODA Console</h1>
   </div>
   <div class="format_text">
-    <p>Details on the console go here.</p>
+    <p>The Socrata Open Data API console allows you to experiment with API calls without writing a single line of code. Using our simple syntax, you can experiment with different calls and parameters before building a larger application.</p>
+
+    <h2>Supported Calls</h2>
+
+    <p>The SODA Console currently supports the following operations:</p>
+
+    <ul>
+      <li><code>get("[Service Path]?[Parameters]")</code>: Performs a <code>GET</code> request and returns the server's response.</li>
+      <li><code>post("[Service Path]?[Parameters]", "[Request Body]")</code>: Performs a <code>POST</code> request and returns the server's response</li>
+    </ul>
 
     <h2>Example Queries</h2>
 
     <ul>
       <li><code>GET</code> user profile for <code>chris.metcalf</code>: <code>get("/users/chris.metcalf.json")</code></li>
-      <li><code>GET</code> metadata for view <code>n5m4-mism</code> (Nominations &amp; Appointments): <code>get("/views/n5m4-mism.json")</code></li>
-      <li><code>GET</code> metadata for view <code>n5m4-mism</code> (Nominations &amp; Appointments): <code>get("/views/n5m4-mism.json")</code></li>
-      <li><code>GET</code> five rows from view <code>n5m4-mism</code> (Nominations &amp; Appointments): <code>get("/views/n5m4-mism/rows.json?max_rows=5")</code></li>
+      <li><code>GET</code> metadata for view <code>n5m4-mism</code>: <code>get("/views/n5m4-mism.json")</code></li>
+      <li><code>GET</code> metadata for view <code>n5m4-mism</code>: <code>get("/views/n5m4-mism.json")</code></li>
+      <li><code>GET</code> five rows from view <code>n5m4-mism</code>: <code>get("/views/n5m4-mism/rows.json?max_rows=5")</code></li>
     </ul>
 
     <!--
