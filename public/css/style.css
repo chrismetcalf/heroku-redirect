@@ -42,7 +42,7 @@ p.bottom { margin: 0 !important; }
 .remove_bottom_margin { margin-bottom: 0 !important; }
 
 /*---:[ form inputs ]:---*/
-input, textarea { font-size: 1em; color: #444; background: #eee; border: 1px solid #aaa; border-right-color: #ddd; border-bottom-color: #ddd; }
+input[type=text], textarea { font-size: 1em; color: #444; background: #eee; border: 1px solid #aaa; border-right-color: #ddd; border-bottom-color: #ddd; }
 input:focus, textarea:focus { background: #fff; border-color: #777; border-right-color: #ccc; border-bottom-color: #ccc; }
 	.sidebar .text_input { width: 95%; }
 	input.form_submit { font-weight: bold; color: #111; background: url('lib/images/submit-bg.gif'); border: 3px double #999; border-top-color: #ccc; border-left-color: #ccc; cursor: pointer; width: auto !important; overflow: visible; }

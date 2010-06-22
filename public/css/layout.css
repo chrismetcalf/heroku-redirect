@@ -218,7 +218,7 @@ body { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 
 /*---:[ form inputs ]:---*/
 input, textarea { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
-.format_text input, #commentform input, #commentform textarea { width: 45%; padding: 0.214em; border-width: 0.071em 0.071em 0.071em 0.071em; }
+.format_text input[type=text], #commentform input, #commentform textarea { width: 45%; padding: 0.214em; border-width: 0.071em 0.071em 0.071em 0.071em; }
 #commentform textarea { width: 96%; }
 .format_text input.form_submit, #commentform .form_submit { font-size: 1.143em; padding: 0.313em 0.25em; }
 .sidebar .text_input, .sidebar .form_submit { padding: 0.308em; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
