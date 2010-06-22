@@ -63,9 +63,6 @@
 
 <script>
   $(function(){
-    // Prettify
-    $("select, input:checkbox, input:radio").uniform();
-
     // Pre-fill hidden fields
     $('input[name=2511025]').attr('value', Math.round((new Date).getTime() / 1000));
     $('input[name=2511027]').attr('value', navigator.userAgent);
