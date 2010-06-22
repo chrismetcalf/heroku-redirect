@@ -470,6 +470,11 @@ li.widget_collapscat li ul {
 }
 
 /* Forms */
+form h4 {
+  font-size: 1.1em;
+  padding-top: 1em;
+}
+
 form label {
   color: #222222;
   font-weight: bold;

@@ -17,6 +17,8 @@
 
     <form id="appSubmitForm" method='POST'
       action="http://www.socrata.com/views/vzs9-jjn2/rows.html?method=createForm&successRedirect=http%3A%2F%2Fdev.socrata.com%2Fapp-submissions&errorRedirect=http%3A%2F%2Fwww.socrata.com%2Fdataset%2FSODA-API-Application-Submissions%2Fvzs9-jjn2%2Fform_error">
+
+      <h4>About You</h4>
       <label for="form_field_2489617" class="required">Your Name</label>
       <input type="text" class="fieldInput" id="form_field_2489617" name="2489617" />
 
@@ -34,6 +36,12 @@
       <input type="text" id="form_field_2511029_address_state"
       name="2511029:human_address:state" />
 
+      <p class="small">Your hometown will be included on the <a href="http://www.socrata.com/dataset/Where-Are-All-the-SODA-Apps-/c9jq-k36v">Where are all the apps?</a> map along with your application name and URL, but no personal details.</p>
+
+      <h4>About Your App</h4>
+      <label for='form_field_2511644' class="required">Application Name</label>
+      <input type='text' class='fieldInput' id='form_field_2511644' name='2511644' />
+
       <label for="form_field_2489620_url" class="required">Website</label>
       <input type="text" id="form_field_2489620_url" name="2489620:url" />
 
@@ -46,7 +54,7 @@
       <input type="hidden" value="" name="2511025"/>
       <input type="hidden" value="" name="2511027"/>
 
-        <input type="submit" value="Submit" />
+      <input type="submit" value="Submit" />
     </form>
 
     <p>Your contact information will not be used for any purpose other than notifying you about your submission to the SODA Open Application Gallery, and it will not be given, sold, or rented to any third party. We reserve the right to reject any application submission.</p>
@@ -71,6 +79,7 @@
           email: true
         },
         "2511029:human_address:city": "required",
+        "2511644": "required",
         "2489620:url" {
           required: true,
           url: true
@@ -81,6 +90,7 @@
         "2489617": "Please provide your name",
         "2511043": "Please provide a valid email address",
         "2511029:human_address:city": "Please provide your city",
+        "2511644": "Please provide your application's name",
         "2489620:url": "Please provide a website URL for your application",
         "2489621": "Please provide a description of what your application will do"
       }
