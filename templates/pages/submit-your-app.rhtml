@@ -1,8 +1,89 @@
 <div class="post_box top" id="post-80">
   <div class="headline_area">
-    <h1>Submit Your Application</h1>
+    <h1>Show Off Your Application!</h1>
   </div>
   <div class="format_text">
-    <p>Some variety of sexy form goes here.</p>
+    <p>Built something cool with the SODA API? Show it off! Submit your application for inclusion in the SODA Open Application Gallery. Your application will be promoted along with other applications and you might even have the chance to win fun prizes in one of our developer contests.</p>
+
+    <h3>Critereon for Approval</h3>
+    <p>Most applications will be approved, but there are a few guidelines that you should keep in mind:</p>
+    <ol>
+      <li>Your application must make use of the <a href="http://dev.socrata.com">Socrata Open Data API</a>.</li>
+      <li>Information about your application must be publicly accessible (i.e. you must have a public website we can link to from the app galery).</li>
+      <li>Your application should not contain offensive language or imagery. Keep it clean people!</li>
+    </ol>
+
+    <h3>Submit Your Application</h3>
+
+    <form id="appSubmitForm" method='POST'
+      action="http://www.socrata.com/views/vzs9-jjn2/rows.html?method=createForm&successRedirect=http%3A%2F%2Fdev.socrata.com%2Fapp-submissions&errorRedirect=http%3A%2F%2Fwww.socrata.com%2Fdataset%2FSODA-API-Application-Submissions%2Fvzs9-jjn2%2Fform_error">
+      <label for="form_field_2489617" class="required">Your Name</label>
+      <input type="text" class="fieldInput" id="form_field_2489617" name="2489617" />
+
+      <label for="form_field_2511043" class="required">Your Email</label>
+      <input type="text" class="fieldInput" id="form_field_2511043" name="2511043" />
+
+      <label for="form_field_2489618">Your Company</label>
+      <input type="text" class="fieldInput" id="form_field_2489618" name="2489618" />
+
+      <label for="form_field_2511029_address_city" class="required">City</label>
+      <input type="text" id="form_field_2511029_address_city"
+      name="2511029:human_address:city" />
+
+      <label for="form_field_2511029_address_state">State</label>
+      <input type="text" id="form_field_2511029_address_state"
+      name="2511029:human_address:state" />
+
+      <label for="form_field_2489620_url" class="required">Website</label>
+      <input type="text" id="form_field_2489620_url" name="2489620:url" />
+
+      <label for="form_field_2511534">Screenshot</label>
+      <input type="file" id="form_field_2511534" name="2511534" class="noborder"/>
+
+      <label for="form_field_2489621" class="required">What does your application do?</label>
+      <textarea rows="4" cols="70" class="fieldInput" id="form_field_2489621" name="2489621"></textarea>
+
+      <input type="hidden" value="" name="2511025"/>
+      <input type="hidden" value="" name="2511027"/>
+
+        <input type="submit" value="Submit" />
+    </form>
+
+    <p>Your contact information will not be used for any purpose other than notifying you about your submission to the SODA Open Application Gallery, and it will not be given, sold, or rented to any third party. We reserve the right to reject any application submission.</p>
   </div>
 </div>
+
+<script>
+  $(function(){
+    // Prettify
+    $('input, textarea').uniform();
+
+    // Pre-fill hidden fields
+    $('input[name=2511025]').attr('value', Math.round((new Date).getTime() / 1000));
+    $('input[name=2511027]').attr('value', navigator.userAgent);
+
+    // Set up validation
+    $('#appSubmitForm').validate({
+      rules: {
+        "2489617": "required",
+        "2511043": {
+          required: true,
+          email: true
+        },
+        "2511029:human_address:city": "required",
+        "2489620:url" {
+          required: true,
+          url: true
+        },
+        "2489621": "required"
+      },
+      messages: {
+        "2489617": "Please provide your name",
+        "2511043": "Please provide a valid email address",
+        "2511029:human_address:city": "Please provide your city",
+        "2489620:url": "Please provide a website URL for your application",
+        "2489621": "Please provide a description of what your application will do"
+      }
+    });
+  });
+</script>
