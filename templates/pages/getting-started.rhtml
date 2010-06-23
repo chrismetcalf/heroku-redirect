@@ -3,6 +3,59 @@
     <h1>Getting Started with the SODA API</h1>
   </div>
   <div class="format_text">
-    <p>This is how we get things started.</p>
+    <p>Code samples and other examples are also available at <a href="http://github.com/socrata">http://github.com/socrata</a>. In particular, code samples are available for the following languages:</p>
+
+    <ul>
+      <li><em>Ruby:</em> <a href="http://github.com/socrata/socrata-ruby">http://github.com/socrata/socrata-ruby</a></li>
+      <li><em>Python:</em> <a href="http://github.com/socrata/socrata-python">http://github.com/socrata/socrata-python</a></li>
+      <li><em>Javascript:</em> <a href="http://github.com/socrata/socrata-js-mashup">http://github.com/socrata/socrata-js-mashup</a></li>
+      <li><em>Java:</em> <a href="http://github.com/socrata/socrata-java">http://github.com/socrata/socrata-java</a></li>
+      <li><em>C# .NET:</em> <a href="http://github.com/socrata/socrata-csharp">http://github.com/socrata/socrata-csharp</a></li>
+    </ul>
+
+    Feel free to fork our projects on <a href="http://github.com/socrata">Github</a> and submit pull requests if you make bug fixes or improvements. You can also participate in discussions in our <a href="http://getsatisfaction.com/socrata/products/socrata_socrata_open_data_api">Developer Forums</a> on <a href="http://getsatisfaction.com/socrata">Get Satisfaction</a>.
+
+    <h3>About the Examples:</h3>
+
+    <p>In addition to the code samples on <a href="http://github.com/socrata">Github</a>, we also provide simple examples inline with the documentation. In order to make the examples as language-agnostic as possible, and to show how you can use the SODA API with the simplest tools possible, examples are provided using the *nix "cURL" command. "<a href="http://curl.haxx.se/">cURL</a>" is an open-source command line utility that is usually installed by default on Linux and Mac OS X, and is available on Windows through packages like <a href="http://www.cygwin.com/">Cygwin</a>. It allows you to make simple HTTP requests from your command line, and to interact with those results.</p>
+
+    <p>You can also perform many requests using the "<a href="/console">SODA Developer Console</a>" built into this developer site. Simply wrap any SODA resource URL in a <code>get(...)</code> method call, and results will be returned live in your web browser. For example, here's how you'd perform a simple search on a dataset using the developer console command (I've truncated the output for clarity):</p>
+
+<pre>
+socrata&gt; get("/views/n5m4-mism/rows.json?search=clinton")
+{
+    meta: {
+        view: {
+            id: "n5m4-mism",
+            name: "The White House - Nominations &amp; Appointments",
+            category: "Government",
+            ...
+    },
+    data: [
+        [
+            131,
+            "4F330802-53A8-49D5-B155-CD0CF6385437",
+            131,
+            1276878440,
+            "275909",
+            1276878440,
+            "275909",
+            null,
+            "Clinton, Hillary Rodham",
+            [
+                "http://www.state.gov/",
+                "DOS"
+            ],
+            "Secretary",
+            "1/20/2009",
+            1232524800,
+            true,
+            false,
+            [            ]
+        ]
+    ]
+}
+</pre>
+
   </div>
 </div>
