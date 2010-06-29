@@ -16,6 +16,7 @@
     <h3>Submit Your Application</h3>
 
     <form id="appSubmitForm" method='POST'
+      enctype='multipart/form-data'
       action="http://www.socrata.com/views/vzs9-jjn2/rows.html?method=createForm&successRedirect=http%3A%2F%2Fdev.socrata.com%2Fapp-submissions&errorRedirect=http%3A%2F%2Fwww.socrata.com%2Fdataset%2FSODA-API-Application-Submissions%2Fvzs9-jjn2%2Fform_error">
 
       <h4>About You</h4>
@@ -49,7 +50,7 @@
       <input type="text" id="form_field_2489620_url" name="2489620:url" />
 
       <label for="form_field_2511534">Got a screenshot of it showing it in its full glory?</label>
-      <input type="file" id="form_field_2511534" name="2511534" class="noborder"/>
+      <input type='file' id='form_field_2511534' name='2511534' class="noborder"/>
 
       <input type="hidden" value="" name="2511025"/>
       <input type="hidden" value="" name="2511027"/>
@@ -67,6 +68,10 @@
     $('input[name=2511025]').attr('value', Math.round((new Date).getTime() / 1000));
     $('input[name=2511027]').attr('value', navigator.userAgent);
 
+    jQuery.validator.addMethod("kinda_url", function( value, element ) {
+      return this.optional(element) || /^((https?|ftp):\/\/)?(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(value);
+    }, "URLs must include a domain name and path, along with an optional protocol.");
+
     // Set up validation
     $('#appSubmitForm').validate({
       rules: {
@@ -77,10 +82,7 @@
         },
         "2511029:human_address:city": "required",
         "2511644": "required",
-        "2489620:url": {
-          required: true,
-          url: true
-        },
+        "2489620:url": "required kinda_url",
         "2489621": "required"
       },
       messages: {
