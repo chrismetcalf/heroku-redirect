@@ -1,0 +1,10 @@
+---
+title: Submit Your Civic App!
+date: 07/07/2010
+
+Have you created an awesome civic app that uses the [Socrata Open Data API](http://dev.socrata.com)? Want to show it off to the world and get the chance to be included in future developer contests?
+
+![Submit Your Civic Apps](/images/posts/2010-07-07_heatmap.png)
+
+If so, [submit your application](/submit-your-app) to our civic app database and we'll keep you up to date on upcoming releases of the SODA API and details of app contests and new public data sites as they become available.
+
