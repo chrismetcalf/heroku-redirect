@@ -69,16 +69,16 @@
                   var disqus_identifier = "<%= @path.gsub(/\//, '_') %>";
                   <%# Run in developer mode when we're not in production %>
                   var disqus_developer = <%= ENV['RACK_ENV'] == "production" ? 0 : 1 %>;
-                (function() {
-                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                 dsq.src = 'http://dev-socrata-com.disqus.com/embed.js';
-                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                 })();
-               </script>
-               <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=dev-socrata-com">comments powered by Disqus.</a></noscript>
-               <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-             <% end %>
-           </div>
+                  (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = 'http://dev-socrata-com.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=dev-socrata-com">comments powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+              </div>
+            <% end %>
           </div>
         </div>
 
