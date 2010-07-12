@@ -29,6 +29,7 @@ toto = Toto::Server.new do
   set :title,       "Socrata Open Data API"
   set :date,        lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
   set :github,      {:user => "socrata", :repos => ['socrata-ruby'], :ext => 'textile'}
+  set :disqus,      "dev-socrata-com"
 end
 
 # Add a few rack-redirect rules

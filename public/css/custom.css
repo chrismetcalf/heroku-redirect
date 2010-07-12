@@ -469,6 +469,17 @@ li.widget_collapscat li ul {
   visibility:hidden
 }
 
+/* Disqus Comments */
+#content #comments {
+  border-top: 1px solid #DEDEDE;
+  margin: 0 1.1em;
+}
+
+#content #comments .dsq-item-trackback,
+#content #comments .dsq-brlink {
+  display: none;
+}
+
 /* Forms */
 form h4 {
   font-size: 1.1em;

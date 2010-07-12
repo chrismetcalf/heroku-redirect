@@ -5,6 +5,7 @@
     <title><%= title %></title>
 
     <meta name="robots" content="noodp, noydir" />
+    <meta name="description" content="<%= @context[:description] || "The Socrata Open Data API allows software developers and mashup creators easy access to data in Socrata-powered data sites" %>" />
 
     <link rel="icon" type="image/png" href="/images/favicon.png" />
 
@@ -58,6 +59,26 @@
           <div id="content">
             <%# Content goes here! %>
             <%= yield %>
+
+            <%# Show comments everywhere but on the homepage %>
+            <% if @path.match(/^(home|index)$/).nil? %>
+              <div id="comments">
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                  <%# Use the path as our unique post slug %>
+                  var disqus_identifier = "<%= @path.gsub(/\//, '_') %>";
+                  <%# Run in developer mode when we're not in production %>
+                  var disqus_developer = <%= ENV['RACK_ENV'] == "production" ? 0 : 1 %>;
+                (function() {
+                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                 dsq.src = 'http://dev-socrata-com.disqus.com/embed.js';
+                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                 })();
+               </script>
+               <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=dev-socrata-com">comments powered by Disqus.</a></noscript>
+               <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+             <% end %>
+           </div>
           </div>
         </div>
 
@@ -82,7 +103,6 @@
     <!--[if lte IE 8]>
       <div id="ie_clear"></div>
     <![endif]-->
-
 
     <script type="text/javascript">
 
