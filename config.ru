@@ -42,6 +42,9 @@ use Rack::Rewrite do
 
   # We want the root to be our "home" page
   rewrite '/', '/home'
+
+  # Better endpoints for RSS and ATOM
+  rewrite '/atom.xml', 'index.xml'
 end
 
 # Set up code highlighting
