@@ -45,6 +45,7 @@ use Rack::Rewrite do
 
   # Better endpoints for RSS and ATOM
   rewrite '/atom.xml', 'index.xml'
+  r302 '/feed/', 'http://feeds.feedburner.com/socrata-soda'
 end
 
 # Set up code highlighting
