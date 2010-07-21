@@ -16,7 +16,7 @@
 
 
     <% if ENV['RACK_ENV'] == "production" %>
-      <iframe src="http://www.socrata.com/console.html" width="900" height="400"></iframe>
+      <iframe src="http://www.socrata.com/console.html" width="900" height="400" id="console"></iframe>
     <% else %>
       <iframe src="http://localhost:9292/console.html" width="900" height="400" id="console"></iframe>
     <% end %>
