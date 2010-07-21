@@ -469,6 +469,11 @@ li.widget_collapscat li ul {
   visibility:hidden
 }
 
+/* Console */
+iframe#console {
+  border: 1px solid #666666;
+}
+
 /* Disqus Comments */
 #content #comments {
   border-top: 1px solid #DEDEDE;
