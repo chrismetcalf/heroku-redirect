@@ -221,7 +221,7 @@ input[type=text], input[type=select], textarea {
   border-radius: 5px;
 }
 
-.custom #wp_page_numbers {
+.custiframeom #wp_page_numbers {
   width:auto;
 }
 
@@ -474,6 +474,30 @@ iframe#console {
   border: 1px solid #666666;
 }
 
+#visor {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  z-index: 99999;
+  background: #F7F7F7;
+  border-bottom: 1px solid #666666;
+}
+
+#visor #close {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+#visor iframe#console {
+  width: 100%;
+  height: 375px;
+  border: none;
+}
+
 /* Disqus Comments */
 #content #comments {
   border-top: 1px solid #DEDEDE;
@@ -529,4 +553,10 @@ form input[type="submit"] {
   display: block;
   width: 200px;
   font-size: 120%;
+}
+
+/* Console Links */
+.exec {
+  background: url(/images/icon_gear.png) no-repeat left center;
+  padding-left: 18px;
 }

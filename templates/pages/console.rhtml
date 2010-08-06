@@ -14,26 +14,20 @@
       <li><code>post("[Service Path]?[Parameters]", "[Request Body]")</code>: Performs a <code>POST</code> request and returns the server's response</li>
     </ul>
 
-
-    <% if ENV['RACK_ENV'] == "production" %>
-      <iframe src="http://www.socrata.com/console.html" width="900" height="400" id="console"></iframe>
-    <% else %>
-      <iframe src="http://localhost:9292/console.html" width="900" height="400" id="console"></iframe>
-    <% end %>
+     <iframe src="http://www.socrata.com/console.html" width="900" height="400" id="console" class="console"></iframe>
 
     <h2>Example Queries</h2>
 
     <ul>
-      <li><code>GET</code> user profile for the author: <a href="http://www.socrata.com/api/users/i7d8-sc4w.json" class="api-exec"><code>get("/users/i7d8-sc4w.json")</code></a></li>
-      <li><code>GET</code> metadata for a view: <a href="http://www.socrata.com/api/views/n5m4-mism.json" class="api-exec"><code>get("/views/n5m4-mism.json")</code></a></li>
-      <li><code>GET</code> five rows from the same view: <a href="http://www.socrata.com/api/views/n5m4-mism/rows.json?max_rows=5" class="api-exec"><code>get("/views/n5m4-mism/rows.json?max_rows=5")</code></a></li>
+      <li>Get the author's user profile: <a href="http://www.socrata.com/api/users/i7d8-sc4w.json" class="exec"><code>get("/users/i7d8-sc4w.json")</code></a></li>
+      <li>Get metadata for a view: <a href="http://www.socrata.com/api/views/n5m4-mism.json" class="exec"><code>get("/views/n5m4-mism.json")</code></a></li>
+      <li>Get five rows from the same view: <a href="http://www.socrata.com/api/views/n5m4-mism/rows.json?max_rows=5" class="exec"><code>get("/views/n5m4-mism/rows.json?max_rows=5")</code></a></li>
     </ul>
-
 
   </div>
 </div>
 
 <script>
-  $("a.api-exec").setupExec($("#console"));
+  $("#console").setupConsole($("a.exec"));
 </script>
 
