@@ -9,6 +9,7 @@ if ENV['RACK_ENV'] == 'development'
   use Rack::ShowExceptions
 end
 
+
 #
 # Create and configure a toto instance
 #
@@ -30,6 +31,28 @@ toto = Toto::Server.new do
   set :date,        lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
   set :github,      {:user => "socrata", :repos => ['socrata-ruby'], :ext => 'textile'}
   set :disqus,      "dev-socrata-com"
+
+  # Abandoned custom error page based on our template
+  # set :error,  lambda { |code| ERB.new(File.read("templates/pages/errors/#{code}.rhtml")).result(Toto::Context.new({:code => code}, this)) }
+
+  # Simple error page
+  set :error, lambda { |code|
+    case code
+    when 404
+      "These are not the droids you are looking for... (404)"
+    when 500
+      "I would much rather have gone with Master Luke than stay here with you. I don't know what all this trouble is about, but I'm sure it must be your fault. (500)"
+    else
+      "Hokey religions and ancient weapons are no match for a good blaster at your side, kid."
+    end
+  }
+end
+
+# A hack to load "partials""
+class Toto::Site::Context
+  def partial(name = nil)
+    ERB.new(File.read("templates/pages/_#{name}.rhtml")).result
+  end
 end
 
 # Add a few rack-redirect rules
