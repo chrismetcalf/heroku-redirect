@@ -1,19 +1,45 @@
 <div class="post_box top" id="post-80">
   <div class="headline_area">
-    <h1>Getting Started with the SODA API</h1>
+    <h1>Getting Started with the Socrata Open Data API</h1>
   </div>
   <div class="format_text">
     <%= partial "visor" %>
 
-    <h3>About the Examples:</h3>
+    <h3>About the Examples</h3>
 
-    <p>In addition to the code samples on <a href="http://github.com/socrata">Github</a>, we also provide simple examples inline with the documentation. In order to make the examples as language-agnostic as possible, and to show how you can use the SODA API with the simplest tools possible, examples are provided in-line using the <a href="/console">SODA Console</a>. Wherever you see a link like <a class="exec" href="http://www.socrata.com/api/users/i7d8-sc4w.json">get("/users/i7d8-sc4w.json")</a>, you can click it to dynamically run that request in the SODA Console "visor". You can examine the URL that was constructed, see what results were returned, and experiment, all without ever leaving the page you're currently on.</p>
+    <p>In addition to our <a href="/code-samples">code samples</a>, we also provide simple examples inline with the documentation. In order to make the examples as language-agnostic as possible, and to show how you can use the SODA API with the simplest tools possible, examples are provided in-line using the <a href="/console">SODA Console</a>. Wherever you see a link like <a class="exec" href="http://www.socrata.com/api/users/i7d8-sc4w.json">get("/users/i7d8-sc4w.json")</a>, you can click it to dynamically run that request in the SODA Console "visor". You can examine the URL that was constructed, see what results were returned, and experiment, all without ever leaving the page you're currently on.</p>
 
     <p>A few examples:</p>
     <ul>
-      <li>Get the author's user profile: <a href="http://www.socrata.com/api/users/i7d8-sc4w.json" class="exec">get("/users/i7d8-sc4w.json")</a></li>
-      <li>Get metadata for a view: <a href="http://www.socrata.com/api/views/n5m4-mism.json" class="exec">get("/views/n5m4-mism.json")</a></li>
-      <li>Get five rows from the same view: <a href="http://www.socrata.com/api/views/n5m4-mism/rows.json?max_rows=5" class="exec">get("/views/n5m4-mism/rows.json?max_rows=5")</a></li>
+      <li>Get the author's user profile: <%= get("/users/i7d8-sc4w.json") %></li>
+      <li>Get metadata for a view: <%= get("/views/n5m4-mism.json") %></li>
+      <li>Get five rows from the same view: <%= get("/views/n5m4-mism/rows.json?max_rows=5") %></li>
+    </ul>
+
+    <h3>Authentication and the Socrata Open Data API</h3>
+
+    <p>The Socrata Open Data API supports both <a href="http://en.wikipedia.org/wiki/Basic_access_authentication"><code>HTTP Basic</code></a> and cookie-based authentication. For <code>HTTP Basic</code> authentication, simply use the email address and password you registered with Socrata. When making authenticated requests, please remember to use HTTPS connections</p>
+
+    <ul class="more-info">
+      <li>For more information, or to learn about how to use Cookie-based authentication, see the <a href="/authentication">API Authentication</a> section.</li>
+    </ul>
+
+    <h3>The RESTful Data Model</h3>
+
+    <p>Wherever possible, the Socrata Open Data API strives to be as <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a>ful as possible. Resources are represented in a heirarchical manner, and the service uses the standard HTTP <code>GET</code>, <code>POST</code>, <code>PUT</code>, and <code>DELETE</code> methods to manipulate those resources. We also use JSON, XML, and RDF to represent resources. For example:</p>
+
+    <ul>
+      <li>Datasets and filtered views are represented using the top level <code>/api/views</code> resource. To retrieve a list of views in JSON format, use a <code>GET</code> request on the <code>/api/views.json</code> resource in order to get a list of the views that are available: <%= get("/views.json?limit=5") %></li>
+      <li>To get information about a particular view, add its resource ID to the <code>/api/views</code> resource. IDs in SODA are 8 alphanumeric charecters, seperated by a dash in the middle, in a "4-4" format: <%= get("/views/n5m4-mism.json") %></li>
+      <li>If you want to then retrieve rows on a particular view, you'd tack on the <code>rows</code> resource to its view resource: <%= get("/views/n5m4-mism/rows.json?max_rows=5") %></li>
+      <li>You can even directly reference an individual row on a dataset by identifying it by row ID: <%= get("/views/n5m4-mism/rows/418.json") %></li>
+    </ul>
+
+    <p>You can traverse the heirarchy for most resources in this manner to directly access their children.</p>
+
+    <ul class="more-info">
+      <li>For more information on accessing datasets and view metadata, see <a href="/accessing-view-metadata">Accessing View Metadata</a>.</li>
+      <li>For more information on accessing and filtering for rows, see <a href="/manipulating-row-data">Manipulating Row Data</a></li>
     </ul>
 
   </div>

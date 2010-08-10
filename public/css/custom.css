@@ -560,3 +560,8 @@ form input[type="submit"] {
   background: url(/images/icon_gear.png) no-repeat left center;
   padding-left: 18px;
 }
+
+ul.more-info {
+  font-size: 90%;
+  list-style-type: circle;
+}

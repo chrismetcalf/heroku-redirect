@@ -48,10 +48,22 @@ toto = Toto::Server.new do
   }
 end
 
-# A hack to load "partials""
+# I find Toto's default ERB helpers to be pretty lacking, so I've added a bunch
+# of hacks...
 class Toto::Site::Context
+  # A hack to load "partials""
   def partial(name = nil)
     ERB.new(File.read("templates/pages/_#{name}.rhtml")).result
+  end
+
+  # Get me an API docs link
+  def docs(name)
+    "http://www.socrata.com/api/docs/#{name}"
+  end
+
+  # Construct a "GET" link
+  def get(path, class_name = "exec")
+    "<a class=\"#{class_name}\" href=\"http://www.socrata.com/api#{path}\">get(\"#{path}\")</a>"
   end
 end
 
