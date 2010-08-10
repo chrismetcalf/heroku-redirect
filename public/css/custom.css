@@ -501,7 +501,7 @@ iframe#console {
 /* Disqus Comments */
 #content #comments {
   border-top: 1px solid #DEDEDE;
-  margin: 0 1.1em;
+  margin: 1.1em;
 }
 
 #content #comments .dsq-item-trackback,
@@ -557,11 +557,18 @@ form input[type="submit"] {
 
 /* Console Links */
 .exec {
-  background: url(/images/icon_gear.png) no-repeat left center;
+  font-family: Consolas, 'Andale Mono', Monaco, Courier, 'Courier New', Verdana, sans-serif;
+  background: #EEEEEE url(/images/icon_gear.png) no-repeat left center;
+  color: #111;
   padding-left: 18px;
 }
 
 ul.more-info {
+  padding: 10px;
+  margin: 0 10px 0 15px;
+  border: 1px solid #DDDDDD;
+  background: #F7F7F7;
   font-size: 90%;
-  list-style-type: circle;
+  list-style-type: none;
 }
+

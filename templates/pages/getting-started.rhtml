@@ -26,20 +26,38 @@
 
     <h3>The RESTful Data Model</h3>
 
-    <p>Wherever possible, the Socrata Open Data API strives to be as <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a>ful as possible. Resources are represented in a heirarchical manner, and the service uses the standard HTTP <code>GET</code>, <code>POST</code>, <code>PUT</code>, and <code>DELETE</code> methods to manipulate those resources. We also use JSON, XML, and RDF to represent resources. For example:</p>
+    <p>Wherever possible, the Socrata Open Data API strives to be as <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a>ful as possible. Resources are represented in a hierarchical manner, and the service uses the standard HTTP <code>GET</code>, <code>POST</code>, <code>PUT</code>, and <code>DELETE</code> methods to manipulate those resources. We also use JSON, XML, and RDF to represent resources. For example:</p>
 
     <ul>
       <li>Datasets and filtered views are represented using the top level <code>/api/views</code> resource. To retrieve a list of views in JSON format, use a <code>GET</code> request on the <code>/api/views.json</code> resource in order to get a list of the views that are available: <%= get("/views.json?limit=5") %></li>
-      <li>To get information about a particular view, add its resource ID to the <code>/api/views</code> resource. IDs in SODA are 8 alphanumeric charecters, seperated by a dash in the middle, in a "4-4" format: <%= get("/views/n5m4-mism.json") %></li>
+      <li>To get information about a particular view, add its resource ID to the <code>/api/views</code> resource. IDs in SODA are 8 alphanumeric characters, separated by a dash in the middle, in a "4-4" format: <%= get("/views/n5m4-mism.json") %></li>
       <li>If you want to then retrieve rows on a particular view, you'd tack on the <code>rows</code> resource to its view resource: <%= get("/views/n5m4-mism/rows.json?max_rows=5") %></li>
       <li>You can even directly reference an individual row on a dataset by identifying it by row ID: <%= get("/views/n5m4-mism/rows/418.json") %></li>
     </ul>
 
-    <p>You can traverse the heirarchy for most resources in this manner to directly access their children.</p>
+    <p>You can traverse the hierarchy for most resources in this manner to directly access their children.</p>
 
     <ul class="more-info">
       <li>For more information on accessing datasets and view metadata, see <a href="/accessing-view-metadata">Accessing View Metadata</a>.</li>
       <li>For more information on accessing and filtering for rows, see <a href="/manipulating-row-data">Manipulating Row Data</a></li>
+    </ul>
+
+    <h3>Available Data Formats</h3>
+
+    <p>The Socrata Open Data API supports a number of different formats, including <a href="http://www.json.org/">JSON</a>, <a href="http://en.wikipedia.org/wiki/XML">XML</a>, and <a href="http://www.w3.org/RDF/">RDF</a>. To change the output format of a request, simply change the extension you use on the resource you are trying to receive:</p>
+
+    <ul>
+      <li><code>.json</code>, for JSON formatting. Works on all resource types: <%= get('/views/n5m4-mism.json') %>.</li>
+      <li><code>.xml</code>, for XML formatting. Works on all resource types: <%= get('/views/n5m4-mism.xml') %>.</li>
+      <li><code>.rdf</code>, for RDF formatting. Works on most resource types: <%= get('/views/n5m4-mism.rdf') %>.</li>
+      <li><code>.xls</code> and <code>.xlsx</code>, for Excel XLS output. Works only on row data: <a href="http://www.socrata.com/api/views/n5m4-mism/rows.xls">http://www.socrata.com/api/views/n5m4-mism/rows.xls</a></li>
+      <li><code>.csv</code> and <code>.txt</code>, for Comma Separated Value and text output types. Works only on row data: <a href="http://www.socrata.com/api/views/n5m4-mism/rows.csv">http://www.socrata.com/api/views/n5m4-mism/rows.csv</a></li>
+    </ul>
+
+    <p>Most of the API examples use the JSON format, as it is the most compact and efficient format we provide.</p>
+
+    <ul class="more-info">
+      <li>For more information on the output formats we provide, see <a href="/advanced-data-formats">Advanced Data Formats</a></li>
     </ul>
 
   </div>
