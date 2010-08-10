@@ -14,9 +14,9 @@
     <ul>
       <li><code>name</code>, <code>description</code> - The name and description that have been specified for the dataset.</li>
       <li><code>category</code>, <code>tags</code> - The category and tags that the author has specified to help make the dataset more discoverable.</li>
-      <li><code>tableAuthor</code>, <code>owner</code> - Summary informationa about the dataset owner, and owner of this particular filtered view of that dataset, respectively.</li>
+      <li><code>tableAuthor</code>, <code>owner</code> - Summary information about the dataset owner, and owner of this particular filtered view of that dataset, respectively.</li>
       <li><code>columns</code> - Contains all of the columns defined for this dataset, along with their respective metadata.</a>
-      <li><code>signed</code> - The cryptographic signature provided for this dataset, which can be used to verify the provenence of the original dataset. For more details, see <a href="/verifying-dataset-signatures">Verifying Dataset Signatures</a>.</li>
+      <li><code>signed</code> - The cryptographic signature provided for this dataset, which can be used to verify the provenance of the original dataset. For more details, see <a href="/verifying-dataset-signatures">Verifying Dataset Signatures</a>.</li>
     </ul>
 
     <p>There are many other fields in the <code>view</code> object, all of which are detailed in the <a href="<%= docs("types") %>">SODA API Documentation</a>.</p>
@@ -31,7 +31,7 @@
       <li><code>cachedContents</code> - Cached statistics for this column, including the total number of values, minimum and maximum where applicable, and other information.</li>
     </ul>
 
-    <p>If you know the columnn ID for a particular column, you can also retreive it directly: <%= get("/views/n5m4-mism/columns/2205502.json") %>.</p>
+    <p>If you know the column ID for a particular column, you can also retrieve it directly: <%= get("/views/n5m4-mism/columns/2205502.json") %>.</p>
 
 
   </div>
