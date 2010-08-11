@@ -9,7 +9,7 @@
 
     <h4>Retrieving Dataset or Filtered View Metadata</h4>
 
-    <p>To retrieve metadata for a view, simply add the views ID to the <code>/views</code> service: <%= get('/views/n5m4-mism.json') %>. The returned object will contain a number of different metadata keys that provide more information about the dataset or filtered view, a few useful of them being:</p>
+    <p>To retrieve metadata for a view, simply add the views ID to the <code>/views</code> service: <%= get("http://www.socrata.com/api/views/n5m4-mism.json") %>. The returned object will contain a number of different metadata keys that provide more information about the dataset or filtered view, a few useful of them being:</p>
 
     <ul>
       <li><code>name</code>, <code>description</code> - The name and description that have been specified for the dataset.</li>
@@ -23,7 +23,7 @@
 
     <h4>Retrieving Information About Columns</h4>
 
-    <p>Information about the columns contained in the schema for a dataset or filtered view can be found in its view metadata, detailed above, or by directly querying a view's subsidiary <code>columns</code> resource: <%= get("/views/n5m4-mism/columns.json") %>. Key fields on the column type include:</p>
+    <p>Information about the columns contained in the schema for a dataset or filtered view can be found in its view metadata, detailed above, or by directly querying a view's subsidiary <code>columns</code> resource: <%= get("http://www.socrata.com/api/views/n5m4-mism/columns.json") %>. Key fields on the column type include:</p>
 
     <ul>
       <li><code>id</id> - The unique identifier for this column, which is also used when retrieving row data.</li>
@@ -31,7 +31,7 @@
       <li><code>cachedContents</code> - Cached statistics for this column, including the total number of values, minimum and maximum where applicable, and other information.</li>
     </ul>
 
-    <p>If you know the column ID for a particular column, you can also retrieve it directly: <%= get("/views/n5m4-mism/columns/2205502.json") %>.</p>
+    <p>If you know the column ID for a particular column, you can also retrieve it directly: <%= get("http://www.socrata.com/api/views/n5m4-mism/columns/2205502.json") %>.</p>
 
 
   </div>
