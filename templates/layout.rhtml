@@ -55,7 +55,15 @@
               <li><a href="/advanced-data-formats">Advanced Data Formats</a></li>%>
             </ul>
           </li>
-          <li class="tab"><a href="http://www.socrata.com/api/docs/">API Reference</a></li>
+          <li class="tab">
+            <a href="http://www.socrata.com/api/docs/">API Reference</a>
+            <ul class="submenu">
+              <li><a href="<%= docs("users") %>">Users</a></li>
+              <li><a href="<%= docs("views") %>">Views</a></li>
+              <li><a href="<%= docs("types") %>">Types</a></li>
+              <li><a href="<%= docs("errors") %>">Errors</a></li>
+            </ul>
+          </li>
           <li class="tab"><a href="/blog/" title="Developer Blog">Developer Blog</a></li>
           <li class="tab"><a href="http://community.socrata.com/socrata/products/socrata_socrata_open_data_api" title="Socrata Community" target="_blank">Discussion</a></li>
         </ul>
