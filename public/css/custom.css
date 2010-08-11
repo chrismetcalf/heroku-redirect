@@ -526,7 +526,7 @@ form label {
   display: block;
   padding-bottom: 3px;
   padding-top: 3px;
-  padding-left: 10px;
+  padding-right: 13px;
 }
 
 form label.inline {
@@ -534,12 +534,12 @@ form label.inline {
 }
 
 form label.required {
-  background: url(https://www.socrata.com/stylesheets/images/common/required.png) no-repeat left top;
+  background: url(https://www.socrata.com/stylesheets/images/common/required.png) no-repeat right 3px;
 }
 
 form span.required {
-  background: url(https://www.socrata.com/stylesheets/images/common/required.png) no-repeat left top;
-  padding-left: 10px;
+  background: url(https://www.socrata.com/stylesheets/images/common/required.png) no-repeat right 3px;
+  padding-right: 13px;
 }
 
 form label.error {
