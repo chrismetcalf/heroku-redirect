@@ -219,6 +219,7 @@ input[type=text], input[type=select], textarea {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 5px;
+  display: block;
 }
 
 .custiframeom #wp_page_numbers {
@@ -523,7 +524,7 @@ form h4 {
 form label {
   color: #222222;
   font-weight: bold;
-  display: block;
+  display: inline-block;
   padding-bottom: 3px;
   padding-top: 3px;
   padding-right: 13px;
@@ -549,6 +550,7 @@ form label.error {
 
 form input[type="file"] {
   border: none;
+  display: block;
 }
 
 form input[type="submit"] {
