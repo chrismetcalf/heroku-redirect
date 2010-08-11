@@ -13,10 +13,10 @@
 
     <ul>
       <li><code>name</code>, <code>description</code> - The name and description that have been specified for the dataset.</li>
-      <li><code>category</code>, <code>tags</code> - The category and tags that the author has specified to help make the dataset more discoverable.</li>
-      <li><code>tableAuthor</code>, <code>owner</code> - Summary information about the dataset owner, and owner of this particular filtered view of that dataset, respectively.</li>
+      <li><code>category</code>, <code>tags</code> - The category and tags that the author has specified to help semantically define the dataset.
+      <li><code>tableAuthor</code>, <code>owner</code> - Summary information about the dataset owner, and the owner of this particular filtered view of that dataset, respectively.</li>
       <li><code>columns</code> - Contains all of the columns defined for this dataset, along with their respective metadata.</a>
-      <li><code>signed</code> - The cryptographic signature provided for this dataset, which can be used to verify the provenance of the original dataset. For more details, see <a href="/verifying-dataset-signatures">Verifying Dataset Signatures</a>.</li>
+      <li><code>signed</code> - Indicates whether a cryptographically signed version of the current dataset has been generated. This is useful for verifying the provenance of a downloaded dataset. For more details, see <a href="/verifying-dataset-signatures">Verifying Dataset Signatures</a>.</li>
     </ul>
 
     <p>There are many other fields in the <code>view</code> object, all of which are detailed in the <a href="<%= docs("types") %>">SODA API Documentation</a>.</p>
