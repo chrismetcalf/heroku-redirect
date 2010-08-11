@@ -484,6 +484,9 @@ iframe#console {
   z-index: 99999;
   background: #EEEEEE;
   border-bottom: 1px solid #666666;
+  box-shadow: 0 0 1em rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 0 1em rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 0 1em rgba(0,0,0,0.5);
 }
 
 #visor #close {
