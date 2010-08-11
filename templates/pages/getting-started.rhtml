@@ -47,9 +47,9 @@
     <p>The Socrata Open Data API supports a number of different formats, including <a href="http://www.json.org/">JSON</a>, <a href="http://en.wikipedia.org/wiki/XML">XML</a>, and <a href="http://www.w3.org/RDF/">RDF</a>. To change the output format of a request, simply change the extension you use on the resource you are trying to receive:</p>
 
     <ul>
-      <li><code>.json</code>, for JSON formatting. Works on all resource types: <%= get('/views/n5m4-mism.json') %>.</li>
-      <li><code>.xml</code>, for XML formatting. Works on all resource types: <%= get('/views/n5m4-mism.xml') %>.</li>
-      <li><code>.rdf</code>, for RDF formatting. Works on most resource types: <%= get('/views/n5m4-mism.rdf') %>.</li>
+      <li><code>.json</code>, for JSON formatting. Works on all resource types: <%= get("http://www.socrata.com/api/views/n5m4-mism.json") %>.</li>
+      <li><code>.xml</code>, for XML formatting. Works on all resource types: <%= get("http://www.socrata.com/api/views/n5m4-mism.xml") %>.</li>
+      <li><code>.rdf</code>, for RDF formatting. Works on most resource types: <%= get("http://www.socrata.com/api/views/n5m4-mism.rdf") %>.</li>
       <li><code>.xls</code> and <code>.xlsx</code>, for Excel XLS output. Works only on row data: <a href="http://www.socrata.com/api/views/n5m4-mism/rows.xls">http://www.socrata.com/api/views/n5m4-mism/rows.xls</a></li>
       <li><code>.csv</code> and <code>.txt</code>, for Comma Separated Value and text output types. Works only on row data: <a href="http://www.socrata.com/api/views/n5m4-mism/rows.csv">http://www.socrata.com/api/views/n5m4-mism/rows.csv</a></li>
       <li><code>.pdf</code>, for a printable Adobe PDF version of a dataset. Works only on row data: <a href="http://www.socrata.com/api/views/n5m4-mism/rows.pdf">http://www.socrata.com/api/views/n5m4-mism/rows.pdf</a></li>
