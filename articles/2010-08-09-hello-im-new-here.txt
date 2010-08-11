@@ -1,6 +1,6 @@
 ---
 title: Hello, I'm new here
-date: 10/08/2010
+date: 09/08/2010
 author: Chris Metcalf
 
 I'm [Chris Metcalf](http://www.socrata.com/profile/Chris-Metcalf/i7d8-sc4w), Socrata's new "Developer Evangelist." It's a big fancy title, but it basically means I'm here to help you get started with the Socrata Open Data API, and make sure your experience as a whole is a positive one.

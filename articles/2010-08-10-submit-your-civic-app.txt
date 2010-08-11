@@ -1,6 +1,6 @@
 ---
 title: Submit Your Civic App!
-date: 11/08/2010
+date: 10/08/2010
 
 Have you created an awesome civic app that uses the [Socrata Open Data API](http://dev.socrata.com)? Want to show it off to the world and get the chance to be included in future developer contests?
 
