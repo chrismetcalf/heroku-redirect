@@ -27,6 +27,7 @@ toto = Toto::Server.new do
   # set :ext,       'txt'                                     # file extension for articles
   # set :cache,      28800                                    # cache duration, in seconds
 
+  set :url,         "dev.socrata.com"
   set :title,       "Socrata Open Data API"
   set :date,        lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
   set :github,      {:user => "socrata", :repos => ['socrata-ruby'], :ext => 'textile'}
