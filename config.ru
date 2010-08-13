@@ -1,5 +1,7 @@
 
 require 'toto'
+require 'cgi'
+require 'ostruct'
 
 # Rack config
 use Rack::Static, :urls => ['/css', '/js', '/images', '/favicon.ico'], :root => 'public'
@@ -58,8 +60,8 @@ end
 # of hacks...
 class Toto::Site::Context
   # A hack to load "partials""
-  def partial(name = nil)
-    ERB.new(File.read("templates/pages/_#{name}.rhtml")).result
+  def partial(name = nil, locals = {})
+    ERB.new(File.read("templates/pages/_#{name}.rhtml")).result(OpenStruct.new(locals).send(:binding))
   end
 
   # Get me an API docs link
