@@ -1,6 +1,7 @@
 --- 
 title: Welcome to dev.socrata.com
 date: 11/08/2010
+author: Chris Metcalf
 
 We're proud to announce the official launch of the new Socrata Open Data API developer site, [dev.socrata.com](http://dev.socrata.com).
 
