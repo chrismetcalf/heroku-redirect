@@ -27,11 +27,16 @@ toto = Toto::Server.new do
   # set :ext,       'txt'                                     # file extension for articles
   # set :cache,      28800                                    # cache duration, in seconds
 
-  set :url,         "dev.socrata.com"
   set :title,       "Socrata Open Data API"
   set :date,        lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
   set :github,      {:user => "socrata", :repos => ['socrata-ruby'], :ext => 'textile'}
   set :disqus,      "dev-socrata-com"
+
+  if ENV['RACK_ENV'] != "production"
+    set :url, "http://localhost:3001"
+  else
+    set :url, "http://dev.socrata.com"
+  end
 
   # Abandoned custom error page based on our template
   # set :error,  lambda { |code| ERB.new(File.read("templates/pages/errors/#{code}.rhtml")).result(Toto::Context.new({:code => code}, this)) }
