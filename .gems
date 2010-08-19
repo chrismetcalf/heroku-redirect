@@ -4,3 +4,4 @@ toto
 rack-rewrite
 coderay
 rack-codehighlighter
+nokogiri
