@@ -578,3 +578,14 @@ ul.more-info {
   list-style-type: none;
 }
 
+#powered-by {
+  color: #DDD;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  right: 10px;
+  text-align: right;
+}
+
+#powered-by a {
+  color: #DDD;
+}
