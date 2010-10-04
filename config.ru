@@ -61,7 +61,14 @@ end
 class Toto::Site::Context
   # A hack to load "partials""
   def partial(name = nil, locals = {})
-    ERB.new(File.read("templates/pages/_#{name}.rhtml")).result(OpenStruct.new(locals).send(:binding))
+    klass = Class.new do
+      attr_accessor :locals
+      def initialize(locals)
+        @locals = locals
+      end
+    end
+
+    ERB.new(File.read("templates/pages/_#{name}.rhtml")).result(klass.new(locals).send(:binding))
   end
 
   # Get me an API docs link
