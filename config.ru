@@ -2,6 +2,7 @@
 require 'toto'
 require 'cgi'
 require 'ostruct'
+require 'yaml'
 
 # Rack config
 use Rack::Static, :urls => ['/css', '/js', '/images', '/favicon.ico'], :root => 'public'
@@ -15,24 +16,16 @@ end
 #
 # Create and configure a toto instance
 #
-toto = Toto::Server.new do
-  #
-  # Add your settings here
-  # set [:setting], [value]
-  #
-  # set :author,    ENV['USER']                               # blog author
-  # set :root,      "index"                                   # page to load on /
-  # set :date,      lambda {|now| now.strftime("%d/%m/%Y") }  # date format for articles
-  # set :markdown,  :smart                                    # use markdown + smart-mode
-  # set :disqus,    false                                     # disqus id, or false
-  # set :summary,   :max => 150, :delim => /~/                # length of article summary and delimiter
-  # set :ext,       'txt'                                     # file extension for articles
-  # set :cache,      28800                                    # cache duration, in seconds
-
+toto = Toto::Server.new({
+  # Horrible hack to add more things to the config
+  :apps => YAML::load(File.open("config/apps.yml"))
+}) do
+  set :author,      "Chris Metcalf"
   set :title,       "Socrata Open Data API"
   set :date,        lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
   set :github,      {:user => "socrata", :repos => ['socrata-ruby'], :ext => 'textile'}
   set :disqus,      "dev-socrata-com"
+  set :cache,       28800
 
   if ENV['RACK_ENV'] != "production"
     set :url, "http://localhost:3001"
@@ -54,6 +47,7 @@ toto = Toto::Server.new do
       "Hokey religions and ancient weapons are no match for a good blaster at your side, kid."
     end
   }
+
 end
 
 # I find Toto's default ERB helpers to be pretty lacking, so I've added a bunch
@@ -79,6 +73,19 @@ class Toto::Site::Context
   # Construct a "GET" link
   def get(path, class_name = "exec")
     "<a class=\"#{class_name}\" href=\"http://www.socrata.com/api#{path}\">get(\"#{path}\")</a>"
+  end
+
+  def apps
+    if ENV['RACK_ENV'] == 'production' 
+      @config[:apps]
+    else
+      # Always reload in development
+      YAML::load(File.open("config/apps.yml"))
+    end
+  end
+
+  def u(unescaped)
+    CGI::escape(unescaped)
   end
 end
 

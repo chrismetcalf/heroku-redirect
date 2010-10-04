@@ -1,0 +1,93 @@
+applications:
+  - name: Notifyre
+    authors:
+      - name: Chris Metcalf
+        url: http://chrismetcalf.net
+      - name: Clint Tseng
+        url: http://dontexplain.com
+      - name: Adam Phillabaum
+        url: http://www.blogger.com/profile/01798780122426727307
+      - name: Sunil Garg
+        url: http://sunilgarg.com/
+    url: http://notifyre.com
+    tags: [public safety, fire 911, web, sms, mobile]
+    data_sources: [data.seattle.gov]
+    license: Open Source (GPL)
+    code: http://github.com/clint-tseng/notifyre
+    thumb: /images/apps/notifyre.png
+    added: 2010-09-30
+    description: >
+      Notifyre allows you to subscribe to updates about a particular address. When fires are reported in your area via [data.seattle.gov](http://data.seattle.gov)'s [real-time fire 911](http://data.seattle.gov/Fire/Seattle-Real-Time-Fire-911-Calls/kzjm-xkqj) dataset, it notifies you via text message. Notifyre is also open source and available via Github, so it serves as a great "getting started" example on building applications via the [SODA API](http://dev.socrata.com).
+
+  - name: ChatterCast
+    authors:
+      - name: Amber Case
+        url: http://caseorganic.com/
+      - name: Aaron Parecki
+        url: http://aaron.pk/
+    url: http://chattercast.geoloqi.com/
+    tags: [fire, mobile, iphone]
+    data_sources: [data.seattle.gov]
+    thumb: /images/apps/chattercast.png
+    added: 2010-09-30
+    description: >
+      ChatterCast allows you to subscribe to XML feeds based on your location, built with [Tropo](http://www.tropo.com), [Geoloqi](http://www.geoloqi.com), and [Socrata](http://www.socrata.com). ChatterCast allows you to subscribe your phone to real-time fire 911 call data provided by [data.seattle.gov](http://data.seattle.gov), automatically notifiying you when there are fires near your current location.
+
+  - &feature
+    name: MomMaps
+    authors:
+      - name: Jill Seman
+        url: http://kidsplayguide.com/about.php
+    url: http://kidsplayguide.com/
+    tags: [mobile, iphone, parents, city resources]
+    thumb: /images/apps/mommaps.png
+    data_sources: [data.seattle.gov]
+    license: Commerical
+    added: 2010-10-01
+    description: >
+      Mom Maps helps you find family fun places, kid friendly locations on the
+      go! Search our extensive list of kid´s parks, kid's playgrounds, kid's
+      restaurants, kid's museums and kid's indoor play areas. Search by category
+      or zip code, and you're good to go! In addition to a comprehensive kid's
+      play guide, you'll find contact information, reviews by parents, for parents,
+      and directions.
+
+  - name: RubbrNeckr
+    authors:
+      - name: Troy Davis
+        url: http://troy.yort.com/
+    url: http://rubbrneckr.com/
+    tags: [fire 911, police, mobile]
+    data_sources: [data.seattle.gov]
+    code: http://github.com/troy/rubbrneckr
+    thumb: /images/apps/rubbrneckr.png
+    added: 2010-10-04
+    description: >
+      Where is that siren coming from? RubbrNeckr is a simple web-based app that scrapes police and fire dispatches from [data.seattle.gov](http://data.seattle.gov) and uses the GPS in your mobile phone to display real-time events in your near proximity.
+
+  - name: Seattle 911 Police Scanner
+    authors:
+      - name: Adam Kalsey
+        url: http://kalsey.com/blog/
+    url: http://blog.tropo.com/2010/08/22/seattle-911-scanner-on-tropo-for-the-hackathon/
+    tags: [fire 911, voice, tropo]
+    data_sources: [data.seattle.gov]
+    code: http://github.com/tropo/tropo-samples/blob/master/php/seattle-911-scanner.php
+    thumb: /images/apps/seattle911.png
+    added: 2010-10-04
+    description: >
+      Seattle 911 is a sample app from Adam Kalsey at [Tropo](http://www.tropo.com) that allows you to dial in to a phone number and listen to a live stream of new [data.seattle.gov](http://data.seattle.gov) Fire 911 dispatches as they're added.
+
+  - name: SEAAPI
+    authors:
+      - name: Russel Branca
+        url: http://chewbranca.com
+    url: http://chewbranca.com/blog/_design/sofa/_list/post/post-page?startkey=[%22Great-time-at-Tropo-s-Open-Government-Tinkerstorm-and-CouchDB-on-the-couch%22]
+    tags: [points of interest, neighborhood map, couchdb]
+    data_sources: [data.seattle.gov]
+    thumb: /images/apps/seaapi.png
+    added: 2010-10-04
+    description: >
+      Built entirely using [CouchDB](http://couchdb.apache.org/), SEAAPI automatically pulls in features from [data.seattle.gov](http://data.seattle.gov)'s [My Neighborhood Maps](http://data.seattle.gov/Community/My-Neighborhood-Map/82su-5fxf) dataset into an interactive map. It also dynamically pulls in images from Flickr that are relavent to each individual point.
+featured:
+  <<: *feature

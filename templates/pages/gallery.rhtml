@@ -1,0 +1,88 @@
+<div class="post_box top" id="post-20">
+  <div class="headline_area">
+    <h2>Application Gallery</h2>
+  </div>
+  <div class="format_text">
+    <div class="app-content">
+      <div class="app-post featured clearfix">
+        <h2>Featured Application</h2>
+        <div class="app-post-image">
+          <a href="<%= apps["featured"]["url"] %>"><img src="<%= apps["featured"]["thumb"] %>" alt="<%= apps["featured"]["name"] %>" /></a>
+        </div>
+        <div class="app-preview">
+          <h1><a href="<%= apps["featured"]["url"] %>"><%= apps["featured"]["name"] %></a></h1>
+          <div class="app-meta">
+            <p class="app-taxonomy"><em>tagged:</em> <%= apps["featured"]["tags"].join(", ") %></p>
+          </div>
+
+          <div class="app-description"><%= markdown apps["featured"]["description"] %></div>
+
+          <div class="app-meta">
+            <p class="app-added"><em>added</em> <%= @config[:date].call(apps["featured"]["added"]) %></p>
+            <p class="app-author"><em>by</em> <%= apps["featured"]["authors"].collect {|a| "<a href=\"#{a["url"]}\">#{a["name"]}</a>" }.join(", ") %></p>
+            <% if apps["featured"]["license"] %>
+              <p class="app-license"><em>license:</em> <%= apps["featured"]["license"] %></p>
+            <% end %>
+            <% if apps["featured"]["code"] %>
+              <p class="app-code"><em>source code:</em> <a href="<%= apps["featured"]["code"]%>"><%= apps["featured"]["code"] %></a></p>
+            <% end %>
+            <p class="app-sources"><em>data sources:</em> <%= apps["featured"]["data_sources"].collect {|d| "<a href=\"#{d}\">#{d}</a>" }.join(", ") %></p>
+          </div>
+        </div>
+      </div>
+
+      <% apps["applications"].each do |app| %>
+        <% next if app == apps["featured"] %>
+        <div class="app-post clearfix">
+          <div class="app-post-image">
+            <a href="<%= app["url"] %>"><img src="<%= app["thumb"] %>" alt="<%= app["name"] %>" /></a>
+          </div>
+          <div class="app-preview">
+            <h1><a href="<%= app["url"] %>"><%= app["name"] %></a></h1>
+            <div class="app-meta">
+              <p class="app-taxonomy"><em>tagged:</em> <%= app["tags"].join(", ") %></p>
+            </div>
+
+            <div class="app-description"><%= markdown app["description"] %></div>
+
+            <div class="app-meta">
+              <p class="app-added"><em>added</em> <%= @config[:date].call(app["added"]) %></p>
+              <p class="app-author"><em>by</em> <%= app["authors"].collect {|a| "<a href=\"#{a["url"]}\">#{a["name"]}</a>" }.join(", ") %></p>
+              <% if app["license"] %>
+                <p class="app-license"><em>license:</em> <%= app["license"] %></p>
+              <% end %>
+              <% if app["code"] %>
+                <p class="app-code"><em>source code:</em> <a href="<%= app["code"]%>"><%= app["code"] %></a></p>
+              <% end %>
+              <p class="app-sources"><em>data sources:</em> <%= app["data_sources"].collect {|d| "<a href=\"#{d}\">#{d}</a>" }.join(", ") %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="app-sidebar">
+      <ul class="sidebar-one">
+      </ul>
+
+      <ul class="sidebar-one">
+        <%# We don't have an easy way of filtering by categories yet, so leave this out
+        <li class="categories">
+          <h3>Categories</h3>
+          <ul>
+            <li><a href="#">City Services</a></li>
+            <li><a href="#">Government</a></li>
+            <li><a href="#">Parks &amp; Recreation</a></li>
+            <li><a href="#">Transportation</a></li>
+          </ul>
+        </li>
+        %>
+        <li class="box">
+          <h3>Submit Your App</h3>
+          <p>Written something awesome with the SODA API?</p>
+          <p>Make sure you <a href="/submit-your-app">submit your app</a> to have it included in the application gallery!</p>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
