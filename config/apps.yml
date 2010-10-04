@@ -31,7 +31,7 @@ applications:
     thumb: /images/apps/chattercast.png
     added: 2010-09-30
     description: >
-      ChatterCast allows you to subscribe to XML feeds based on your location, built with [Tropo](http://www.tropo.com), [Geoloqi](http://www.geoloqi.com), and [Socrata](http://www.socrata.com). ChatterCast allows you to subscribe your phone to real-time fire 911 call data provided by [data.seattle.gov](http://data.seattle.gov), automatically notifiying you when there are fires near your current location.
+      ChatterCast allows you to subscribe to XML feeds based on your location, built with [Tropo](http://www.tropo.com), [Geoloqi](http://www.geoloqi.com), and [Socrata](http://www.socrata.com). ChatterCast allows you to subscribe your phone to real-time fire 911 call data provided by [data.seattle.gov](http://data.seattle.gov), automatically notifying you when there are fires near your current location.
 
   - &feature
     name: MomMaps
@@ -88,6 +88,6 @@ applications:
     thumb: /images/apps/seaapi.png
     added: 2010-10-04
     description: >
-      Built entirely using [CouchDB](http://couchdb.apache.org/), SEAAPI automatically pulls in features from [data.seattle.gov](http://data.seattle.gov)'s [My Neighborhood Maps](http://data.seattle.gov/Community/My-Neighborhood-Map/82su-5fxf) dataset into an interactive map. It also dynamically pulls in images from Flickr that are relavent to each individual point.
+      Built entirely using [CouchDB](http://couchdb.apache.org/), SEAAPI automatically pulls in features from [data.seattle.gov](http://data.seattle.gov)'s [My Neighborhood Maps](http://data.seattle.gov/Community/My-Neighborhood-Map/82su-5fxf) dataset into an interactive map. It also dynamically pulls in images from Flickr that are relevant to each individual point.
 featured:
   <<: *feature
