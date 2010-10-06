@@ -55,7 +55,7 @@ applications:
   - name: RubbrNeckr
     authors:
       - name: Troy Davis
-        url: http://troy.yort.com/
+        url: http://twitter.com/troyd
     url: http://rubbrneckr.com/
     tags: [fire 911, police, mobile]
     data_sources: [data.seattle.gov]
