@@ -6,4 +6,4 @@ In cooperation with the [Sunlight Foundation](http://www.sunlightfoundation.com/
 
 [![Tinkerstorm Hackathon](http://farm5.static.flickr.com/4100/4922597957_d25eab983d_z.jpg)](http://www.flickr.com/photos/chrismetcalf/4922597957/in/set-72157624671868273/)
 
-I invite you to take five to ten minutes out and help out the community by [letting us know what's most important to developers](http://www.socrata.com/benchmark-study/developer-survey) when it comes to working with open government data. If you want to talk more about what open data means to you as a developer, feel free to drop me a line directly at chris.metcalf@socrata.com or [@chrismetcalf](http://twitter.com/chrismetcalf).
+I invite you to take five to ten minutes out and help out the community by [letting us know what's most important to developers](http://www.socrata.com/benchmark-study/developer-survey) when it comes to working with open government data. If you want to talk more about what open data means to you as a developer, feel free to drop me a line directly at [chris.metcalf@socrata.com](mailto:chris.metcalf@socrata.com) or [@chrismetcalf](http://twitter.com/chrismetcalf).
