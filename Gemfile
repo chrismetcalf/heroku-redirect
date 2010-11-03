@@ -8,3 +8,6 @@ gem 'coderay', '0.9.3'
 gem 'rack-codehighlighter', '0.4.6'
 gem 'nokogiri', '1.4.3.1'
 gem 'builder', '2.1.2'
+
+gem "thin", :group => :development
+
