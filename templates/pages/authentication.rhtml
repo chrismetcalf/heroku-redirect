@@ -3,7 +3,7 @@
     <h1>Authenticating with the SODA API</h1>
   </div>
   <div class="format_text">
-    <p>The <a href="http://www.socrata.com/api/docs/authenticate">AuthenticationService</a> offers an alternative cookie based authentication method. Using the AuthenticationService, you can request a cookie that can be included with subsequent requests.</p>
+    <p>The <a href="http://opendata.socrata.com/api/docs/authenticate">AuthenticationService</a> offers an alternative cookie based authentication method. Using the AuthenticationService, you can request a cookie that can be included with subsequent requests.</p>
 
     <p>Requests can also be authenticated by passing in HTTP Basic Authentication headers, and in a subsequent release of the API we will also support authentication by OAuth.</p>
 
@@ -11,13 +11,13 @@
 
     <p>Using HTTP Basic Authentication:</p>
 <pre>
-&gt; curl --user login:pass https://www.socrata.com/api/users/login/views.json
+&gt; curl --user login:pass https://opendata.socrata.com/api/users/login/views.json
 </pre>
 
     <p>Using Cookie-Based Authentication:</p>
 
 <pre>
-&gt; curl --cookie-jar cookies.txt --data username="yourusername" --data "password=yourpassword" http://www.socrata.com/api/authenticate
+&gt; curl --cookie-jar cookies.txt --data username="yourusername" --data "password=yourpassword" http://opendata.socrata.com/api/authenticate
 </pre>
 
   </div>
