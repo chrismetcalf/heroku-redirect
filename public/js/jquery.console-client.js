@@ -6,7 +6,7 @@
     var $visor = this;
 
     // Set up the iframe and associated goodies.
-    $visor.append("<iframe src=\"http://www.socrata.com/console.html\" id=\"console\"></iframe>");
+    $visor.append("<iframe src=\"http://opendata.socrata.com/console.html\" id=\"console\"></iframe>");
     $visor.append("<p><a id=\"close\" href=\"#close\">close console</a>");
 
     // Hide it by default
