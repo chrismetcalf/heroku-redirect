@@ -67,12 +67,12 @@ class Toto::Site::Context
 
   # Get me an API docs link
   def docs(name)
-    "http://www.socrata.com/api/docs/#{name}"
+    "http://opendata.socrata.com/api/docs/#{name}"
   end
 
   # Construct a "GET" link
   def get(path, class_name = "exec")
-    "<a class=\"#{class_name}\" href=\"http://www.socrata.com/api#{path}\">get(\"#{path}\")</a>"
+    "<a class=\"#{class_name}\" href=\"http://opendata.socrata.com/api#{path}\">get(\"#{path}\")</a>"
   end
 
   def apps

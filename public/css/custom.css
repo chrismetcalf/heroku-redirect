@@ -542,11 +542,11 @@ form label.inline {
 }
 
 form label.required {
-  background: url(https://www.socrata.com/stylesheets/images/common/required.png) no-repeat right 3px;
+  background: url(https://opendata.socrata.com/stylesheets/images/common/required.png) no-repeat right 3px;
 }
 
 form span.required {
-  background: url(https://www.socrata.com/stylesheets/images/common/required.png) no-repeat right 3px;
+  background: url(https://opendata.socrata.com/stylesheets/images/common/required.png) no-repeat right 3px;
   padding-right: 13px;
 }
 
