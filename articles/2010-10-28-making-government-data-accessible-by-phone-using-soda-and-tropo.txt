@@ -2,6 +2,8 @@
 title: Making government data accessible by phone using SODA and Tropo
 date: 28/10/2010
 
+__Update:__ I've updated the script to handle text messaging as well. Details [below](#textmessaging)
+
 In an age of smart phones, iPads, and the mobile web, we often forget that a huge portion of the population doesn't even have access to the Internet. How do we make sure that no one is denied access to the excellent advances we're making in open government data? One great option is to make that information accessible via a technology we've had for the last 134 years - the telephone.
 
 [![Phone](http://farm1.static.flickr.com/31/64027565_79b890c8c4.jpg)](http://www.flickr.com/photos/splorp/64027565/sizes/m/in/photostream/)
@@ -34,5 +36,9 @@ request matching facilities:
 That's really about it. The [Tropo Scripting API](https://www.tropo.com/docs/scripting/) needs a URL from which to load the script to run, so I created a simple [Rack](http://rack.rubyforge.org/) app hosted on [Heroku](http://www.heroku.com) that simply hosts the [christmas.rb](http://christmas-tree-disposal.heroku.com/rb/christmas.rb) file along with a [homepage with a cute little tree](http://christmas-tree-disposal.heroku.com/). If you want to check it out or fork the code for yourself, I've pushed the whole shebang up to [Github](http://github.com/socrata/christmas-tree-disposal-line).
 
 If you want to give it a try, simply call `(206) 397-0769` and enter a Seattle-area zip code, like `98133`.  Tropo also supports SMS, IM protocols, and even Twitter, so there is much more left to explore. If you build something cool, make sure you [submit your app](/submit-your-app/) and leave a comment below. Good luck!
+
+<a name="textmessaging">__Update:__</a> I've updated the Tropo script to handle requests via text message as well. Besides some general refactoring, the key was checking the Tropo session's `initialText` value to see if the sender sent a text message to start with. The rest of the details can be found in [my diff](https://github.com/socrata/christmas-tree-disposal-line/commit/88d9bb4584f00e2fe828b754f79ada1d55a058b1):
+
+<script src="https://gist.github.com/671812.js?file=gistfile1.rb"></script>
 
 _Photo from [slorp](http://www.flickr.com/photos/splorp/)'s CC-licensed Flickr photostream_
