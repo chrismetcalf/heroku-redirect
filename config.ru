@@ -106,6 +106,8 @@ use Rack::Rewrite do
 
   # Simpler URL for the GetSatisfaction forums
   r302 '/forums/', 'http://community.socrata.com/socrata/products/socrata_socrata_open_data_api'
+  # Redirect for app token registration
+  r302 %r{/register/?}, 'http://opendata.socrata.com/profile/app_tokens'
 end
 
 # Set up code highlighting

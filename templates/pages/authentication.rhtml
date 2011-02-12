@@ -1,23 +1,34 @@
 <div class="post_box top" id="post-80">
   <div class="headline_area">
-    <h1>Authenticating with the SODA API</h1>
+    <h1>Authentication and Application Tokens</h1>
   </div>
   <div class="format_text">
-    <p>The <a href="http://opendata.socrata.com/api/docs/authenticate">AuthenticationService</a> offers an alternative cookie based authentication method. Using the AuthenticationService, you can request a cookie that can be included with subsequent requests.</p>
 
-    <p>Requests can also be authenticated by passing in HTTP Basic Authentication headers, and in a subsequent release of the API we will also support authentication by OAuth.</p>
+    <h2>HTTP Basic Authentication</h2>
+
+    <p>Requests be authenticated by passing in HTTP Basic Authentication headers, and in a subsequent release of the API we will also support authentication by OAuth 2.0. Authentication is not required for most Consumer API requests.</p>
 
     <h3>Examples:</h3>
 
     <p>Using HTTP Basic Authentication:</p>
 <pre>
-&gt; curl --user login:pass https://opendata.socrata.com/api/users/login/views.json
+&gt; curl --user login:pass https://opendata.socrata.com/api/views/644b-gaut/rows.json
 </pre>
 
-    <p>Using Cookie-Based Authentication:</p>
+    <h2>Application Tokens and Throttling</h2>
 
+    <p>While it is possible to perform simple queries against the Socrata Open Data API without making use of an application token, you'll receive much higher throttling limits if you <a href="/register">register your application</a> and include it in your requests. In the near future when we roll out support for <code>OAuth 2.0</code> your application token will also become part of your application's authentication workflow.</p>
+
+    <p>You can include your application token using either the <code>app_token</code> parameter on your request, or using the <code>X-APP-TOKEN</code> HTTP header.</code>
+
+    <p>Making a request using an application token as a parameter:</p>
 <pre>
-&gt; curl --cookie-jar cookies.txt --data username="yourusername" --data "password=yourpassword" http://opendata.socrata.com/api/authenticate
+&gt; curl https://opendata.socrata.com/api/views/644b-gaut/rows.json?app_token=b6bThWI6I3dJfulFek8JRizjo
+</pre>
+
+    <p>Using an application token in the HTTP header:</p>
+<pre>
+&gt; curl --header "X-APP-TOKEN: b6bThWI6I3dJfulFek8JRizjo" https://opendata.socrata.com/api/views/644b-gaut/rows.json
 </pre>
 
   </div>

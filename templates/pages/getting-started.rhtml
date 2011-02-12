@@ -16,12 +16,16 @@
       <li>Get five rows from the same view: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json?max_rows=5") %></li>
     </ul>
 
-    <h3>Authentication and the Socrata Open Data API</h3>
+    <h3>Authentication, Application Tokens, and Throttling</h3>
 
-    <p>The Socrata Open Data API supports both <a href="http://en.wikipedia.org/wiki/Basic_access_authentication"><code>HTTP Basic</code></a> and cookie-based authentication. For <code>HTTP Basic</code> authentication, simply use the email address and password you registered with Socrata. When making authenticated requests, please remember to use HTTPS connections.</p>
+    <p>The Socrata Open Data API supports both <a href="http://en.wikipedia.org/wiki/Basic_access_authentication"><code>HTTP Basic</code></a> authentication. Simply use the email address and password you registered with Socrata. When making authenticated requests, please remember to use HTTPS connections.</p>
+
+    <p>In the near future, we'll be transitioning to <a href="http://oauth.net/2/">OAuth 2.0</a>, and your application tokens will continue to be used to identify your app. Watch this space - we'll provide details on how to authenticate using OAuth.</p>
+
+    <p>All requests are subject to throttling to protect one application, malicious or otherwise, from affecting the availability of the API for everyone else using it. If you're going to be making a large number of requests, <a href="/register">register your application</a> for an application token. You'll receive higher request quotas, and you'll also receive free publicity for your app. What's not to love?</p>
 
     <ul class="more-info">
-      <li>For more information, or to learn about how to use Cookie-based authentication, see the <a href="/authentication">API Authentication</a> section.</li>
+      <li>For more information, see the <a href="/authentication">API Authentication and Application Tokens</a> section.</li>
     </ul>
 
     <h3>The RESTful Data Model</h3>
