@@ -102,10 +102,11 @@ use Rack::Rewrite do
 
   # Better endpoints for RSS and ATOM
   rewrite '/atom.xml', 'index.xml'
-  r302 '/feed/', 'http://feeds.feedburner.com/socrata-soda'
+  r302 %r{/feed/?}, 'http://feeds.feedburner.com/socrata-soda'
 
   # Simpler URL for the GetSatisfaction forums
-  r302 '/forums/', 'http://community.socrata.com/socrata/products/socrata_socrata_open_data_api'
+  r302 %r{/forums/?}, 'http://support.socrata.com/forums/344875-developers-forum'
+
   # Redirect for app token registration
   r302 %r{/register/?}, 'http://opendata.socrata.com/profile/app_tokens'
 end

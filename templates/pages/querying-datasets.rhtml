@@ -1,0 +1,142 @@
+<div class="post_box top" id="post-80">
+  <div class="headline_area">
+    <h1>Querying datasets using the Socrata Open Data API</h1>
+  </div>
+  <div class="format_text">
+    <%= partial "visor" %>
+
+    <h3>Performing simple searches</h3>
+
+    <p>Searching for data within a dataset or view is simple - just use the <code>search</code> parameter on the <code>rows</code> resource and pass in a URL-encoded search term. It works with all data formats, so it's also a handy way of extracting tabular data in CSV or XLS format. For example:</p>
+
+    <ul>
+      <li>Find all the rows containing "CIA" in the White House Nominations dataset: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json?search=CIA") %></li>
+      <li>Perform the same search, but get a CSV (will download in your browser): <a href="http://opendata.socrata.com/api/views/n5m4-mism/rows.json?search=CIA">http://opendata.socrata.com/api/views/n5m4-mism/rows.json?search=CIA</a></li>
+    </ul>
+
+    <ul class="more-info">
+      <li>For a quick introduction to the concepts of datasets and views, see the <a href="/getting-started">Getting Started</a> guide.</li>
+    </ul>
+
+    <h3>Piggybacking on an existing filtered view</h3>
+
+    <p>If you have a fixed query that you want to perform, or you want to piggyback on someone else's query, you can make requests against a filtered view created via the web UI and get pre-filtered results. This is a handy way of building queries without coding them yourself. For example:</p>
+
+    <ul>
+      <li>Retrieve five rows from the "Confirmed Deputy Secretaries" view on the "Nominations &amp; Appointments" dataset: <%= get("http://opendata.socrata.com/api/views/8ece-u7e7/rows.json?max_rows=5") %></li>
+    </ul>
+
+    <p>The ID of the dataset that the filter is based upon is provided via the <code>originalViewId</code> field in the resulting object.</p>
+
+    <h3>Building an "inline" filter</h3>
+
+    <p>If you don't want to make use of an existing filtered view, you can perform queries on the fly using an "inline filter". This allows you to build a query on a dataset and get back filtered results without saving your query first. You are essentially building a temporary filtered view that exists for only the duration of your request.</p>
+
+    <p>An inline filter consists of at least three parts:</p>
+
+    <ul>
+      <li><code>originalViewId</code> - The ID of the dataset that the filter should be based on.</li>
+      <li><code>name</code> - A temporary name for the filter.</li>
+      <li><code>query</code> - The filter query to be executed.</li>
+    </ul>
+
+    <p>The SODA filter query language is very expressive, and new filter types are being constantly added, so we recommend taking a look at some saved filters created via the web UI in order to see what is possible. You can do this by creating a saved filter through your web browser, and then examining the <code>query</code> key of that view's resource to see how the query was built.</p>
+
+    <p>To execute your query, <code>POST</code> a JSON or XML document including your <code>originalViewId</code>, <code>name</code>, and <code>query</code> keys to <code>/api/views/INLINE/rows.json?method=index</code> (<code>rows.xml</code> if you're dealing in XML). This will execute your query and return to you rows that match your filter.</p>
+
+    <p>The following is an example of a <code>query</code> that returns only "confirmed" nominees with a title of "Deputy Secretary" from the White House "Nominations &amp; Appointments" dataset:</p>
+
+    <pre>
+{
+  "originalViewId" : "n5m4-mism",
+  "name" : "Inline Filter",
+  "query" : {
+    "filterCondition" : {
+      "type" : "operator",
+      "value" : "AND",
+      "children" : [ {
+        "type" : "operator",
+        "value" : "OR",
+        "children" : [ {
+          "type" : "operator",
+          "value" : "EQUALS",
+          "children" : [ {
+            "columnId" : 2205506,
+            "type" : "column"
+          }, {
+            "type" : "literal",
+            "value" : "Deputy Secretary"
+          } ]        } ]
+      }, {
+        "type" : "operator",
+        "value" : "OR",
+        "children" : [ {
+          "type" : "operator",
+          "value" : "EQUALS",
+          "children" : [ {
+            "columnId" : 2205510,
+            "type" : "column"
+          }, {
+            "type" : "literal",
+            "value" : "1"
+          } ]
+        } ]
+      } ]
+    }
+  }
+}
+    </pre>
+
+    <h3>Performing a geo query</h3>
+
+    <p>Using the Socrata Open Data API and a <code>location</code>-typed column, you can also perform simpe geo queries. The <code>within_circle</code> operator type allows you to specify three filter parameters: the latitude, longitude, and range in meters to find matching rows within.</p>
+
+    <p>The following example finds boat ramps within 1000 meters of the author's boat:</p>
+
+    <pre>
+{
+    "originalViewId": "2cqc-zesn",
+    "name": "Nearby Boat Launches",
+    "query": {
+        "filterCondition": {
+            "type": "operator",
+            "value": "AND",
+            "children": [
+                {
+                    "children": [
+                        {
+                            "type": "operator",
+                            "value": "within_circle",
+                            "metadata": {
+                                "freeform": true
+                            },
+                            "children": [
+                                {
+                                    "type": "column",
+                                    "columnId": 2648915
+                                },
+                                {
+                                    "type": "literal",
+                                    "value": 47.68489
+                                },
+                                {
+                                    "type": "literal",
+                                    "value":  -122.40448
+                                },
+                                {
+                                    "type": "literal",
+                                    "value": 1000
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "operator",
+                    "value": "OR"
+                }
+            ]
+        }
+    }
+}
+    </pre>
+  </div>
+</div>
