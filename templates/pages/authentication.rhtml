@@ -24,11 +24,12 @@
     <p>You can include your application token using either the <code>app_token</code> parameter on your request, or using the <code>X-App-Token</code> HTTP header. Application tokens are not used for authentication, but you should still preserve the security of your application token by always using <code>HTTPS</code> requests.</p>
 
     <p>Making a request using an application token as a parameter:</p>
+
 <pre>
 &gt; curl https://opendata.socrata.com/api/views/644b-gaut/rows.json?app_token=b6bThWI6I3dJfulFek8JRizjo
 </pre>
 
-    <p>Using an application token in the HTTP header:</p>
+    <p>Using an application token in the HTTP header. Using an HTTP header is the preferred method:</p>
 <pre>
 &gt; curl --header "X-App-Token: b6bThWI6I3dJfulFek8JRizjo" https://opendata.socrata.com/api/views/644b-gaut/rows.json
 </pre>
