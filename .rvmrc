@@ -1,5 +1,1 @@
-if [[ -n "$rvm_environments_path" && -s "$rvm_environments_path/ruby-1.9.2-p0@dev_socrata_com" ]] ; then
-  . "$rvm_environments_path/ruby-1.9.2-p0@dev_socrata_com"
-else
-  rvm --create  "ruby-1.9.2-p0@dev_socrata_com"
-fi
+rvm --create use 1.9.2@dev_socrata_com
