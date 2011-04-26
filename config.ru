@@ -1,4 +1,3 @@
-
 require 'toto'
 require 'cgi'
 require 'ostruct'
@@ -12,7 +11,6 @@ if ENV['RACK_ENV'] == 'development'
   use Rack::ShowExceptions
 end
 
-
 #
 # Create and configure a toto instance
 #
@@ -23,31 +21,31 @@ toto = Toto::Server.new({
   set :author,      "Chris Metcalf"
   set :title,       "Socrata Open Data API"
   set :date,        lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
-  set :github,      {:user => "socrata", :repos => ['socrata-ruby'], :ext => 'textile'}
+  set :github,      {:user => "socrata", :repos => ['socrata-ruby'], :ext => 'markdown'}
   set :disqus,      "dev-socrata-com"
   set :cache,       28800
 
   if ENV['RACK_ENV'] != "production"
-    set :url, "http://localhost:3001"
+    set :url, "http://localhost:9393"
   else
     set :url, "http://dev.socrata.com"
   end
 
-  # Abandoned custom error page based on our template
-  # set :error,  lambda { |code| ERB.new(File.read("templates/pages/errors/#{code}.rhtml")).result(Toto::Context.new({:code => code}, this)) }
-
   # Simple error page
   set :error, lambda { |code|
-    case code
-    when 404
-      "These are not the droids you are looking for... (404)"
-    when 500
-      "I would much rather have gone with Master Luke than stay here with you. I don't know what all this trouble is about, but I'm sure it must be your fault. (500)"
-    else
-      "Hokey religions and ancient weapons are no match for a good blaster at your side, kid."
-    end
+    output = Markdown.new(File.read("templates/#{code}.txt").strip).to_html
+    puts output
+    output
   }
 
+  # Magic to allow me to use Markdown for static pages
+  set :to_html, lambda {|path, page, ctx|
+    if File.exists? "#{path}/#{page}.txt"
+      Markdown.new(File.read("#{path}/#{page}.txt").strip).to_html
+    else
+      ERB.new(File.read("#{path}/#{page}.rhtml")).result(ctx)
+    end
+  },
 end
 
 # I find Toto's default ERB helpers to be pretty lacking, so I've added a bunch
@@ -76,7 +74,7 @@ class Toto::Site::Context
   end
 
   def apps
-    if ENV['RACK_ENV'] == 'production' 
+    if ENV['RACK_ENV'] == 'production'
       @config[:apps]
     else
       # Always reload in development
@@ -109,6 +107,9 @@ use Rack::Rewrite do
 
   # Redirect for app token registration
   r302 %r{/register/?}, 'http://opendata.socrata.com/profile/app_tokens'
+
+  # Rewrite /publisher URLs
+  rewrite %r{/publisher/(.*)}, '/publisher-$1'
 end
 
 # Set up code highlighting

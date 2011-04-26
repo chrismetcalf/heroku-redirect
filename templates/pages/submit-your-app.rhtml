@@ -1,66 +1,61 @@
-<div class="post_box top" id="post-80">
-  <div class="headline_area">
-    <h1>Show Off Your Application!</h1>
-  </div>
-  <div class="format_text">
-    <p>Built something cool with the SODA API? Show it off! Submit your application for inclusion in the SODA Application Gallery. Your application will be promoted along with other applications and you might even have the chance to win fun prizes in one of our developer contests.</p>
+<h1>Show Off Your Application!</h1>
 
-    <h3>Criterion for Approval</h3>
-    <p>Most applications will be approved, but there are a few guidelines that you should keep in mind:</p>
-    <ol>
-      <li>Your application must make use of the <a href="http://dev.socrata.com">Socrata Open Data API</a>.</li>
-      <li>Information about your application must be publicly accessible (i.e. you must have a public website we can link to from the app gallery).</li>
-      <li>Your application should not contain offensive language or imagery. Keep it clean people!</li>
-    </ol>
+<p>Built something cool with the SODA API? Show it off! Submit your application for inclusion in the SODA Application Gallery. Your application will be promoted along with other applications and you might even have the chance to win fun prizes in one of our developer contests.</p>
 
-    <h3>Submit Your Application</h3>
+<h2>Criterion for Approval</h2>
+<p>Most applications will be approved, but there are a few guidelines that you should keep in mind:</p>
+<ol>
+  <li>Your application must make use of the <a href="http://dev.socrata.com">Socrata Open Data API</a>.</li>
+  <li>Information about your application must be publicly accessible (i.e. you must have a public website we can link to from the app gallery).</li>
+  <li>Your application should not contain offensive language or imagery. Keep it clean people!</li>
+</ol>
 
-    <form id="appSubmitForm" method='POST'
-      enctype='multipart/form-data'
-      action="http://opendata.socrata.com/views/vzs9-jjn2/rows.html?method=createForm&successRedirect=http%3A%2F%2Fdev.socrata.com%2Fapp-submissions&errorRedirect=http%3A%2F%2Fopendata.socrata.com%2Fdataset%2FSODA-API-Application-Submissions%2Fvzs9-jjn2%2Fform_error">
+<h2>Submit Your Application</h2>
 
-      <h4>About You</h4>
-      <label for="form_field_2489617" class="required">What's your name?</label>
-      <input type="text" class="fieldInput" id="form_field_2489617" name="2489617" />
+<form id="appSubmitForm" method='POST'
+  enctype='multipart/form-data'
+  action="http://opendata.socrata.com/views/vzs9-jjn2/rows.html?method=createForm&successRedirect=http%3A%2F%2Fdev.socrata.com%2Fapp-submissions&errorRedirect=http%3A%2F%2Fopendata.socrata.com%2Fdataset%2FSODA-API-Application-Submissions%2Fvzs9-jjn2%2Fform_error">
 
-      <label for="form_field_2511043" class="required">What's your email address?</label>
-      <input type="text" class="fieldInput" id="form_field_2511043" name="2511043" />
+  <h4>About You</h4>
+  <label for="form_field_2489617" class="required">What's your name?</label>
+  <input type="text" class="fieldInput" id="form_field_2489617" name="2489617" />
 
-      <label for="form_field_2489618">What's your company/organization's name?</label>
-      <input type="text" class="fieldInput" id="form_field_2489618" name="2489618" />
+  <label for="form_field_2511043" class="required">What's your email address?</label>
+  <input type="text" class="fieldInput" id="form_field_2511043" name="2511043" />
 
-      <label for="form_field_2511029_address_city" class="required">What city are you from?</label>
-      <input type="text" id="form_field_2511029_address_city"
-      name="2511029:human_address:city" />
+  <label for="form_field_2489618">What's your company/organization's name?</label>
+  <input type="text" class="fieldInput" id="form_field_2489618" name="2489618" />
 
-      <label for="form_field_2511029_address_state">What state or province are you from?</label>
-      <input type="text" id="form_field_2511029_address_state"
-      name="2511029:human_address:state" />
+  <label for="form_field_2511029_address_city" class="required">What city are you from?</label>
+  <input type="text" id="form_field_2511029_address_city"
+  name="2511029:human_address:city" />
 
-      <p class="small">Your hometown will be included on the <a href="http://opendata.socrata.com/dataset/Where-Are-All-the-SODA-Apps-/c9jq-k36v">Where are all the apps?</a> map along with your application name and URL, but no personal details.</p>
+  <label for="form_field_2511029_address_state">What state or province are you from?</label>
+  <input type="text" id="form_field_2511029_address_state"
+  name="2511029:human_address:state" />
 
-      <h4>About Your App</h4>
-      <label for='form_field_2511644' class="required">What do you call your application?</label>
-      <input type='text' class='fieldInput' id='form_field_2511644' name='2511644' />
+  <p class="small">Your hometown will be included on the <a href="http://opendata.socrata.com/dataset/Where-Are-All-the-SODA-Apps-/c9jq-k36v">Where are all the apps?</a> map along with your application name and URL, but no personal details.</p>
 
-      <label for="form_field_2489621" class="required">What does your application do?</label>
-      <textarea rows="5" cols="70" class="fieldInput" id="form_field_2489621" name="2489621"></textarea>
+  <h4>About Your App</h4>
+  <label for='form_field_2511644' class="required">What do you call your application?</label>
+  <input type='text' class='fieldInput' id='form_field_2511644' name='2511644' />
 
-      <label for="form_field_2489620_url" class="required">Got a website for your app?</label>
-      <input type="text" id="form_field_2489620_url" name="2489620:url" />
+  <label for="form_field_2489621" class="required">What does your application do?</label>
+  <textarea rows="5" cols="70" class="fieldInput" id="form_field_2489621" name="2489621"></textarea>
 
-      <label for="form_field_2511534">Got a screenshot of it showing it in its full glory?</label>
-      <input type='file' id='form_field_2511534' name='2511534' class="noborder"/>
+  <label for="form_field_2489620_url" class="required">Got a website for your app?</label>
+  <input type="text" id="form_field_2489620_url" name="2489620:url" />
 
-      <input type="hidden" value="" name="2511025"/>
-      <input type="hidden" value="" name="2511027"/>
+  <label for="form_field_2511534">Got a screenshot of it showing it in its full glory?</label>
+  <input type='file' id='form_field_2511534' name='2511534' class="noborder"/>
 
-      <input type="submit" value="Submit your application" />
-    </form>
+  <input type="hidden" value="" name="2511025"/>
+  <input type="hidden" value="" name="2511027"/>
 
-    <p>Your contact information will not be used for any purpose other than notifying you about your submission to the SODA Application Gallery, and it will not be given, sold, or rented to any third party. We review all application submissions before they are added to the Application Gallery.</p>
-  </div>
-</div>
+  <input type="submit" value="Submit your application" />
+</form>
+
+<p>Your contact information will not be used for any purpose other than notifying you about your submission to the SODA Application Gallery, and it will not be given, sold, or rented to any third party. We review all application submissions before they are added to the Application Gallery.</p>
 
 <script>
   $(function(){

@@ -19,7 +19,7 @@
 
     <link rel="canonical" href="http://dev.socrata.com/" />
 
-    <link rel="alternate" type="application/rss+xml" title="Socrata Developers RSS Feed" href="http://feeds.feedburner.com/socrata-soda" />
+    <link rel="alternate" type="application/rss+xml" title="SODA Developer Blog RSS Feed" href="http://feeds.feedburner.com/socrata-soda" />
 
     <script src="/js/jquery-1.4.1.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/jquery.validate.min.js" type="text/javascript" charset="utf-8"></script>
@@ -45,13 +45,24 @@
         <ul class="menu">
           <li class="tab"><a href="/" title="Home">Home</a></li>
           <li class="tab">
-            <a href="/getting-started/" title="Getting Started">Getting Started</a>
+            <a href="/what-is-the-consumer-api/" title="Data Consumers">Data Consumers</a>
             <ul class="submenu">
-              <li><a href="/getting-started">Overview</a></li>
+              <li><a href="/getting-started">Getting Started</a></li>
               <li><a href="/authentication">Authentication and Application Tokens</a></li>
               <li><a href="/accessing-view-metadata">Accessing View Metadata</a></li>
               <li><a href="/retrieving-row-data">Retrieving Row Data</a></li>
               <li><a href="/querying-datasets">Querying Datasets</a></li>
+            </ul>
+          </li>
+          <li class="tab">
+            <a href="/publisher/what-is-the-publisher-api/" title="Data Publishers">Data Publishers</a>
+            <ul class="submenu">
+              <li><a href="/publisher/getting-started/">Getting Started</a></li>
+              <li><a href="/publisher/importing/">Uploading Data</a></li>
+              <li><a href="/publisher/workflow/">The Publishing Workflow</a></li>
+              <li><a href="/publisher/bulk-updating/">Bulk Append and Replace</a></li>
+              <li><a href="/publisher/updating-records/">Adding and Modifying Records</a></li>
+              <li><a href="/publisher/updating-metadata/">Updating Dataset Metadata</a></li>
             </ul>
           </li>
           <li class="tab">
@@ -73,7 +84,13 @@
         <div id="content_box" class="no_sidebars">
           <div id="content">
             <%# Content goes here! %>
-            <%= yield %>
+            <div class="post_box top">
+              <div class="format_text">
+                <%= partial "visor" %>
+
+                <%= yield %>
+              </div>
+            </div>
 
             <%# Show comments everywhere but on the homepage %>
             <% if @path.match(/^(home|index)$/).nil? %>
