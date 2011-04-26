@@ -78,7 +78,7 @@ body { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
 
 /*---:[ headlines ]:---*/
 .headline_area h1, .headline_area h2 { font-size: 2.2em; line-height: 1.364em; }
-.format_text h2, .format_text h3 { font-size: 1.286em; line-height: 1.222em; margin: 1.833em 0 0.611em 0; }
+.format_text h2, .format_text h3 { font-size: 1.286em; line-height: 1.222em; margin: 0.611em 0 0.611em 0; }
 .format_text h4 { font-size: 1em; }
 .format_text h5 { font-size: 0.786em; }
 .format_text h6 { font-size: 0.786em; }

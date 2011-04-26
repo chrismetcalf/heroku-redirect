@@ -1,38 +1,32 @@
-<div class="post_box top" id="post-80">
-  <div class="headline_area">
-    <h1>Authentication and Application Tokens</h1>
-  </div>
-  <div class="format_text">
+<h1>Authentication and Application Tokens</h1>
 
-    <h2>HTTP Basic Authentication</h2>
+<h2>HTTP Basic Authentication</h2>
 
-    <p>Requests can be authenticated by passing in HTTP Basic Authentication headers, and in a subsequent release of the API we will also support authentication by OAuth 2.0. Authentication is not required for Consumer API requests.</p>
+<p>Requests can be authenticated by passing in HTTP Basic Authentication headers, and in a subsequent release of the API we will also support authentication by OAuth 2.0. Authentication is not required for Consumer API requests.</p>
 
-    <p>All authenticated request <em>must</em> be performed over a secure HTTPS connection, and must include an Application Token. Authenticated requests made over an insecure connection or without an application token will be denied.</p>
+<p>All authenticated request <em>must</em> be performed over a secure HTTPS connection, and must include an Application Token. Authenticated requests made over an insecure connection or without an application token will be denied.</p>
 
-    <h3>Examples:</h3>
+<h3>Examples:</h3>
 
-    <p>Using HTTP Basic Authentication:</p>
+<p>Using HTTP Basic Authentication:</p>
 <pre>
 &gt; curl --header "X-App-Token: b6bThWI6I3dJfulFek8JRizjo" --user login:pass https://opendata.socrata.com/api/views/644b-gaut/rows.json
 </pre>
 
-    <h2>Application Tokens and Throttling</h2>
+<h2>Application Tokens and Throttling</h2>
 
-    <p>While it is possible to perform simple queries against the Socrata Open Data API without making use of an application token, you'll receive much higher throttling limits if you <a href="/register">register your application</a> and include it in your requests. In the near future when we roll out support for <code>OAuth 2.0</code> your application token will also become part of your application's authentication workflow.</p>
+<p>While it is possible to perform simple queries against the Socrata Open Data API without making use of an application token, you'll receive much higher throttling limits if you <a href="/register">register your application</a> and include it in your requests. In the near future when we roll out support for <code>OAuth 2.0</code> your application token will also become part of your application's authentication workflow.</p>
 
-    <p>You can include your application token using either the <code>app_token</code> parameter on your request, or using the <code>X-App-Token</code> HTTP header. Application tokens are not used for authentication, but you should still preserve the security of your application token by always using <code>HTTPS</code> requests.</p>
+<p>You can include your application token using either the <code>app_token</code> parameter on your request, or using the <code>X-App-Token</code> HTTP header. Application tokens are not used for authentication, but you should still preserve the security of your application token by always using <code>HTTPS</code> requests.</p>
 
-    <p>Making a request using an application token as a parameter:</p>
+<p>Making a request using an application token as a parameter:</p>
 
 <pre>
 &gt; curl https://opendata.socrata.com/api/views/644b-gaut/rows.json?app_token=b6bThWI6I3dJfulFek8JRizjo
 </pre>
 
-    <p>Using an application token in the HTTP header. Using an HTTP header is the preferred method:</p>
+<p>Using an application token in the HTTP header. Using an HTTP header is the preferred method:</p>
 <pre>
 &gt; curl --header "X-App-Token: b6bThWI6I3dJfulFek8JRizjo" https://opendata.socrata.com/api/views/644b-gaut/rows.json
 </pre>
 
-  </div>
-</div>

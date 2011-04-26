@@ -1,38 +1,28 @@
-<div class="post_box top" id="post-80">
-  <div class="headline_area">
-    <h1>Accessing View Metadata</h1>
-  </div>
-  <div class="format_text">
-    <%= partial "visor" %>
+<h1>Accessing View Metadata</h1>
 
-    <p>Using the Socrata Open Data API, you can retrieve informational metadata about datasets and filtered views from the <a href="<%= docs("views") %>">ViewsService</a>. This metadata can help you discover details about a datasets owner, the columns that have been defined in its schema, and any informational metadata that the author has provided. For filtered views, you can also view what filter parameters have been set.</p>
+<h2>Retrieving Dataset or Filtered View Metadata</h2>
 
-    <h4>Retrieving Dataset or Filtered View Metadata</h4>
+<p>Using the Socrata Open Data API, you can retrieve informational metadata about datasets and filtered views from the <a href="<%= docs("views") %>">ViewsService</a>. This metadata can help you discover details about a datasets owner, the columns that have been defined in its schema, and any informational metadata that the author has provided. For filtered views, you can also view what filter parameters have been set.</p>
 
-    <p>To retrieve metadata for a view, simply add the views ID to the <code>/views</code> service: <%= get("http://opendata.socrata.com/api/views/n5m4-mism.json") %>. The returned object will contain a number of different metadata keys that provide more information about the dataset or filtered view, a few useful of them being:</p>
+<p>To retrieve metadata for a view, simply add the views ID to the <code>/views</code> service: <%= get("http://opendata.socrata.com/api/views/n5m4-mism.json") %>. The returned object will contain a number of different metadata keys that provide more information about the dataset or filtered view, a few useful of them being:</p>
 
-    <ul>
-      <li><code>name</code>, <code>description</code> - The name and description that have been specified for the dataset.</li>
-      <li><code>category</code>, <code>tags</code> - The category and tags that the author has specified to help semantically define the dataset.
-      <li><code>tableAuthor</code>, <code>owner</code> - Summary information about the dataset owner, and the owner of this particular filtered view of that dataset, respectively.</li>
-      <li><code>columns</code> - Contains all of the columns defined for this dataset, along with their respective metadata.</a>
-    <li><code>signed</code> - Indicates whether a cryptographically signed version of the current dataset has been generated. This is useful for verifying the provenance of a downloaded dataset.<%# For more details, see <a href="/verifying-dataset-signatures">Verifying Dataset Signatures</a>.%></li>
-    </ul>
+<ul>
+  <li><code>name</code>, <code>description</code> - The name and description that have been specified for the dataset.</li>
+  <li><code>category</code>, <code>tags</code> - The category and tags that the author has specified to help semantically define the dataset.</li>
+  <li><code>tableAuthor</code>, <code>owner</code> - Summary information about the dataset owner, and the owner of this particular filtered view of that dataset, respectively.</li>
+  <li><code>columns</code> - Contains all of the columns defined for this dataset, along with their respective metadata.</a></li>
+</ul>
 
-    <p>There are many other fields in the <code>view</code> object, all of which are detailed in the <a href="<%= docs("types") %>">SODA API Documentation</a>.</p>
+<p>There are many other fields in the <code>view</code> object, all of which are detailed in the <a href="<%= docs("types") %>">SODA API Documentation</a>.</p>
 
-    <h4>Retrieving Information About Columns</h4>
+<h2>Retrieving Information About Columns</h2>
 
-    <p>Information about the columns contained in the schema for a dataset or filtered view can be found in its view metadata, detailed above, or by directly querying a view's subsidiary <code>columns</code> resource: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/columns.json") %>. Key fields on the column type include:</p>
+<p>Information about the columns contained in the schema for a dataset or filtered view can be found in its view metadata, detailed above, or by directly querying a view's subsidiary <code>columns</code> resource: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/columns.json") %>. Key fields on the column type include:</p>
 
-    <ul>
-      <li><code>id</id> - The unique identifier for this column, which is also used when retrieving row data.</li>
-      <li><code>name</code>, <code>description</code> - The name and description for the column as specified by the author.</li>
-      <li><code>cachedContents</code> - Cached statistics for this column, including the total number of values, minimum and maximum where applicable, and other information.</li>
-    </ul>
+<ul>
+  <li><code>id</id> - The unique identifier for this column, which is also used when retrieving row data.</li>
+  <li><code>name</code>, <code>description</code> - The name and description for the column as specified by the author.</li>
+  <li><code>cachedContents</code> - Cached statistics for this column, including the total number of values, minimum and maximum where applicable, and other information.</li>
+</ul>
 
-    <p>If you know the column ID for a particular column, you can also retrieve it directly: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/columns/2205502.json") %>.</p>
-
-
-  </div>
-</div>
+<p>If you know the column ID for a particular column, you can also retrieve it directly: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/columns/2205502.json") %>.</p>

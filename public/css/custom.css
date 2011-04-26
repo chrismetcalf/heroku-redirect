@@ -19,6 +19,10 @@ body {
   background:none;
 }
 
+.format_text h1 {
+  padding-bottom: 0.5em;
+}
+
 /* Hidden Stuff */
 .prev_next, .post_nav, .comments_closed, .to_comments {
   display:none;
@@ -743,15 +747,18 @@ ul.more-info {
 .staff-picks li.last {
   margin-right:0;
 }
+
 .staff-picks li li {
   font-size:11px;
   margin-bottom:0;
   line-height:normal;
 }
+
 .staff-picks li li a {
   font-weight:bold;
   text-decoration:none;
 }
+
 .staff-picks img, .icon img {
   -moz-box-shadow: 1px 3px 3px #ccc;
   -webkit-box-shadow: 1px 3px 3px #ccc;
@@ -762,25 +769,31 @@ ul.more-info {
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#cccccc');
   margin-bottom:10px;
 }
+
 .meta li {
   font-size:11px;
 }
+
 .meta span {
   font-weight:bold;
 }
+
 .screen-shot {
   padding:20px;
   margin-bottom:1.571em;
 }
+
 .screen-shot img {
   margin-bottom:10px;
 }
+
 p.caption {
   margin:0;
   text-transform:uppercase;
   text-align:center;
   font-size:11px;
 }
+
 .button a {
   display:block;
   height:25px;
@@ -799,20 +812,24 @@ p.caption {
   -webkit-border-radius: 3px;
   text-shadow:#fff 0 1px 0;
 }
+
 ul.breadcrumb {
   list-style-type:none;
   margin:0;
   padding:0;
 }
+
 .breadcrumb li {
   float:left;
   margin-right:8px;
   margin-bottom:20px;
   color:#92c348;
 }
+
 .breadcrumb a {
   text-decoration:none;
 }
+
 .breadcrumb a:hover {
   text-decoration:underline;
 }
