@@ -1,0 +1,3 @@
+# The Socrata Open Data Consumer API
+
+The Socrata Open Data Consumer API allows...

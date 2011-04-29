@@ -1,0 +1,64 @@
+<h1>Getting Started With the Socrata Open Data Publisher API</h1>
+
+<h2>About the Examples</h2>
+
+<p>In addition to our <a href="/code-samples">code samples</a>, we also provide simple examples inline with the documentation. In order to make the examples as language-agnostic as possible, and to show how you can use the SODA API with the simplest tools possible, examples are provided in-line using the <a href="/console">SODA Console</a>. Wherever you see a link like <a class="exec" href="http://opendata.socrata.com/api/users/i7d8-sc4w.json">get("http://opendata.socrata.com/api/users/i7d8-sc4w.json")</a>, you can click it to dynamically run that request in the SODA Console "visor". You can examine the URL that was constructed, see what results were returned, and experiment, all without ever leaving the page you're currently on.</p>
+
+<p>A few examples:</p>
+<ul>
+  <li>Get the author's user profile: <%= get("http://opendata.socrata.com/api/users/i7d8-sc4w.json") %></li>
+  <li>Get metadata for a view: <%= get("http://opendata.socrata.com/api/views/n5m4-mism.json") %></li>
+  <li>Get five rows from the same view: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json?max_rows=5") %></li>
+</ul>
+
+<h2>Authentication, Application Tokens, and Throttling</h2>
+
+<p>The Socrata Open Data API supports both <a href="http://en.wikipedia.org/wiki/Basic_access_authentication"><code>HTTP Basic</code></a> authentication. Simply use the email address and password you registered with Socrata. When making authenticated requests, please remember to use HTTPS connections.</p>
+
+<p>In the near future, we'll be transitioning to <a href="http://oauth.net/2/">OAuth 2.0</a>, and your application tokens will continue to be used to identify your app. Watch this space - we'll provide details on how to authenticate using OAuth.</p>
+
+<p>All requests are subject to throttling to protect one application, malicious or otherwise, from affecting the availability of the API for everyone else using it. If you're going to be making a large number of requests, <a href="/register">register your application</a> for an application token. You'll receive higher request quotas, and you'll also receive free publicity for your app. What's not to love?</p>
+
+<ul class="more-info">
+  <li>For more information, see the <a href="/authentication">API Authentication and Application Tokens</a> section.</li>
+</ul>
+
+<h2>The RESTful Data Model</h2>
+
+<p>Wherever possible, the Socrata Open Data API strives to be as <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a>ful as possible. Resources are represented in a hierarchical manner, and the service uses the standard HTTP <code>GET</code>, <code>POST</code>, <code>PUT</code>, and <code>DELETE</code> methods to manipulate those resources. We also use JSON, XML, and RDF to represent resources. For example:</p>
+
+<ul>
+  <li>Datasets and filtered views are represented using the top level <code>/api/views</code> resource. To retrieve a list of views in JSON format, use a <code>GET</code> request on the <code>/api/views.json</code> resource in order to get a list of the views that are available: <%= get("http://opendata.socrata.com/api/views.json?limit=5") %></li>
+  <li>To get information about a particular view, add its resource ID to the <code>/api/views</code> resource. IDs in SODA are 8 alphanumeric characters, separated by a dash in the middle, in a "4-4" format: <%= get("http://opendata.socrata.com/api/views/n5m4-mism.json") %></li>
+  <li>If you want to then retrieve rows on a particular view, you'd tack on the <code>rows</code> resource to its view resource: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json?max_rows=5") %></li>
+  <li>You can even directly reference an individual row on a dataset by identifying it by row ID: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows/418.json") %></li>
+</ul>
+
+<p>You can traverse the hierarchy for most resources in this manner to directly access their children.</p>
+
+<ul class="more-info">
+  <li>For more information on accessing datasets and view metadata, see <a href="/accessing-view-metadata">Accessing View Metadata</a>.</li>
+  <li>For more information on accessing and filtering for rows, see <a href="/retrieving-row-data">Retrieving Row Data</a></li>
+</ul>
+
+<h2>Available Data Formats</h2>
+
+<p>The Socrata Open Data API supports a number of different formats, including <a href="http://www.json.org/">JSON</a>, <a href="http://en.wikipedia.org/wiki/XML">XML</a>, and <a href="http://www.w3.org/RDF/">RDF</a>. To change the output format of a request, simply change the extension you use on the resource you are trying to receive:</p>
+
+<ul>
+  <li><code>.json</code>, for JSON formatting. Works on all resource types: <%= get("http://opendata.socrata.com/api/views/n5m4-mism.json") %>.</li>
+  <li><code>.xml</code>, for XML formatting. Works on all resource types: <%= get("http://opendata.socrata.com/api/views/n5m4-mism.xml") %>.</li>
+  <li><code>.rdf</code>, for RDF formatting. Works on most resource types: <%= get("http://opendata.socrata.com/api/views/n5m4-mism.rdf") %>.</li>
+  <li><code>.xls</code> and <code>.xlsx</code>, for Excel XLS output. Works only on row data: <a href="http://opendata.socrata.com/api/views/n5m4-mism/rows.xls">http://opendata.socrata.com/api/views/n5m4-mism/rows.xls</a></li>
+  <li><code>.csv</code> and <code>.txt</code>, for Comma Separated Value and text output types. Works only on row data: <a href="http://opendata.socrata.com/api/views/n5m4-mism/rows.csv">http://opendata.socrata.com/api/views/n5m4-mism/rows.csv</a></li>
+  <li><code>.pdf</code>, for a printable Adobe PDF version of a dataset. Works only on row data: <a href="http://opendata.socrata.com/api/views/n5m4-mism/rows.pdf">http://opendata.socrata.com/api/views/n5m4-mism/rows.pdf</a></li>
+</ul>
+
+<p>Most of the API examples use the JSON format, as it is the most compact and efficient format we provide.</p>
+
+<%#
+<ul class="more-info">
+  <li>For more information on the output formats we provide, see <a href="/advanced-data-formats">Advanced Data Formats</a></li>
+</ul>
+%>
+
