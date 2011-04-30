@@ -1,0 +1,182 @@
+<h1>Importing Data Files</h1>
+
+<h2>Introduction</h2>
+
+<p>In an ideal world, you will be able to use the <a href="/publisher/updating-records">live append and modification</a> features that the Socrata Open Data API supports to keep your Socrata dataset directly in sync with your system of record. However, the system of record may not be available for direct export, or the data you are publishing might never change. In these cases, you can use the Import API to programmatically import data into datasets. Note that the Imports endpoints are proprietary Socrata extensions to the SODA API, and will only be available on Socrata-powered websites.</p>
+
+<p>Importing data is done as a two-step process. First, the data file itself is uploaded via the API, and is then <strong>scanned</strong> to determine what type of data it contains. The results of that scan are sent back to you, whereupon you can make adjustments to how the importer will interpret your data. You then send the resulting <strong>import blueprint</strong> and optional <strong>translation</strong> back to the Import API, at which point it will begin the import process. While the import process proceeds, an API endpoint is provided for you to check on the progress of your import.</p>
+
+<h2>Uploading the file</h2>
+
+<p>Uploading your data file is easy &mdash; simply <code>multipart-POST</code> the file to the Import API's scanner:</p>
+
+<pre>
+&gt; curl --header "Authentication: OAuth TEzWtQCjmDRcSliAspNySR4Ht" -d @file_to_post.csv "https://opendata.socrata.com/imports2.json?method=scan"
+</pre>
+
+<p>We support <code>.csv</code>, <code>.tsv</code>, <code>.xls</code>, <code>.xlsx</code> file formats.</p>
+
+<p>Note that the above sample uses OAuth2 authentication; as with the rest of the SODA API, you can also use HTTP Basic authentication here; just remember to include an application token and use a secure connection. You will receive a response that looks like the following:</p>
+
+<pre>
+{
+  "fileId" : "p3Vowpieg5CkwzH0-F4aK-thvKMHs0g6qIDhLAdEWKM",
+  "summary" : {
+    "headers" : 0,
+    "columns" : [ {
+      "name" : "Type",
+      "processed" : 5001,
+      "suggestion" : "text",
+      "types" : {
+        "number" : 0,
+        "text" : 5001,
+        "date" : 0,
+        "checkbox" : 0
+      }
+    }, {
+      "name" : "Latitude",
+      "processed" : 5001,
+      "suggestion" : "number",
+      "types" : {
+        "number" : 5000,
+        "text" : 5001,
+        "date" : 12,
+        "checkbox" : 12
+      }
+    }, {
+      "name" : "Longitude",
+      "processed" : 5001,
+      "suggestion" : "number",
+      "types" : {
+        "number" : 5000,
+        "text" : 5001,
+        "date" : 12,
+        "checkbox" : 12
+      }
+    }, {
+      "name" : "Date of Incident",
+      "processed" : 5001,
+      "suggestion" : "date",
+      "types" : {
+        "number" : 0,
+        "text" : 5001,
+        "date" : 5000,
+        "checkbox" : 12
+      }
+    } ],
+    "locations" : [ {
+      "latitude" : 1,
+      "longitude" : 2
+    } ],
+    "sample" : [ [...], ... ]
+  }
+}
+</pre>
+
+<h2>Making Sense of the Scan Results</h2>
+
+<p>The results of the scan can be broken into multiple sections:</p>
+
+<h3><code>fileId</code></h3>
+<p>The <code>fileId</code> is the identifier assigned to the data file that you uploaded. You'll have to provide it to the Import API when you make your second import request so that the importer knows which file to import.</p>
+
+<h3><code>summary</code></h3>
+<p>The rest of the results are all nested under the summary field. If you know precisely what your data looks like, you can feel free to ignore this field entirely and skip to the next section, but it contains useful information about what your data looks like to the importer, and how cleanly it will import.</p>
+
+<div class="indent">
+  <h3><code>columns</code></h3>
+  <p>The columns subfield is an analysis of how the file's columns looked to the importer. It gives its best guess as to the column name in the <code>name</code> field, and its best guess as to the type of data in the <code>suggestion</code> field. The importer detects four basic data types: number, text, date, and checkbox.</p>
+
+  <p>In addition, the importer does a quick scan of up to the first 5000 rows of data. The number it actually scanned in its analysis pass is given in the <code>processed</code> field, and of those rows the number of row values for the column that matched each basic import type is given under the <code>types</code> field, in a hash.</p>
+
+  <h3><code>locations</code></h3>
+  <p>It will not be possible to create any maps based on your data unless it is imported directly as a location column; thus, it is beneficial to import data directly as locations whenever possible. If in your original file, location is split into separate columns, for instance a <code>latitude</code>, <code>longitude</code>, and an <code>address</code> column, you will want to tell the importer to combine them as it reads the data. It is possible to convert the separate columns to a location column later, but it will be a much slower process than doing it on import.</p>
+
+  <p>As the data owner, you should be able to tell what the location-related columns are without having to ask the importer. However, in its never-ending quest to be as useful as possible, it picks up on data whose profile matches that of the various components of a location, and tries to tell you which ones should be combined to form locations. The <code>location</code> field contains that analysis &mdash; it is comprised of an array, each element of which is a hash indicating which column seems to be which location field. The id's on the column are simply the zero-indexed position of the column, starting from the left of your data file.</p>
+
+  <h3><code>sample</code></h3>
+  <p>The first 20 rows of your data are given back to you in the <code>sample</code> subfield, should you need to look at the data again before making any decisions about your import.</p>
+</div>
+
+<p>Once you take a look at (or completely ignore) the scan results, it is time to tell the importer how to import your data.</p>
+
+<h2>Composing an Import Blueprint</h2>
+
+<p>The <strong>import blueprint</strong> is how you tell the importer how to interpret your data. You don't have to provide one if you don't want to &mdash; if you don't return a blueprint, the importer will just import the data with the best guesses it told you about in its scan results. However, if you know what your data should look like, it will be best to provide a blueprint and ensure that your data is imported as you'd like. It'll be easiest just to look at a sample blueprint and deconstruct it one field at a time:</p>
+
+<pre>
+{
+  "columns" : [{
+    "name" : "Requestor Name",
+    "datatype" : "text"
+  }, {
+    "name" : "Request Ticket",
+    "datatype" : "number"
+  }, {
+    "name" : "% complete",
+    "datatype" : "percent"
+  }],
+  "skip" : 2
+}
+</pre>
+
+<p>Note that should you provide a <code>columns</code> array, both fields inside it are required. Let's dig in:</p>
+
+<h3><code>columns</code></h3>
+<p>This is an array comprising the columns that you wish to create. By default, the order of the columns should match the order they appear in your original data file. However, should you choose to provide a <strong>translation</strong> (explained below, and totally optional), the order of the columns should match the output of the translation instead. Each column has a couple of fields:</p>
+
+<div class="indent">
+  <h3><code>name</code></h3>
+  <p>Just the name of the column, simply enough.</p>
+
+  <h3><code>datatype</code></h3>
+  <p>The type of data the importer should interpret this column of data as. Valid values are <code>number</code>, <code>money</code>, <code>percent</code>, <code>date</code>, <code>calendar_date</code> (date/time without timezones), <code>checkbox</code>, <code>email</code>, <code>url</code>, and <code>location</code>. For more information on how each data type should be formatted so that the importer recognizes it, please see <a href="/publisher/import-data-types">this page</a>.</p>
+</div>
+
+<h3><code>skip</code></h3>
+<p>Particularly when importing from a human-readable source, your data file likely contains a row or more at the very top which are column or dataset headers rather than actual data. Rather than import the data and delete the first rows afterwards, the importer gives you the option to simply ignore the first few rows of the dataset. Simply tell it how many rows to skip in the <code>skip</code> field, and it will do so. In this sample, we are skipping the first two rows in the data file.</p>
+
+<h2>Kicking off the Import</h2>
+
+<p>Now that you've created an <strong>import blueprint</strong> (or at least given your dataset a name), you have the minimum amount of information you need in order to kick off the final import process. You'll want to construct a <code>x-www-form-urlencoded</code> <code>POST</code> body that contains the following fields:</p>
+
+<ul>
+  <li><code>name</code> (required): The name to give the dataset once it's imported.</li>
+  <li><code>fileId</code> (required): The <code>fileId</code> you were given in the scan results.</li>
+  <li><code>blueprint</code>: An optional import blueprint, as described above.</li>
+  <li><code>translation</code>: An optional translation, as described below.</li>
+</ul>
+
+<p>Take all of that and post it to the following API endpoint:</p>
+
+<pre>
+http://opendata.socrata.com/imports2.json
+</pre>
+
+<p>If the file is small enough, the importer will import it, and return to you the metadata of the newly created view (just as if you requested the metadata of an already-existing dataset) within the same request. However, if the importer determines that your import could take a while, it will instead return a response with an HTTP status code of <code>202</code>, and a body that looks like the following:</p>
+
+<pre>
+{
+  "code" : "accepted",
+  "error" : false,
+  "ticket" : "7cf317cb-d0a7-4f1d-aee5-9afe9f5042e2"
+}
+</pre>
+
+<p>The <code>code</code> is simply &ldquo;accepted&rdquo;, since that's what a <code>202</code> means. The <code>error</code> field reads false &mdash; hey, that's a relief. In fact, <code>error</code> will never be true here; you don't have to worry about it. The only field you'll need to worry about is the <code>ticket</code>, since that's how you'll check up on the status of your import, and eventually get the resulting dataset view metadata.</p>
+
+<p>You may note that the <code>202</code> response looks a lot like how we handle long-running requests in the <a href="/long-running-requests">Consumer API</a>. The philosophy is indeed exactly the same, but in this case, since something is being created, we designed the API a little differently so as not to be confusing. Rather than making the exact same request again to check up on the status of your request, you'll want to put that <code>ticket</code> to use, and instead make a <code>GET</code> request to the following API endpoint:</p>
+
+<pre>
+http://opendata.socrata.com/imports2.json?ticket=YOUR_TICKET_ID
+</pre>
+
+<p>In response, you'll either get another <code>202</code> in response that looks similar to the above, but which has an additional bit of data under the <code>details</code> subkey telling you the number of rows it has imported so far, or you'll get the view metadata of your imported dataset back, as if the request had been served synchronously to begin with.</p>
+
+<p><strong>Congratulations</strong>, your data is now imported!</p>
+
+<h2>Going Above and Beyond: Using Translations</h2>
+
+<p>We've made several references to <code>translations</code> so far, with very little explanation. They are an advanced feature that most people will never need to make use of, but are an incredibly cool and powerful way to <strong>transform</strong> your data as it is imported.</p>
+
+<ul class="more-info"><li>For more information on how to use translations, please see the <a href="/publisher/import-translations">import translations section</a>.</li></ul>
