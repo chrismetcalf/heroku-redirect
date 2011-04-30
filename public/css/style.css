@@ -35,11 +35,14 @@ a.post_image_link { outline: none; }
 a img { border: none; }
 blockquote { border-left: 1px solid #ddd; color: #666; }
 abbr, acronym { line-height: 1em; text-transform: uppercase; letter-spacing: 1px; border-bottom: none; cursor: help; }
-code { line-height: 1em; background: #eee; }
-pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+.format_text code, code, a.exec { line-height: 1em; background-color: #eee; font-family: monaco, menlo, "courier new", monospace; text-shadow: 1px 1px 0 #fff; font-size: 0.85em; padding: 0.2em; border-radius: 0.2em; -moz-border-radius: 0.2em; webkit-border-radius: 0.2em; border: 1px solid #ddd; }
+a.exec, .format_text a.exec { padding-left: 1.9em; background-color: #eef7ff; border-color: #d4e3f0; text-decoration: none; }
+a.exec:hover, .format_text a.exec:hover { background-color: #fff; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; border-radius: 0.2em; -moz-border-radius: 0.2em; webkit-border-radius: 0.2em; }
 p.center { text-align: center !important; }
 p.bottom { margin: 0 !important; }
 .remove_bottom_margin { margin-bottom: 0 !important; }
+div.indent { padding-left: 1.5em; }
 
 /*---:[ form inputs ]:---*/
 input[type=text], textarea { font-size: 1em; color: #444; background: #eee; border: 1px solid #aaa; border-right-color: #ddd; border-bottom-color: #ddd; }
@@ -93,7 +96,8 @@ h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
 	.menu :hover ul ul, .menu :hover ul :hover ul ul { visibility: hidden; }
 
 /*---:[ nav menu styles ]:---*/
-.menu, .menu a, .menu li ul { border-style: solid; }
+.menu a, .menu li ul { border-style: solid; }
+.menu ul.submenu { border-color: #eee; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); border-radius: 0.2em; -moz-border-radius: 0.2em; webkit-border-radius: 0.2em; }
 	.menu a { text-transform: uppercase; letter-spacing: 2px; }
 	.menu .current > a, .menu .current-cat > a { cursor: text; }
 		.menu .rss { float: right; }

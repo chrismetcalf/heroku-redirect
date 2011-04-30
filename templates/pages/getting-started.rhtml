@@ -13,11 +13,11 @@
 
 <h2>Authentication, Application Tokens, and Throttling</h2>
 
-<p>The Socrata Open Data API supports both <a href="http://en.wikipedia.org/wiki/Basic_access_authentication"><code>HTTP Basic</code></a> authentication. Simply use the email address and password you registered with Socrata. When making authenticated requests, please remember to use HTTPS connections.</p>
+<p>If you only wish to consume data from the Socrata Open Data API, you don't need to worry about authentication. However, all requests are subject to throttling to protect one application, malicious or otherwise, from affecting the availability of the API for everyone else using it. If you're going to be making a large number of requests, <a href="/register">register your application</a> for an application token. You'll receive higher request quotas, and you'll also receive free publicity for your app. What's not to love?</p>
 
-<p>In the near future, we'll be transitioning to <a href="http://oauth.net/2/">OAuth 2.0</a>, and your application tokens will continue to be used to identify your app. Watch this space - we'll provide details on how to authenticate using OAuth.</p>
+<p>If you wish to act on behalf of a Socrata user, however, you will need to use one of the SODA API's two authentication methods. The API is built to authenticate primarily with <a href="http://oauth.net/2/">OAuth 2</a>. We support only the server-based flow with a callback url for security reasons. Please see the <a href="/authentication">API Authentication and Application Tokens</a> section for further details on authenticating using OAuth 2.</p>
 
-<p>All requests are subject to throttling to protect one application, malicious or otherwise, from affecting the availability of the API for everyone else using it. If you're going to be making a large number of requests, <a href="/register">register your application</a> for an application token. You'll receive higher request quotas, and you'll also receive free publicity for your app. What's not to love?</p>
+<p>If you're only writing a quick application to authenticate as yourself, or you are unable for some other reason to use OAuth 2, the SODA API provides a fallback authentication method using <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic</a> authentication. Simply use the email address and password you registered with Socrata. When making authenticated requests, please remember to <em>always</em> use HTTPS connections, and to supply an application token.</p>
 
 <ul class="more-info">
   <li>For more information, see the <a href="/authentication">API Authentication and Application Tokens</a> section.</li>
