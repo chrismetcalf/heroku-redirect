@@ -1,0 +1,62 @@
+<h1>Publishing Workflow</h1>
+
+<p>Datasets on Socrata go through a particular process before they're published for everyone to see. This process applies whether you are using the web interface or the Publisher API. It's useful to understand the motivation behind the Publishing Workflow before we dive into how to use it. Feel free to read the version you feel most comfortable with:</p>
+
+<strong>The Technical Version</strong>
+<p>We're trying to combat read/write lock contention on your data; when you need to make severe changes to your data, it's best that we not do it to the version that everyone's also trying to read at the same time &mdash; in fact, it's best if that version is immutable, and you operate on a copy of your data.</p>
+
+<strong>The English Version</strong>
+<p>Imagine that you're a person in charge of a book you wrote. Part of your job is to read pages out of the book to people when they ask for them, but you're also responsible for rewriting parts of the book whenever other people start asking to do so. Now, imagine that in the middle of reading a page to Bonnie, Clyde requests to replace a sentence on that page. While you're ripping out the old sentence and dropping in the new one, the things on the page won't make much sense as you read them to Bonnie. So, you're also in charge of remembering in your head what the sentence used to say until Clyde is happy with the changes and the page makes sense again.</p>
+
+<p>As the demand for readings and changes increases, you can imagine that it gets quite difficult to remember the original version of the book while also writing new sentences in all over the place. And, if James Joyce comes and decides to rewrite your whole book (for a modest fee, of course), all of a sudden you're trying to remember what the entire thing used to say until he's happy with his changes. &ldquo;Well, that's really silly,&rdquo; you must be saying by now &ldquo;why don't you just make a copy of the book first, and make him edit that version until he's happy?&rdquo;</p>
+
+<p><em>Great question</em>! That's exactly what the Publishing Workflow is.</p>
+
+<h2>Publishing As She is Played</h2>
+
+<p>Let's take a high-altitude look at what Publishing looks like. We have a handy diagram for you, which will help us break things down step by step:</p>
+
+<img src="/images/articles/publishing-workflow.png" alt="The Publishing Workflow"/>
+
+<p><strong>First</strong>, all datasets, whether created from scratch or via <a href="/publisher/importing">an import</a>, start in an <strong>unpublished</strong>, or <strong>working copy</strong> state. This means that you <em>can</em> edit it at will with any means available, but you <em>cannot</em> make the dataset generally viewable to those beyond yourself and those you explicitly share it with; it also means that you cannot create or save maps or charts on the data. When you're happy with the data, it's time to publish it and enable these features.</p>
+
+<p><strong>Second</strong>, when you request to <strong>publish</strong> the dataset, it becomes viewable by everyone (presuming you mark it as public) at the same URL it was first created at, and anybody is free to create and save maps and charts. However, with <a href="#appending" rel="local">one caveat</a>, you're <em>not</em> allowed to edit the data &mdash; it's frozen in <a href="http://www.youtube.com/watch?v=k0aeKwVe9wU">carbonite</a>.</p>
+
+<p>So far, nothing too complicated. We've created a dataset, and marked it as published. It's still available at the same url, and now anyone can see it. Let's see what happens when you need to make further changes.</p>
+
+<p><strong>Third</strong>, when you want to make further edits, we have to get the dataset back into an <strong>unpublished</strong> state, which we saw earlier was the way we make changes to the data. However, if we just take that original dataset and make it the unpublished dataset, people won't be able to see the data while you make changes. So, instead we create a copy of your data (does the term <strong>working copy</strong> make more sense now?), and make <em>that</em> the unpublished dataset. It's available at a new URL, and your published copy is still available at its original URL.</p>
+
+<p>Note that you can only create one working copy of any given dataset at a time. If you decide you don't like what you've done, you can always revert to the published version by deleting the working copy.</p>
+
+<p><strong>Fourth</strong>, when you're ready once again to publish your data, we're going to see something different happen than the first time we went through this. We want people to be able to continue to access the dataset at the same URL without interruption, so at the same time that we make your working copy published, we also swap it in in place of your existing published dataset. All the filters, maps, charts, and other <a href="http://www.youtube.com/watch?v=Bsl2Wa32u1s">pieces of flair</a> that were attached to the old published dataset get transferred over to the new one seamlessly &mdash; apart from the data having updated, it'll appear to users like nothing ever happened.</p>
+
+<p>But what do we do with that dataset copy that used to be published? We could throw it away, but it would be much useful if we could keep it around for posterity and auditing. Thus, we store off that old copy as a <strong>dataset snapshot</strong> accessible at a new URL; we even make a copy of all the views that were associated with the dataset at that exact moment in time, and save those off with the snapshotted data.</p>
+
+<p>From here on, the cycle repeats without variation. We make a working copy of your dataset, you make changes to it, you publish it, and it gets swapped in for the existing published copy, and that published copy goes away into a snapshot.</p>
+
+<h2>Publishing As She is Programmed</h2>
+
+<p>Now that you're familiar with the process of publishing, let's look at the actual API calls you'll be making to make this all happen.</p>
+
+<p><strong>To take an existing dataset and create a working copy based on it</strong>, create a <code>POST</code> request to:</p>
+
+<pre>
+https://opendata.socrata.com/views/YOUR_VIEW_UID/publication.json?method=copy
+</pre>
+
+<p>The final response will be the <a href="/accessing-view-metadata">metadata</a> of the newly created working copy. Note that this request can take a short while to get back to you (it is, after all, making a copy of your data), so as with <a href="/long-running-requests">other long-running requests</a> in the Consumer API, you might not get that final response right away; you could possibly get a response with a status code of <code>202</code> instead. Should this happen, there is one minor difference from the other <code>202</code> scenarios &mdash; here, you'll want to change the HTTP method on your request to <code>GET</code> before remaking the request.</p>
+
+<p>Once you're done making your changes to the data, form a <code>POST</code> request and send it to this API endpoint to publish it:</p>
+
+<pre>
+https://opendata.socrata.com/views/YOUR_VIEW_UID/publication.json
+</pre>
+
+<p>That's all there is to it!</p>
+
+<a name="appending" style="position:relative"></a>
+<h2>Exception To the Rule: Appending Data</h2>
+
+<p>We realize that this process is prohibitive for those of you who only wish to accept data through Socrata Forms, or only wish to append data every few minutes using the Publisher API. If you fall in these camps, there is no need to fret; we have a special exemption for these actions, and you can safely make them to published datasets without having to make a working copy first.</p>
+
+<p>If you <em>have</em> created a working copy, and you append data to the published version of the data, it will be appended to both to preserve the integrity of your data.</p>

@@ -165,7 +165,7 @@ http://opendata.socrata.com/imports2.json
 
 <p>The <code>code</code> is simply &ldquo;accepted&rdquo;, since that's what a <code>202</code> means. The <code>error</code> field reads false &mdash; hey, that's a relief. In fact, <code>error</code> will never be true here; you don't have to worry about it. The only field you'll need to worry about is the <code>ticket</code>, since that's how you'll check up on the status of your import, and eventually get the resulting dataset view metadata.</p>
 
-<p>You may note that the <code>202</code> response looks a lot like how we handle long-running requests in the <a href="/long-running-requests">Consumer API</a>. The philosophy is indeed exactly the same, but in this case, since something is being created, we designed the API a little differently so as not to be confusing. Rather than making the exact same request again to check up on the status of your request, you'll want to put that <code>ticket</code> to use, and instead make a <code>GET</code> request to the following API endpoint:</p>
+<p>You may note that the <code>202</code> response looks a lot like how we handle <a href="/long-running-requests">long-running requests in the Consumer API</a>. The philosophy is indeed exactly the same, but in this case, since something is being created, we designed the API a little differently so as not to be confusing. Rather than making the exact same request again to check up on the status of your request, you'll want to put that <code>ticket</code> to use, and instead make a <code>GET</code> request to the following API endpoint:</p>
 
 <pre>
 http://opendata.socrata.com/imports2.json?ticket=YOUR_TICKET_ID

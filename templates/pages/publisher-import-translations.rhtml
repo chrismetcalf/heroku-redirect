@@ -1,0 +1,152 @@
+<h1>Import Translations</h1>
+
+<p><strong>Import translations</strong> are essentially a way to transform data as it's being imported, before the importer itself sees and interprets your data. If, say, you have a column in your output that has some nonimportable numbers (eg "<em>USD 24.50</em>"), you can use a translation to clean up that data to just a number so that the importer will read it correctly. Or, say you have multiple columns (eg "<em>First Name</em>", "<em>Last Name</em>") that you'd like to combine into one in your dataset; you can use a translation to do that, too.</p>
+
+<h2>How Translations Work</h2>
+
+<img src="/images/articles/translation-workflow.png" alt="translation workflow" style="float:right" />
+
+<p>First, if you haven't already, please read over the <a href="/publisher/importing">import process</a> document, and make sure you understand the workflow; in particular the <strong>import blueprint</strong>. I can wait while you do that.</p>
+
+<p>Now that you know how importing works, we can talk about how and where translations fit into the import process. For that, we have this handy chart on the right.</p>
+
+<p>As you can see here, translations are applied to the raw data in your source file before the import blueprint tells the importer how to import your columns. This means that should you use a translations, your import blueprint should reflect the final, transformed set of columns you wish to import, not the raw set of columns in your file.</p>
+
+<h2>How to Use Translations</h2>
+
+<p>Translations are written in <a href="http://en.wikipedia.org/wiki/JavaScript">Javascript</a>.</p>
+
+<p>A translation is very simply a Javascript array that operates on each row in your source data file, and represents what the row should look like to the importer. As a convenience, we populate a magic variable for each column in your source dataset; these are simply <code>colN</code>, where N is a 1-indexed. So, <code>col1</code> would be the value in the first cell of the row, <code>col2</code> would be the value of the second cell, and so on.</p>
+
+<p>Thus, you can imagine that the default translation (if you didn't give us one at all) for a five-column dataset would look something like this:</p>
+
+<pre>
+[col1, col2, col3, col4, col5]
+</pre>
+
+<p>No matter what your original document looks like, note that each column variable is given to you as a Javascript <code>String</code>. And, no matter what your translation outputs and what type your final column is supposed to be, the importer will accept a <code>String</code> right back.</p>
+
+<h2>Okay&mdash;Let's Have Some Fun</h2>
+
+<p>Let's start with something simple: say that you want to change the order in which your columns are imported; your dataset has columns <code>first_name</code>, <code>last_name</code>, <code>amount_due</code>. We want the last name to come first in the imported dataset. We'll want to supply this, then, as our translation:</p>
+
+<pre>
+[col2, col1, col3]
+</pre>
+
+<p>And something like this as our import blueprint:</p>
+
+<pre>
+{
+  "columns" : [{
+    "name" : "Last Name",
+    "datatype" : "text"
+  }, {
+    "name" : "First Name",
+    "datatype" : "text"
+  }, {
+    "name" : "Amount Due",
+    "datatype" : "money"
+  }],
+  "skip" : 1
+}
+</pre>
+
+<p>That's pretty simple. Now, say instead that you want to combine the names into one field, formatted as <code>last_name, first_name</code>. This would be our translation, then:</p>
+
+<pre>
+[col1 + <span class="code_string">', '</span> + col2, col3]
+</pre>
+
+<p>And the blueprint:</p>
+
+<pre>
+  {
+    "columns" : [{
+      "name" : "Name",
+      "datatype" : "text"
+    }, {
+      "name" : "Amount Due",
+      "datatype" : "money"
+    }],
+    "skip" : 1
+  }
+</pre>
+
+<p>I think you get the idea on how blueprints work with translations, so I'm going to stop providing examples of those now.</p>
+
+<p>One more easy example for the road; let's say that I want to import a location directly into a native location column so that my users can create maps based on it, but in my source file the data is spread across an street address, a latitude, and a longitude column, in columns 1, 2, and 3, respectively. I have 3 other columns after that that I'm not worried about touching. Looking at the <a href="/publisher/import-data-types">import data types</a> documentation, I see that it expects a location of the form <code>[address, ][city, ][state, ][zip, ][(lat, long)]</code>. All of my points are in the City of Seattle, so I can fill that in.</p>
+
+<pre>
+[col1 + <span class="code_string">', Seattle, WA, ('</span> + col2 + <span class="code_string">', '</span> + col3 + <span class="code_string">')'</span>, col4, col5, col6]
+</pre>
+
+<h2>Transforming the Data Itself</h2>
+
+<p>So far, we've just been mixing and matching our data. What if we want to change an actual data value? Here, we can take advantage of the fact that we have access to the Javascript standard library, and that we've been given a Javascript string, and go to town.</p>
+
+
+<p>Let's start with an easy one: <code>col1</code> in this dataset has a bunch of 3-letter codes, but they're inconsistently capitalized. Let's make that right.</p>
+
+<pre>
+[col1.toUpperCase(), col2, col3]
+</pre>
+
+<p>Here, <code>col2</code> are a bunch of currency values, but they're in a format that the importer won't accept. They all look like "<em>USD 24.50</em>". Let's make them right.</p>
+
+<pre>
+[col1, col2.replace(/^USD /, <span class="code_string">''</span>), col3]
+</pre>
+
+<p>And lastly, here I have a column <code>col3</code> that contains both First and Last name, but I want to split them out in my dataset.</p>
+
+<pre>
+[col1, col2, col3.split(<span class="code_string">' '</span>)[0], col3.split(<span class="code_string">' '</span>)[1]]
+</pre>
+
+<h2>The Socrata Translations Library</h2>
+
+<p>For your convenience, we've provided a number of translation functions that are commonly used. You can call these functions from anywhere in your code.</p>
+
+<h3><code>upper(<em>string</em>)</code>, <code>lower(<em>string</em>)</code>, <code>title(<em>string</em>)</code></h3>
+<p>These will uppercase, lowercase, or titlecase whatever string you pass into them.</p>
+
+<h3><code>trim(<em>string</em>)</code></h3>
+<p>This will trim whitespace from the beginning and the end of the string you pass into it.</p>
+
+<h3><code>slice(<em>string</em>, <em>start</em>, <em>end</em>)</code></h3>
+<p>This function takes a string, a zero-indexed start position, and a zero-indexed end position. It will pull out the section of the string indicated by your range, trim it, and give the result to you. It's very useful for dealing with fixed-width data files.</p>
+
+<h3><code>chain(<em>function</em>[, <em>function</em>, ...])</code></h3>
+<p><code>chain</code> takes a series of one-argument functions (such as most of the Socrata library functions listed above), and chains them into a function that calls them in succession. So, to trim, then uppercase the value in <code>col3</code>, one would do:</p>
+
+<pre>
+chain(trim, uppercase)(col3)
+</pre>
+
+<h2>More Complex Operations</h2>
+
+<p>If you have a <em>lot</em> that you have to do to transform some value in your source file, it's generally unwieldy to attempt to fit all your code into a single array call. Of course, if you really have a ton of work to do, you should probably take a look at <a href="#limitations" rel="local">the limits</a> on how far you can push the importer with translations. Once you're sure that you can pull it off, you can use something like the following as your import translation to pull off more advanced operations:</p>
+
+<pre>
+(<strong>function</strong>()
+{
+    <strong>var</strong> temp = col1 + col2;
+    <span class="code_comment">// ... more operations manipulating the columns here ...</span>
+    <strong>return</strong> [col1, col2, col3, col4];
+})();
+</pre>
+
+<p>As you can see, this is just a bit of Javascript functional trickery to immediately run a bunch of stuff and return the array.</p>
+
+<a name="limitations" style="position:relative"></a>
+<h2>Limitations</h2>
+
+<p>Of course, you can't run hogwild with this. We have some limits on what you're allowed to do with import translations:</p>
+
+<ul>
+  <li><strong>Operations cannot run longer than a couple of seconds</strong>. This is to keep imports from taking too long and slowing down other people's pending import jobs. If any particular row takes too long to import, it is ignored and a warning is added to the final dataset indicating the problem.</li>
+  <li><strong>You are limited to a secure sandbox</strong>. Though we run your Javascript out of the context of a web browser, we don't allow access to any of the extra APIs this generally implies. No filesystem access for you!</li>
+  <li><strong>If something goes wrong, the row is thrown out</strong>, and a warning is added to the final dataset.</li>
+  <li>On the other hand, <strong>the importer will stop producing warnings</strong> if you have too many. It will indicate when this occurs.</li>
+</ul>

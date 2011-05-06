@@ -39,6 +39,8 @@ abbr, acronym { line-height: 1em; text-transform: uppercase; letter-spacing: 1px
 a.exec, .format_text a.exec { padding-left: 1.9em; background-color: #eef7ff; border-color: #d4e3f0; text-decoration: none; }
 a.exec:hover, .format_text a.exec:hover { background-color: #fff; }
 pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; border-radius: 0.2em; -moz-border-radius: 0.2em; webkit-border-radius: 0.2em; }
+pre .code_string { color: #8a8; }
+pre .code_comment { color: #aaa; }
 p.center { text-align: center !important; }
 p.bottom { margin: 0 !important; }
 .remove_bottom_margin { margin-bottom: 0 !important; }
