@@ -1,2 +1,20 @@
 <h1>Long-running Requests</h1>
 
+<p>Some requests that you can make of the Socrata Open Data API can take a short while to come back &mdash; if you request a very complex filter, for example. In these cases, it can be frustrating to wait synchronously for a request to come back many seconds later from the API, not knowing whether things are going horribly wrong or not. For dealing with this situation, we use something we call Socrata Asynchronous Request Execution.</p>
+
+<p>The Socrata Open Data API offers Asynchronous Request Execution as an <em>optional extension</em> on top of the SODA API standard &mdash; Socrata-powered sites implement these extensions, but other SODA-compliant websites may simply block until the request is ready to be returned.</p>
+
+<h2>How does it work?</h2>
+
+<p>Pretty simply, actually. If a Socrata-powered site determines that a request is taking too long, it will return a response with an HTTP status code of <code>202</code> rather than <code>200</code>, and with a body that looks something like this:</p>
+
+<pre>
+{
+  "code" : "accepted",
+  "error" : false
+}
+</pre>
+
+<p>Essentially, this means that our servers are whirling away on your request. You are now free to make the <strong>exact same request</strong> you did in the first place again (we recommend once every 5 seconds or so, so that you don't overrun your API access quota), and you'll either get another <code>202</code> indicating that we're still working on that request, or you'll get the response that you originally requested back, with an HTTP status code of <code>200</code>.</p>
+
+<p>That's all there is to it!</p>
