@@ -16,6 +16,15 @@
   <li>For more information, see the <a href="/authentication">API Authentication and Application Tokens</a> section.</li>
 </ul>
 
+<h2>Getting Data in through the Socrata Open Data API</h2>
+
+<p>There are two primary interfaces for publishing your data through the API: for new data for which there is already a source data file, the Import API will allow you to upload, transform, and describe your data however you wish so that it looks the way you desire. For data that needs frequent updating, the SODA API includes a RESTful API for interacting with datasets that are already on the platform.</p>
+
+<ul class="more-info">
+  <li>For more information on the Imports API, see the <a href="/publisher/importing">importing</a> section.</li>
+  <li>For more information on interacting with datasets, see the <a href="/publisher/updating-records">updating records</a> section.</li>
+</ul>
+
 <h2>The RESTful Data Model</h2>
 
 <p>Wherever possible, the Socrata Open Data API strives to be as <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a>ful as possible. Resources are represented in a hierarchical manner, and the service uses the standard HTTP <code>GET</code>, <code>POST</code>, <code>PUT</code>, and <code>DELETE</code> methods to manipulate those resources. We also use JSON, XML, and RDF to represent resources. For example:</p>
