@@ -14,15 +14,15 @@
 
 <pre>
 https://opendata.socrata.com/oauth/authenticate
-  ?client_id=YOUR_AUTH_TOKEN
+  ?client_id=<em>YOUR_AUTH_TOKEN</em>
   &amp;response_type=code
-  &amp;redirect_uri=YOUR_REDIRECT_URI
+  &amp;redirect_uri=<em>YOUR_REDIRECT_URI</em>
 </pre>
 
 <p>Note that the <code>redirect_uri</code> here must be an absolute, secure (<code>https:</code>) URI which starts with the <code>callback prefix</code> you specified when you registered your application. If any of these cases fail, the user will be shown an error indicating as much. Should the user authorize your application, they will be redirected back to the your <code>redirect_uri</code>. As example, if I provide <code>https://my-website.com/socrata-app/auth/callback</code> as my <code>redirect_uri</code>:</p>
 
 <pre>
-https://my-website.com/socrata-app/callback?code=CODE
+https://my-website.com/socrata-app/callback?code=<em>CODE</em>
 </pre>
 
 <p>Should your <code>redirect_uri</code> contain a querystring, it will be preserved, and the code parameter will be added onto the end of it. Likewise, should you provide the optional <code>state</code> param in the original redirect to <code>/authenticate</code>, it will be preserved and sent back to you.</p>
@@ -31,17 +31,17 @@ https://my-website.com/socrata-app/callback?code=CODE
 
 <pre>
 https://opendata.socrata.com/oauth/access_token
-  ?client_id=YOUR_AUTH_TOKEN
-  &amp;client_secret=YOUR_SECRET_TOKEN
+  ?client_id=<em>YOUR_AUTH_TOKEN</em>
+  &amp;client_secret=<em>YOUR_SECRET_TOKEN</em>
   &amp;grant_type=authorization_code
-  &amp;redirect_uri=YOUR_REDIRECT_URI
-  &amp;code=CODE
+  &amp;redirect_uri=<em>YOUR_REDIRECT_URI</em>
+  &amp;code=<em>CODE</em>
 </pre>
 
 <p>The <code>redirect_uri</code> must be the same as the one you provide previously. The <code>code</code> should be the one you were passed back when the user was redirected back to your redirect uri. You'll receive the following response:</p>
 
 <pre>
-{ access_token: ACCESS_TOKEN }
+{ access_token: <em>ACCESS_TOKEN</em> }
 </pre>
 
 <p>Use this <code>access_token</code> in your requests when you have to do work on behalf of the now-authenticated user, as described below in the <em>&lsquo;Using an access_token&rsquo;</em> section.</p>
@@ -53,7 +53,7 @@ https://opendata.socrata.com/oauth/access_token
 <p>Once you have obtained an <code>access_token</code>, you should include it on requests which need to happen on behalf of the user. The only supported way to do this is via the <code>Authorization</code> HTTP Header field. You want to set the header as follows in your request:</p>
 
 <pre>
-Authorization: OAuth YOUR_ACCESS_TOKEN
+Authorization: OAuth <em>YOUR_ACCESS_TOKEN</em>
 </pre>
 
 <p>Note that all authenticated requests <em>must</em> be performed over a secure connection (<code>https:</code>). Any attempt to use an <code>access_token</code> over a non-secure connection will result in immediate revocation of the token.</p>
@@ -75,7 +75,7 @@ https://opendata.socrata.com/users/current.json
 <p>Here is a sample on how to use HTTP Basic Authentication:</p>
 
 <pre>
-&gt; curl --header "X-App-Token: b6bThWI6I3dJfulFek8JRizjo" --user login:pass https://opendata.socrata.com/api/views/644b-gaut/rows.json
+&gt; curl --header "X-App-Token: b6bThWI6I3dJfulFek8JRizjo" --user <em>LOGIN</em>:<em>PASS</em> https://opendata.socrata.com/api/views/644b-gaut/rows.json
 </pre>
 
 <h2>Application Tokens and Throttling</h2>
