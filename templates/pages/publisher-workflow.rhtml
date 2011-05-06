@@ -1,9 +1,9 @@
 <h1>Publishing Workflow</h1>
 
-<p>Datasets on Socrata go through a particular process before they're published for everyone to see. This process applies whether you are using the web interface or the Publisher API. It's useful to understand the motivation behind the Publishing Workflow before we dive into how to use it. Feel free to read the version you feel most comfortable with:</p>
+<p>Datasets on Socrata-powered websites go through a particular process before they're published for everyone to see. This process applies whether you are using the web interface or the Publisher API. Note that the publishing workflow is a Socrata-proprietary extension to the SODA API. It's useful to understand the motivation behind the Publishing Workflow before we dive into how to use it. Feel free to read the version you feel most comfortable with:</p>
 
 <strong>The Technical Version</strong>
-<p>We're trying to combat read/write lock contention on your data; when you need to make severe changes to your data, it's best that we not do it to the version that everyone's also trying to read at the same time &mdash; in fact, it's best if that version is immutable, and you operate on a copy of your data.</p>
+<p>We're trying to combat read/write lock contention on your data; when you need to make severe changes to your data, it's best that we not do it to the version that everyone's also trying to read at the same time &mdash; in fact, it's best if that version is immutable, and you operate on a copy of your data. The Publishing Workflow provides a canonical way to do that.</p>
 
 <strong>The English Version</strong>
 <p>Imagine that you're a person in charge of a book you wrote. Part of your job is to read pages out of the book to people when they ask for them, but you're also responsible for rewriting parts of the book whenever other people start asking to do so. Now, imagine that in the middle of reading a page to Bonnie, Clyde requests to replace a sentence on that page. While you're ripping out the old sentence and dropping in the new one, the things on the page won't make much sense as you read them to Bonnie. So, you're also in charge of remembering in your head what the sentence used to say until Clyde is happy with the changes and the page makes sense again.</p>
