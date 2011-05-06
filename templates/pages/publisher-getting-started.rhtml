@@ -4,17 +4,6 @@
 
 <p>The Socrata Open Data API's Publisher API is strictly a superset of the features provided in the Consumer API &mdash; in fact, they are one and the same. For details on how to <em>access</em> information, please refer to the <a href="/getting-started">Consumer API</a> documentation. For those of you who wish to publish data, however, venture bravely onwards!</p>
 
-<h2>About the Examples</h2>
-
-<p>In addition to our <a href="/code-samples">code samples</a>, we also provide simple examples inline with the documentation. In order to make the examples as language-agnostic as possible, and to show how you can use the SODA API with the simplest tools possible, examples are provided in-line using the <a href="/console">SODA Console</a>. Wherever you see a link like <a class="exec" href="http://opendata.socrata.com/api/users/i7d8-sc4w.json">get("http://opendata.socrata.com/api/users/i7d8-sc4w.json")</a>, you can click it to dynamically run that request in the SODA Console "visor". You can examine the URL that was constructed, see what results were returned, and experiment, all without ever leaving the page you're currently on.</p>
-
-<p>A few examples:</p>
-<ul>
-  <li>Get the author's user profile: <%= get("http://opendata.socrata.com/api/users/i7d8-sc4w.json") %></li>
-  <li>Get metadata for a view: <%= get("http://opendata.socrata.com/api/views/n5m4-mism.json") %></li>
-  <li>Get five rows from the same view: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json?max_rows=5") %></li>
-</ul>
-
 <h2>Authentication, Application Tokens, and Throttling</h2>
 
 <p>If you wish to publish data using the Socrata Open Data API, you will need to use one of the SODA API's two authentication methods.</p>
