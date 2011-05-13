@@ -11,7 +11,7 @@
 <p>Uploading your data file is easy &mdash; simply <code>multipart-POST</code> the file to the Import API's scanner:</p>
 
 <pre>
-&gt; curl --header "Authentication: OAuth TEzWtQCjmDRcSliAspNySR4Ht" -d @file_to_post.csv "https://opendata.socrata.com/imports2.json?method=scan"
+&gt; curl --header "Authentication: OAuth BEzWeQCjdDdcSliaiojNySR4Ht" -F file=@file_to_post.csv "https://opendata.socrata.com/imports2?method=scan"
 </pre>
 
 <p>We support <code>.csv</code>, <code>.tsv</code>, <code>.xls</code>, <code>.xlsx</code> file formats.</p>
@@ -116,7 +116,8 @@
     "name" : "% complete",
     "datatype" : "percent"
   }],
-  "skip" : 2
+  "skip" : 2,
+  "name" : "311 Requests"
 }
 </pre>
 
@@ -136,21 +137,30 @@
 <h3><code>skip</code></h3>
 <p>Particularly when importing from a human-readable source, your data file likely contains a row or more at the very top which are column or dataset headers rather than actual data. Rather than import the data and delete the first rows afterwards, the importer gives you the option to simply ignore the first few rows of the dataset. Simply tell it how many rows to skip in the <code>skip</code> field, and it will do so. In this sample, we are skipping the first two rows in the data file.</p>
 
+<h3><code>name</code></h3>
+<p>If you want to override the name of the dataset, you can pass a <code>name</code> field in your blueprint. Otherwise, the name of the dataset will default to the filename passed when you kick off the final import.</p>
+
 <h2>Kicking off the Import</h2>
 
 <p>Now that you've created an <strong>import blueprint</strong> (or at least given your dataset a name), you have the minimum amount of information you need in order to kick off the final import process. You'll want to construct a <code>x-www-form-urlencoded</code> <code>POST</code> body that contains the following fields:</p>
 
 <ul>
-  <li><code>name</code> (required): The name to give the dataset once it's imported.</li>
+  <li><code>name</code> (required): The filename of the file you're importing. Include the extension(<code>.csv</code>,<code>.xls</code>,<code>.xlsx</code>, etc.) so that our importer knows how to parse it.</li>
   <li><code>fileId</code> (required): The <code>fileId</code> you were given in the scan results.</li>
-  <li><code>blueprint</code>: An optional import blueprint, as described above.</li>
-  <li><code>translation</code>: An optional translation, as described below.</li>
+  <li><code>blueprint</code>: An optional import blueprint, as described above. It must be URL encoded.</li>
+  <li><code>translation</code>: An optional translation, as described below. It must be URL encoded.</li>
 </ul>
 
 <p>Take all of that and post it to the following API endpoint:</p>
 
 <pre>
 http://opendata.socrata.com/imports2.json
+</pre>
+
+<p>If you're using cURL, your blueprint is in the file <code>blueprint.json</code>, and your translation is in the file <code>translation.json</code>, your command line will look like the following:</p>
+
+<pre>
+curl --header "Authentication: OAuth BEzWeQCjdDdcSliaiojNySR4Ht" --data-urlencode blueprint@blueprint.json --data-urlencode name=311_requests.csv --data-urlencode fileId=MLRALttcaiSrt929LAtMVtFg6qGncO0xzRjwdDhZu_w --data-urlencode translation@translation.json --verbose https://opendata.socrata.com/api/imports2
 </pre>
 
 <p>If the file is small enough, the importer will import it, and return to you the metadata of the newly created view (just as if you requested the metadata of an already-existing dataset) within the same request. However, if the importer determines that your import could take a while, it will instead return a response with an HTTP status code of <code>202</code>, and a body that looks like the following:</p>
@@ -168,7 +178,7 @@ http://opendata.socrata.com/imports2.json
 <p>You may note that the <code>202</code> response looks a lot like how we handle <a href="/long-running-requests">long-running requests in the Consumer API</a>. The philosophy is indeed exactly the same, but in this case, since something is being created, we designed the API a little differently so as not to be confusing. Rather than making the exact same request again to check up on the status of your request, you'll want to put that <code>ticket</code> to use, and instead make a <code>GET</code> request to the following API endpoint:</p>
 
 <pre>
-http://opendata.socrata.com/imports2.json?ticket=YOUR_TICKET_ID
+http://opendata.socrata.com/api/imports2.json?ticket=YOUR_TICKET_ID
 </pre>
 
 <p>In response, you'll either get another <code>202</code> in response that looks similar to the above, but which has an additional bit of data under the <code>details</code> subkey telling you the number of rows it has imported so far, or you'll get the view metadata of your imported dataset back, as if the request had been served synchronously to begin with.</p>

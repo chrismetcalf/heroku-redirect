@@ -109,7 +109,8 @@ use Rack::Rewrite do
   r302 %r{/register/?}, 'http://opendata.socrata.com/profile/app_tokens'
 
   # Rewrite /publisher URLs
-  rewrite %r{/publisher/(.*)}, '/publisher-$1'
+  rewrite %r{/publisher/(.+)}, '/publisher-$1'
+  r302 %r{/publisher/?$}, '/publisher/getting-started'
 end
 
 # Set up code highlighting

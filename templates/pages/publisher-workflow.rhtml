@@ -1,5 +1,13 @@
 <h1>Publishing Workflow</h1>
 
+<div class="alert-box">
+  <p>This documentation on the Publishing Workflow is a developer preview of a feature that is currently only available on our <a href="http://sandbox.test-socrata.com">Developer Sandbox</a>. We will be rolling this feature out to our production datasites in the coming weeks, but we want to give publisher developers the chance to prepare their systems to update data programmatically using the publisher workflow before that feature is released.</p>
+
+  <p>The Developer Sandbox is available at <a href="http://sandbox.test-socrata.com">http://sandbox.test-socrata.com</a>. Since the Sandbox exists on our staging platform rather than our production platform, you'll need to sign up for a new user account and a new access token.</p>
+
+  <p>If you have questions about the Publishing Workflow or would like to set up a short training session to review how the API works, please contact your account manager or file a trouble ticket on our <a href="http://support.socrata.com">support portal</a>.</p>
+</div>
+
 <p>Datasets on Socrata-powered websites go through a particular process before they're published for everyone to see. This process applies whether you are using the web interface or the Publisher API. Note that the publishing workflow is a Socrata-proprietary extension to the SODA API. It's useful to understand the motivation behind the Publishing Workflow before we dive into how to use it. Feel free to read the version you feel most comfortable with:</p>
 
 <strong>The Technical Version</strong>
@@ -41,7 +49,7 @@
 <p><strong>To take an existing dataset and create a working copy based on it</strong>, create a <code>POST</code> request to:</p>
 
 <pre>
-https://opendata.socrata.com/views/<em>YOUR_VIEW_UID</em>/publication.json?method=copy
+https://opendata.socrata.com/api/views/<em>YOUR_VIEW_UID</em>/publication.json?method=copy
 </pre>
 
 <p>The final response will be the <a href="/accessing-view-metadata">metadata</a> of the newly created working copy. Note that this request can take a short while to get back to you (it is, after all, making a copy of your data), so as with <a href="/long-running-requests">other long-running requests</a> in the Consumer API, you might not get that final response right away; you could possibly get a response with a status code of <code>202</code> instead. Should this happen, there is one minor difference from the other <code>202</code> scenarios &mdash; here, you'll want to change the HTTP method on your request to <code>GET</code> before remaking the request.</p>
@@ -49,7 +57,7 @@ https://opendata.socrata.com/views/<em>YOUR_VIEW_UID</em>/publication.json?metho
 <p>Once you're done making your changes to the data, form a <code>POST</code> request and send it to this API endpoint to publish it:</p>
 
 <pre>
-https://opendata.socrata.com/views/<em>YOUR_VIEW_UID</em>/publication.json
+https://opendata.socrata.com/api/views/<em>WORKING_COPY_UID</em>/publication.json
 </pre>
 
 <p>That's all there is to it!</p>
@@ -60,7 +68,7 @@ https://opendata.socrata.com/views/<em>YOUR_VIEW_UID</em>/publication.json
 <p>We realize that this process is prohibitive for those of you who only wish to accept data through Socrata Forms, or only wish to append (not modify or delete) data every few minutes using the Publisher API. If you fall in these camps, there is no need to fret; we have a special exemption for these actions, and you can safely make them to published datasets without having to make a working copy first &mdash; you just have to tell us that the dataset is special first. You can do this by updating the <code>publicationAppendEnabled</code> flag on the published dataset's view metadata. <code>PUT</code> the following to the view's API endpoint:</p>
 
 <pre>
-{ publicationAppendEnabled: true }
+{ "publicationAppendEnabled" : true }
 </pre>
 
 <p>Once you do that, any new rows you create through the API will be accepted into a job queue, and added to your dataset when the worker gets to it (generally this should be effectively immediate).</p>
