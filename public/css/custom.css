@@ -838,3 +838,16 @@ ul.breadcrumb {
   text-decoration:underline;
 }
 
+.alert-box {
+  margin: 0.5em;
+  background: #FDFCDC ;
+  border: #DEDEDE solid 1px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.alert-box p {
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+}
