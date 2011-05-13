@@ -178,7 +178,7 @@ curl --header "Authentication: OAuth BEzWeQCjdDdcSliaiojNySR4Ht" --data-urlencod
 <p>You may note that the <code>202</code> response looks a lot like how we handle <a href="/long-running-requests">long-running requests in the Consumer API</a>. The philosophy is indeed exactly the same, but in this case, since something is being created, we designed the API a little differently so as not to be confusing. Rather than making the exact same request again to check up on the status of your request, you'll want to put that <code>ticket</code> to use, and instead make a <code>GET</code> request to the following API endpoint:</p>
 
 <pre>
-http://opendata.socrata.com/api/imports2.json?ticket=YOUR_TICKET_ID
+http://opendata.socrata.com/api/imports2.json?ticket=<em>YOUR_TICKET_ID</em>
 </pre>
 
 <p>In response, you'll either get another <code>202</code> in response that looks similar to the above, but which has an additional bit of data under the <code>details</code> subkey telling you the number of rows it has imported so far, or you'll get the view metadata of your imported dataset back, as if the request had been served synchronously to begin with.</p>
