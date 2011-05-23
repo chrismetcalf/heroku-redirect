@@ -851,3 +851,7 @@ ul.breadcrumb {
   padding: 0.5em;
   margin-bottom: 0.5em;
 }
+
+.entry-content {
+  font-size: 1.1em;
+}

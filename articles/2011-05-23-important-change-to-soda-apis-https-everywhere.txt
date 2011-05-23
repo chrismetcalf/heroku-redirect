@@ -6,4 +6,4 @@ In the coming week, we will be enabling a new feature on all Socrata-powered dat
 
 For API users, this means that **all** interactions with the Socrata Open Data Consumer and Publisher APIs must be performed over secure HTTPS connections. Otherwise, everything will continue to operate the same.
 
-We'll be rolling out this feature on May 27th at 5PM Pacific Time. If you have any questions, feel free to email us at support@socrata.com or comment below.
+We'll be rolling out this feature on May 27th at 5PM Pacific Time. If you have any questions, feel free to email us at [support@socrata.com](mailto:support@socrata.com) or comment below.
