@@ -185,6 +185,38 @@ http://opendata.socrata.com/api/imports2.json?ticket=<em>YOUR_TICKET_ID</em>
 
 <p><strong>Congratulations</strong>, your data is now imported!</p>
 
+<h2>Appending or Replacing Rows in Datasets</h2>
+
+<p>After creating a dataset, there's often a need to update it by either adding new rows, or possibly by replacing it completely. Most of the time there's too many rows to either add or replace by hand; that's where the import service comes in again. It provides two methods to solve these problems.</p>
+
+<p>Both methods take the same parameters and post to a nearly identical URL:</p>
+
+<pre>
+http://opendata.socrata.com/imports2.json?method=[append|replace]
+</pre>
+
+<ul>
+    <li><code>fileId</code> (required): The <code>fileId</code> you were given in the scan results. Just as with importing, you have to scan the file before you append or replace.</li>
+    <li><code>viewUid</code> (required): The uid of the view that you're appending to or replacing.</li>
+    <li><code>name</code> (required): The filename of the file you're importing. Include the extension(<code>.csv</code>,<code>.xls</code>,<code>.xlsx</code>, etc.) so that our importer knows how to parse it.</li>
+    <li><code>skip</code> The number of rows to skip from the start of your import source file</li>
+    <li><code>translation</code>: An optional translation, as described below. It must be URL encoded.</li>
+</ul>
+
+<p>And now using cURL, you can run the following command to append to a dataset.</p>
+
+<pre>
+curl --header "Authentication: OAuth BEzWeQCjdDdcSliaiojNySR4Ht" --data-urlencode viewUid=<em>YOUR_VIEW_ID</em> fileId=<em>YOUR_FILE_ID</em> --data-urlencode name=<em>YOUR_FILE_NAME</em> "http://opendata.socrata.com/api/imports2?method=append
+</pre>
+
+<p>Just like with importing above, if the file is small the importer with just process it immediately and return the metadata of the view. As above, if the importer decides that the file is too large and might take some time to fully import, it will respond with an HTTP <code>202</code> with a ticket in the body.</p>
+
+<p>This ticket can be used by <code>GET</code> requesting the same URL that was used to either replace or append and using both the view uid and the ticket id as parameters.</p>
+
+<pre>
+curl "http://opendata.socrata.com/api/imports2?method=append&ticket=<em>YOUR_TICKET_ID</em>&viewUid=<em>YOUR_VIEW_ID</em>
+</pre>
+
 <h2>Going Above and Beyond: Using Translations</h2>
 
 <p>We've made several references to <code>translations</code> so far, with very little explanation. They are an advanced feature that most people will never need to make use of, but are an incredibly cool and powerful way to <strong>transform</strong> your data as it is imported.</p>
