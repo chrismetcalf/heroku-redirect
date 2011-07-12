@@ -2,10 +2,7 @@
 
 <p>Using the Socrata Open Data API, it is very easy to retrieve row data from a tabular dataset. To retrieve all of the rows for a given dataset, simply call its <code>rows</code> resource with no parameters: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json") %></p>
 
-<p>For larger datasets, you'll probably want to limit the number of rows you retrieve at any given time. To simply retrieve a limited set of rows from a dataset, use the <code>max_rows</code> parameter: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json?max_rows=5") %></p>
-
-<%# TODO: I really hate the getByIds hack. We need a workaround %>
-<p>You can also use the <code>getByIds</code> method along with a <code>start</code> count and <code>length</code> parameter to "page" data from a dataset. For example: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json?method=getByIds&start=340&length=10") %></p>
+<p>For larger datasets, you'll want to page through the data a bit at a time instead, to avoid overwhelming your system with row data. To do this, you can use the <code>getRows</code> method along with a <code>start</code> count and <code>length</code> parameter to "page" data from a dataset. For example: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json?method=getRows&start=340&length=10") %></p>
 
 <p>If you want to retrieve an even more compact version of the dataset, you can use the <code>row_ids_only</code> parameter to retrieve only the row IDs for rows in the dataset, which you can then later retrieve individually: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json?row_ids_only=true") %>, <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows/152.json") %>. You can even retrieve multiple rows at a time by passing in multiple row IDs: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json?ids=134&ids=34")%></p>
 
