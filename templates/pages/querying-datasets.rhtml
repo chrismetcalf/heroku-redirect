@@ -43,42 +43,42 @@
 
 <pre>
 {
-"originalViewId" : "n5m4-mism",
-"name" : "Inline Filter",
-"query" : {
-"filterCondition" : {
-  "type" : "operator",
-  "value" : "AND",
-  "children" : [ {
-    "type" : "operator",
-    "value" : "OR",
-    "children" : [ {
+  "originalViewId" : "n5m4-mism",
+  "name" : "Inline Filter",
+  "query" : {
+    "filterCondition" : {
       "type" : "operator",
-      "value" : "EQUALS",
+      "value" : "AND",
       "children" : [ {
-        "columnId" : 2205506,
-        "type" : "column"
+        "type" : "operator",
+        "value" : "OR",
+        "children" : [ {
+          "type" : "operator",
+          "value" : "EQUALS",
+          "children" : [ {
+            "columnId" : 2205506,
+            "type" : "column"
+          }, {
+            "type" : "literal",
+            "value" : "Deputy Secretary"
+          } ]        } ]
       }, {
-        "type" : "literal",
-        "value" : "Deputy Secretary"
-      } ]        } ]
-  }, {
-    "type" : "operator",
-    "value" : "OR",
-    "children" : [ {
-      "type" : "operator",
-      "value" : "EQUALS",
-      "children" : [ {
-        "columnId" : 2205510,
-        "type" : "column"
-      }, {
-        "type" : "literal",
-        "value" : "1"
+        "type" : "operator",
+        "value" : "OR",
+        "children" : [ {
+          "type" : "operator",
+          "value" : "EQUALS",
+          "children" : [ {
+            "columnId" : 2205510,
+            "type" : "column"
+          }, {
+            "type" : "literal",
+            "value" : "1"
+          } ]
+        } ]
       } ]
-    } ]
-  } ]
-}
-}
+    }
+  }
 }
 </pre>
 
@@ -90,46 +90,85 @@
 
 <pre>
 {
-"originalViewId": "2cqc-zesn",
-"name": "Nearby Boat Launches",
-"query": {
+  "originalViewId": "2cqc-zesn",
+  "name": "Nearby Boat Launches",
+  "query": {
     "filterCondition": {
-        "type": "operator",
-        "value": "AND",
-        "children": [
+      "type": "operator",
+      "value": "AND",
+      "children": [
+        {
+          "children": [
             {
-                "children": [
-                    {
-                        "type": "operator",
-                        "value": "within_circle",
-                        "metadata": {
-                            "freeform": true
-                        },
-                        "children": [
-                            {
-                                "type": "column",
-                                "columnId": 2648915
-                            },
-                            {
-                                "type": "literal",
-                                "value": 47.68489
-                            },
-                            {
-                                "type": "literal",
-                                "value":  -122.40448
-                            },
-                            {
-                                "type": "literal",
-                                "value": 1000
-                            }
-                        ]
-                    }
-                ],
-                "type": "operator",
-                "value": "OR"
+              "type": "operator",
+              "value": "within_circle",
+              "metadata": {
+                "freeform": true
+              },
+              "children": [
+                {
+                  "type": "column",
+                  "columnId": 2648915
+                },
+                {
+                  "type": "literal",
+                  "value": 47.68489
+                },
+                {
+                  "type": "literal",
+                  "value":  -122.40448
+                },
+                {
+                  "type": "literal",
+                  "value": 1000
+                }
+              ]
             }
-        ]
+          ],
+          "type": "operator",
+          "value": "OR"
+        }
+      ]
     }
-}
+  }
 }
 </pre>
+
+<h2>Available Query Operators</h2>
+
+<p>A variety of different query operators are available:</p>
+
+<p>All types:</p>
+
+<ul>
+  <li><code>EQUALS</code></li>
+  <li><code>NOT_EQUALS</code></li>
+  <li><code>IS_BLANK</code></li>
+  <li><code>IS_NOT_BLANK</code></li>
+</ul>
+
+<p>Textual types:</p>
+
+<ul>
+  <li><code>STARTS_WITH</code></li>
+  <li><code>CONTAINS</code></li>
+  <li><code>NOT_CONTAINS</code></li>
+</ul>
+
+
+<p>Numeric and Date types:</p>
+
+<ul>
+  <li><code>LESS_THAN</code></li>
+  <li><code>LESS_THAN_OR_EQUALS</code></li>
+  <li><code>GREATER_THAN</code></li>
+  <li><code>GREATER_THAN_OR_EQUALS</code></li>
+  <li><code>BETWEEN</code></li>
+</ul>
+
+<p>Location:</p>
+
+<ul>
+  <li><code>WITHIN_CIRCLE</code></li>
+</ul>
+
