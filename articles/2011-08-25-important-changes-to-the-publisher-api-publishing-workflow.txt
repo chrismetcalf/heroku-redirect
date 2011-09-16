@@ -2,6 +2,8 @@
 title: "Important Changes to the Publisher API: Publishing Workflow"
 date: 25/08/2011
 
+__Update:__ The Publishing Workflow rollout has been delayed until 9/20. As before, we'll provide updates here when the actual deployment has been completed.
+
 __Update:__ The Socrata team will be rolling out the publisher API changes on the evening (Pacific Daylight Time) of Thursday, September 15th. We'll post another notification when the deployment is complete.
 
 _The following is an important announcement for users of the Socrata Open Data Publisher API. If you don't use the Publisher API to update datasets, it doesn't pertain to you. But if you're interested, feel free to read on, because we think it's pretty cool._
