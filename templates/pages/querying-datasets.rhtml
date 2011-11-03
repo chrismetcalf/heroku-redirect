@@ -1,6 +1,6 @@
 <h1>Querying datasets using the Socrata Open Data API</h1>
 
-<h2>Performing simple searches</h2>
+<h2>Performing simple text searches</h2>
 
 <p>Searching for data within a dataset or view is simple - just use the <code>search</code> parameter on the <code>rows</code> resource and pass in a URL-encoded search term. It works with all data formats, so it's also a handy way of extracting tabular data in CSV or XLS format. For example:</p>
 
@@ -11,6 +11,7 @@
 
 <ul class="more-info">
   <li>For a quick introduction to the concepts of datasets and views, see the <a href="/getting-started">Getting Started</a> guide.</li>
+  <li>For a recap on how to do basic row retrieval, please see <a href="/retrieving-row-data">Retrieving Row Data</a>. Many of the same concepts apply here.
 </ul>
 
 <h2>Piggybacking on an existing filtered view</h2>
@@ -18,12 +19,12 @@
 <p>If you have a fixed query that you want to perform, or you want to piggyback on someone else's query, you can make requests against a filtered view created via the web UI and get pre-filtered results. This is a handy way of building queries without coding them yourself. For example:</p>
 
 <ul>
-  <li>Retrieve five rows from the "Confirmed Deputy Secretaries" view on the "Nominations &amp; Appointments" dataset: <%= get("http://opendata.socrata.com/api/views/8ece-u7e7/rows.json?max_rows=5") %></li>
+  <li>Retrieve five rows from the "Confirmed Deputy Secretaries" view on the "Nominations &amp; Appointments" dataset: <%= get("http://opendata.socrata.com/api/views/8ece-u7e7/rows.json?method=getRows&start=0&length=5") %></li>
 </ul>
 
 <p>The ID of the dataset that the filter is based upon is provided via the <code>originalViewId</code> field in the resulting object.</p>
 
-<h2>Building an "inline" filter</h2>
+<h2>Building a detailed filter</h2>
 
 <p>If you don't want to make use of an existing filtered view, you can perform queries on the fly using an "inline filter". This allows you to build a query on a dataset and get back filtered results without saving your query first. You are essentially building a temporary filtered view that exists for only the duration of your request.</p>
 
@@ -37,7 +38,7 @@
 
 <p>The SODA filter query language is very expressive, and new filter types are being constantly added, so we recommend taking a look at some saved filters created via the web UI in order to see what is possible. You can do this by creating a saved filter through your web browser, and then examining the <code>query</code> key of that view's resource to see how the query was built.</p>
 
-<p>To execute your query, <code>POST</code> a JSON or XML document including your <code>originalViewId</code>, <code>name</code>, and <code>query</code> keys to <code>/api/views/INLINE/rows.json?method=index</code> (<code>rows.xml</code> if you're dealing in XML). This will execute your query and return to you rows that match your filter.</p>
+<p>To execute your query, <code>POST</code> a JSON or XML document including your <code>originalViewId</code>, <code>name</code>, and <code>query</code> keys to <code>/api/views/INLINE/rows.json?method=getRows&amp;start=0&amp;length=10</code> (<code>rows.xml</code> if you're dealing in XML). This will execute your query and return to you rows that match your filter.</p>
 
 <p>The following is an example of a <code>query</code> that returns only "confirmed" nominees with a title of "Deputy Secretary" from the White House "Nominations &amp; Appointments" dataset:</p>
 
