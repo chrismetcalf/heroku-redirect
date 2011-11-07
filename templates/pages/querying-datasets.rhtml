@@ -38,7 +38,7 @@
 
 <p>The SODA filter query language is very expressive, and new filter types are being constantly added, so we recommend taking a look at some saved filters created via the web UI in order to see what is possible. You can do this by creating a saved filter through your web browser, and then examining the <code>query</code> key of that view's resource to see how the query was built.</p>
 
-<p>To execute your query, <code>POST</code> a JSON or XML document including your <code>originalViewId</code>, <code>name</code>, and <code>query</code> keys to <code>/api/views/INLINE/rows.json?method=getRows&amp;start=0&amp;length=10</code> (<code>rows.xml</code> if you're dealing in XML). This will execute your query and return to you rows that match your filter.</p>
+<p>To execute your query, <code>POST</code> a JSON or XML document including your <code>originalViewId</code>, <code>name</code>, and <code>query</code> keys to <code>/api/views/INLINE/rows.json?method=getRows&amp;start=0&amp;length=10</code> (<code>rows.xml</code> and <code>method=getByIds</code> if you're dealing in XML). This will execute your query and return to you rows that match your filter.</p>
 
 <p>The following is an example of a <code>query</code> that returns only "confirmed" nominees with a title of "Deputy Secretary" from the White House "Nominations &amp; Appointments" dataset:</p>
 
