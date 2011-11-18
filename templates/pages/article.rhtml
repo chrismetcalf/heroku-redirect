@@ -1,7 +1,7 @@
 <div class="post hentry category-general post_box top" id="post-1">
   <div class="headline_area">
     <h1 class="entry-title"><a href="<%= permalink %>"><%= title %></a></h1>
-    <p class="headline_meta"><abbr class="published" title="<%= date %>"><%= date %></abbr></p>
+    <p class="headline_meta"><abbr class="published" title="<%= date %>"><%= date %></abbr> - <abbr class="author" title="<%= author %>"><%= author %></abbr></p >
     <%= partial("tweet", {:url => permalink, :text => title.gsub(/"/, "")}) %>
   </div>
 
