@@ -121,23 +121,23 @@
 }
 </pre>
 
-<p>Note that should you provide a <code>columns</code> array, both fields inside it are required. Let's dig in:</p>
+<p>Note that you <em>must</em> provide a <code>columns</code> array, and both fields inside it are required. Let's dig in:</p>
 
-<h3><code>columns</code></h3>
+<h3><code>columns</code> (required)</h3>
 <p>This is an array comprising the columns that you wish to create. By default, the order of the columns should match the order they appear in your original data file. However, should you choose to provide a <strong>translation</strong> (explained below, and totally optional), the order of the columns should match the output of the translation instead. Each column has a couple of fields:</p>
 
 <div class="indent">
-  <h3><code>name</code></h3>
+  <h3><code>name</code> (required)</h3>
   <p>Just the name of the column, simply enough.</p>
 
-  <h3><code>datatype</code></h3>
+  <h3><code>datatype</code> (required)</h3>
   <p>The type of data the importer should interpret this column of data as. Valid values are <code>number</code>, <code>money</code>, <code>percent</code>, <code>date</code>, <code>calendar_date</code> (date/time without timezones), <code>checkbox</code>, <code>email</code>, <code>url</code>, and <code>location</code>. For more information on how each data type should be formatted so that the importer recognizes it, please see <a href="/publisher/import-data-types">this page</a>.</p>
 </div>
 
-<h3><code>skip</code></h3>
+<h3><code>skip</code> (optional)</h3>
 <p>Particularly when importing from a human-readable source, your data file likely contains a row or more at the very top which are column or dataset headers rather than actual data. Rather than import the data and delete the first rows afterwards, the importer gives you the option to simply ignore the first few rows of the dataset. Simply tell it how many rows to skip in the <code>skip</code> field, and it will do so. In this sample, we are skipping the first two rows in the data file.</p>
 
-<h3><code>name</code></h3>
+<h3><code>name</code> (optional)</h3>
 <p>If you want to override the name of the dataset, you can pass a <code>name</code> field in your blueprint. Otherwise, the name of the dataset will default to the filename passed when you kick off the final import.</p>
 
 <h2>Kicking off the Import</h2>
