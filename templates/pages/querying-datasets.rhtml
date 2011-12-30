@@ -96,38 +96,23 @@
   "query": {
     "filterCondition": {
       "type": "operator",
-      "value": "AND",
+      "value": "within_circle",
       "children": [
         {
-          "children": [
-            {
-              "type": "operator",
-              "value": "within_circle",
-              "metadata": {
-                "freeform": true
-              },
-              "children": [
-                {
-                  "type": "column",
-                  "columnId": 2648915
-                },
-                {
-                  "type": "literal",
-                  "value": 47.68489
-                },
-                {
-                  "type": "literal",
-                  "value":  -122.40448
-                },
-                {
-                  "type": "literal",
-                  "value": 1000
-                }
-              ]
-            }
-          ],
-          "type": "operator",
-          "value": "OR"
+          "type": "column",
+          "columnId": 2648915
+        },
+        {
+          "type": "literal",
+          "value": 47.68489
+        },
+        {
+          "type": "literal",
+          "value":  -122.40448
+        },
+        {
+          "type": "literal",
+          "value": 1000
         }
       ]
     }
