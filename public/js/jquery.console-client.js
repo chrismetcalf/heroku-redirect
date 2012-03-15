@@ -9,11 +9,10 @@
 
     // Set up the iframe and associated goodies.
     $visor.append("<iframe src=\"http://" + $domain + "/console.html\" id=\"console\"></iframe>");
-    $visor.append("<p><a id=\"close\" href=\"#close\">close console</a>");
+    $visor.append("<p><a id=\"close\" href=\"#close\">close console</a></p>");
 
     // Hide it by default
     $visor.hide();
-
 
     // Show/hide console helper functions
     var showVisor = function(onShown) {
