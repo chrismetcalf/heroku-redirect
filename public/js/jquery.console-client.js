@@ -2,7 +2,7 @@
  * Convenience functions to call into the Socrata console iframe
  */
 (function($){
-  $.fn.setupVisor = function($links, $domain) {
+  $.fn.setupVisor = function($links, $domain, $attribute) {
     var $visor = this;
 
     var $domain = $domain || "opendata.socrata.com"
@@ -41,9 +41,16 @@
     {
         event.preventDefault();
         var $link = $(this);
+        var $exec = $link.text();
+
+        if($attribute)
+        {
+          $exec = $link.attr($attribute);
+        }
+
         showVisor(function()
         {
-            console.postMessage('socrata-exec:' + $link.text(), '*');
+            console.postMessage('socrata-exec:' + $exec, '*');
         });
     });
 
