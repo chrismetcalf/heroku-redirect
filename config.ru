@@ -70,7 +70,7 @@ class Toto::Site::Context
 
   # Construct a "GET" link
   def get(path, class_name = "exec")
-    "<a class=\"#{class_name}\" href=\"http://opendata.socrata.com/api#{path}\">get(\"#{path}\")</a>"
+    "<a class=\"#{class_name}\" href=\"#{path}\">get(\"#{path}\")</a>"
   end
 
   def apps
