@@ -1,0 +1,3 @@
+[submodule "subdocs/soda-two-docs.git"]
+	path = subdocs/soda-two-docs.git
+	url = git@git.socrata.com:soda-two-docs.git
