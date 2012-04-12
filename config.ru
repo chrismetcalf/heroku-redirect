@@ -2,9 +2,10 @@ require 'toto'
 require 'cgi'
 require 'ostruct'
 require 'yaml'
+require 'multimarkdown'
 
 # Rack config
-use Rack::Static, :urls => ['/css', '/js', '/images', '/favicon.ico'], :root => 'public'
+use Rack::Static, :urls => ['/css', '/js', '/images', '/img', '/favicon.ico'], :root => 'public'
 use Rack::CommonLogger
 
 if ENV['RACK_ENV'] == 'development'
@@ -33,7 +34,7 @@ toto = Toto::Server.new({
 
   # Simple error page
   set :error, lambda { |code|
-    output = Markdown.new(File.read("templates/#{code}.txt").strip).to_html
+    output = MultiMarkdown.new(File.read("templates/#{code}.txt").strip).to_html
     puts output
     output
   }
@@ -41,7 +42,7 @@ toto = Toto::Server.new({
   # Magic to allow me to use Markdown for static pages
   set :to_html, lambda {|path, page, ctx|
     if File.exists? "#{path}/#{page}.txt"
-      Markdown.new(File.read("#{path}/#{page}.txt").strip).to_html
+      MultiMarkdown.new(File.read("#{path}/#{page}.txt").strip).to_html
     else
       ERB.new(File.read("#{path}/#{page}.rhtml")).result(ctx)
     end
