@@ -1,7 +1,7 @@
 # Providing Access to Open Data via Open APIs
 ## An Introduction to SODA: the Socrata Open Data API
 
-The _Socrata Open Data API_ creates an easy way to make data accessible on the web in a powerful way.
+The _Socrata Open Data API_ offers an easy way to make data accessible on the web in a powerful way.
 
 If your organization needs to provide access to data, to the public or to an internal
 group, you are faced with a challenging technical problem. How should the data be presented? How
@@ -15,10 +15,10 @@ the end users. Displaying current, accessible data to the target audience in an 
 user-friendly way can become a huge project and a real drain on an organization's
 resources.
 
-SODA 2.0 helps your organization solve these problems by providing groups that use your data
+SODA helps your organization solve these problems by providing groups that use your data
 with flexible, access tools in the form of an "API". API stands for "application programming interface."
 Using an API instead of a fixed solution means that instead of putting your data into any
-particular format, SODA 2.0 provides the end-users of your data with a _toolkit_ for accessing it.
+particular format, SODA provides the end-users of your data with a _toolkit_ for accessing it.
 This allows them to format, sort, search, and name data in the way that makes sense to them
 according to how they think about and use it.
 
@@ -78,32 +78,33 @@ or data in difficult proprietary formats stifles access and innovation. Data mad
 APIs, especially APIs using open, accepted standards, sparks innovation and creativity. Experience
 has shown that making your data available via an API is the most effective, and powerful, means of delivery.
 
-## How SODA 2.0 Works
+## How SODA Works
 
-The cloud-hosted, __Socrata Open Data Platform__ automatically provides access to data using an efficient
+The cloud-hosted, __Socrata Open Data Platform__ automatically provides access to data using an efficient and
+open
 architectural standard for web services called __REST__. REST stands for _Representational State Transfer_ and has
 quickly become the standard way for web-based applications of all kinds to easily access and
 manipulate data.
 
-All an organization needs to do in order to "create" an API for a dataset with SODA 2.0 is to
-upload that dataset into the Socrata platform. Think of SODA 2.0 as an _API builder_ rather
-than as an API itself. It provides a dataset-specific, general purpose API for any set of data.
+All an organization needs to do in order to "create" an API for a dataset with SODA is to
+upload that dataset into the Socrata platform. Think of SODA as an _API builder_ rather
+than as an API itself. It provides a dataset-specific, general purpose API for any dataset.
 
-SODA 2.0 is an open platform. The specifications for SODA are non-proprietary, contributed in 2010
+SODA is an open, standards-based platform. The specifications for SODA are non-proprietary, contributed in 2010
 by Socrata to the Open Data community via a Creative Commons license. APIs built with SODA use only
 non-proprietary conventions and open standards including HTTP, REST, XML, JSON, RDF and SQL (using
 a variant we call SoQL).
 
-In addition, SODA 2.0 was designed to be flexible. It places few constraints on
+In addition, SODA was designed to be flexible. It places few constraints on
 the structure of data and supports three common use cases:
 
-* __Ad-hoc analysis__ - SODA 2.0 provides expressive query semantics and results returned in downloadable,
+* __Ad-hoc analysis__ - SODA provides expressive query semantics and results returned in downloadable,
 tabular file formats;
 
-* __Web and mobile application development__ - SODA 2.0 provides high performance access to data and
+* __Web and mobile application development__ - SODA provides high performance access to data and
 results returned in readily consumable formats such as JSON or XML;
 
-* __Semantic data modeling and exploration__ - SODA 2.0 provides a stable URL/URI structure,
+* __Semantic data modeling and exploration__ - SODA provides a stable URL/URI structure,
 dereference-able data types and results returned in a consumable RDF format.
 
 ## SODA at work - an example
@@ -130,7 +131,7 @@ request to retrieve data over the standard HTTP protocol used by all web browser
 like the SELECT statement in Structured Query Language (SQL), or like a read() function
 in lower-level languages.
 
-Using the stable URL/URI structure provided automatically by SODA 2.0 the GET command for reading
+Using the stable URL/URI structure provided automatically by SODA the GET command for reading
 data programmatically through a SODA-created API is:
 
     GET /resource/dataset-name[.fmt]?column-name[=value][&column-name[=value]...]
@@ -152,7 +153,7 @@ The elements of this request are diagrammed here:
 ![Alt Explaining the elements of a GET request](img/SODA_2_Overview_diagram2.png)
 
 Note that this response is formatted in JSON (JavaScript Object Notation),
-one of several standard return types provided by SODA 2.0.
+one of several standard return types provided by SODA.
 
 The request simply requires the web developer to know the resource name and the columns available.
 This meta-data about the dataset is readily available to developers, also through REST, by
@@ -178,9 +179,9 @@ HTTP Accept content-type header or format suffix to the resource:
 
     GET /resource/nominations.rdf?position=Deputy Attorney General&confirmed
 
-This is a very simple example, but such simple GET requests compromise the fast majority of data user's needs.  When more sophisticated slices of the data are required SODA 2.0 goes much further.
+This is a very simple example, but such simple GET requests compromise the fast majority of data user's needs.  When more sophisticated slices of the data are required SODA goes much further.
 
-For example, expressive query semantics are being added to SODA 2.0 to allow developers to use expressions
+For example, expressive query semantics are being added to SODA to allow developers to use expressions
 based on SQL for dynamically accessing only the rows within a dataset that meet certain criteria:
 
     GET /resource/people
@@ -192,8 +193,9 @@ to extend and enhance SODA. The architecture of the API and the flexibility of o
 to easily add features to the API without impacting existing applications.
 
 ## SODA Adoption
+
 External developers need not even know that an API for a dataset is built on SODA; however, SODA has
-become the de facto standard API in use by more than 30 governments and NGOs: New York City, Chicago,
+become the de facto standard API in use by more than 40 governments and NGOs: New York City, Chicago,
 Illinois and World Bank, for example. Developers have embraced SODA as a conventional way to
 programmatically access any data source. By adopting open, standards-based, conventional and market
 adopted APIs, Data.Gov can further reduce friction that discourages developers from developing
@@ -242,7 +244,7 @@ that prevent them from developing applications that display or use your data. Wh
 supreme in providing flexible access to data, they do require a layer of at least simple programming
 to serve the data from your dataset to users.
 
-The developer resources Socrata provides for SODA 2.0 implementation include:
+The developer resources Socrata provides for SODA implementation include:
 
 * Thorough and complete documentation of the APIs; <!-- Tim: I'd better get to work!!!; Chris: Yup :) -->
 * Sample source code in a number of popular programming languages that can be modified without licensing restrictions;
@@ -311,23 +313,19 @@ serve as a convincing argument that Socrata puts its customers long term interes
 
 ## Growing Success with Government Data
 
-Socrata's initial successes is in providing open hosting of data for U.S. Government
-agencies such as the Government Services Agency (GSA) which hosts more than 64 million rows of
-data in over 5,800 datasets with Socrata.
+Our success in the public sector shows the huge potential of this technology to save money and
+increase benefit for governmental and commercial organizations alike. Anyone with data can benefit by adopting
+Socrata's SODA API.
 
-Our success in this sector shows the huge potential of this technology to save money and
-increase benefit for governmental and commercial entities alike. Anyone with data can benefit by adopting
-Socrata's SODA 2.0 API.
-
-In the governmental sector that we know well we see enormous benefits would be enjoyed if there were
+In the governmental sector that we know well we see enormous benefits that would be enjoyed if there were
 an open, standards-based, consistent, government-wide API for _every_ public government dataset.
 The most expeditious path to achieving that goal is to deploy the Socrata Open Data Platform
 broadly. Every agency within the entire federal government could run Socrata at a lower
 aggregate cost as Socrata is a cost effective, cloud-based platform that offers benefits due to
 economies of scale and economies of scope.
 
-The cost savings are significant. Our estimates suggest that Scotia's SODA platform could host the data from every
-U.S. Governmental agency for what the U.S. Patent and Trade Office (USPTO) _alone_ spends to publish
+The cost savings are significant. Our estimates suggest that Socrata's Open Data Platform could host the data from every
+U.S. Governmental agency for less than what the U.S. Patent and Trade Office (USPTO) _alone_ spends to publish
 the patent and trademark databases; or for a _lower_ aggregate cost than what the U.S. Courts
 spend to run the PACER court electronic records system.
 
@@ -337,7 +335,7 @@ standards-based foundation for reducing the cost and improving the quality of da
 delivery.
 
 ## Moving Beyond Government Data
-Socrata is a platform company that views "data access" as a problem that
+Socrata is a platform company that views data access as a problem that
 plagues not only the public sector, but also the commercial sector. Socrata views the public sector
 as an important demonstration of the utility of the SODA platform. We have demonstrated that governments
 can make their data broadly accessible to 300 million Americans. The platform can is just as useful
