@@ -338,7 +338,7 @@ delivery.
 Socrata is a platform company that views data access as a problem that
 plagues not only the public sector, but also the commercial sector. Socrata views the public sector
 as an important demonstration of the utility of the SODA platform. We have demonstrated that governments
-can make their data broadly accessible to 300 million Americans. The platform can is just as useful
+can make their data broadly accessible to 300 million Americans. The platform is just as useful
 to commercial businesses that want to make their data privately accessible to their own analysts,
 information workers and programmers.
 
