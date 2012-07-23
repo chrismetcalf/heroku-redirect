@@ -48,7 +48,7 @@ https://my-website.com/socrata-app/callback?code=<em>CODE</em>
 
 <p>Should your <code>redirect_uri</code> contain a querystring, it will be preserved, and the code parameter will be added onto the end of it. Likewise, should you provide the optional <code>state</code> param in the original redirect to <code>/authenticate</code>, it will be preserved and sent back to you.</p>
 
-<p>Now that the user has authorized your application, you want to retrieve an <code>access_token</code> so that you can perform operations on their behalf. You can do this by <strong>making a request from your server</strong> for:</p>
+<p>Now that the user has authorized your application, you want to retrieve an <code>access_token</code> so that you can perform operations on their behalf. You can do this by <strong>making a <code>POST</code> request from your server</strong> for:</p>
 
 <pre>
 https://opendata.socrata.com/oauth/access_token
