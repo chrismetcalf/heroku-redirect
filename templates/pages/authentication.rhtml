@@ -34,7 +34,7 @@
 <p>Once you have an application and a secret token, you'll be able to authenticate with the SODA OAuth 2 endpoint. You'll first need to <strong>redirect</strong> the user to the Socrata-powered site you wish to access so that they may log in and approve your application:</p>
 
 <pre>
-https://opendata.socrata.com/oauth/authenticate
+https://opendata.socrata.com/oauth/authorize
   ?client_id=<em>YOUR_AUTH_TOKEN</em>
   &amp;response_type=code
   &amp;redirect_uri=<em>YOUR_REDIRECT_URI</em>
@@ -48,7 +48,7 @@ https://my-website.com/socrata-app/callback?code=<em>CODE</em>
 
 <p>Should your <code>redirect_uri</code> contain a querystring, it will be preserved, and the code parameter will be added onto the end of it. Likewise, should you provide the optional <code>state</code> param in the original redirect to <code>/authenticate</code>, it will be preserved and sent back to you.</p>
 
-<p>Now that the user has authorized your application, you want to retrieve an <code>access_token</code> so that you can perform operations on their behalf. You can do this by <strong>making a request from your server</strong> for:</p>
+<p>Now that the user has authorized your application, you want to retrieve an <code>access_token</code> so that you can perform operations on their behalf. You can do this by <strong>making a <code>POST</code> request from your server</strong> for:</p>
 
 <pre>
 https://opendata.socrata.com/oauth/access_token
