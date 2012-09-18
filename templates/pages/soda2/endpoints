@@ -30,6 +30,16 @@ For exmple, the above dataset `6cpn-3h7n` is also named nominationsCopy.  This a
 
     https://sandbox.demo.socrata.com/resource/nominationsCopy
 
+#### Endpoint for a specific row
+
+In addition to having an endpoint for a dataset, each row also has an endpoint based on it's unique identifier.  By default, a
+row's unique identifier is provided automatically by Socrata.  It is called `:id` and is not returned unless asked for.  A dataset
+can also specifically set a unique identifier in it's metadata, in which case that one is used.
+
+    https://sandbox.demo.socrata.com/resource/nominationsCopy/1.json
+
+NOTE:  If you want to actually see the `:id` values, you can put it in a select statement.  E.g. [https://sandbox.demo.socrata.com/resource/nominationsCopy.json?$select=:id,name,agency_name](https://sandbox.demo.socrata.com/resource/nominationsCopy.json?$select=:id,name,agency_name)
+
 ## Response Formats
 
 SODA 2 deliberately separates the core API and data structures from the response types returned.  This allows it to be

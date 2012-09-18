@@ -1,0 +1,69 @@
+# Bulk Updates using Socrata
+
+In addition to updating single rows, SODA2 allows you to stream up bulk updates through the familiar dataset endpoints.
+
+## Bulk Upserts
+
+An "Upsert" is a POST operation that allows row addition, updates and deletions in one efficient call.  It takes an set
+  records (as a JSON list or a CSV) and add, inserts or deletes appropriately.  It will do so for each row, according to the following rules:
+
+1.  If the ID of the row exists and new row has the field, `:deleted=true` it will delete the row.
+2.  If the ID of the row exists, the row will be updated with the values passed in the upsert.
+3.  If the ID of the row does not exist, the row will be added.
+
+The ID of the row is determined in the same way the row ID is determined for a row's endpoint ([endpoint](/soda2/endpoints)).
+Namely, if the dataset does NOT have a unique identifier set it will default to the system created `:id` value.  If one is set, the
+value used will be the unique identifier.
+
+For example, the following payload:
+    [
+         {
+            ":id" : 79,
+            ":deleted" : true
+         },
+         {
+            "newValue":"Hello",
+            "newValue2":"World"
+         }
+    ]
+
+Will delete the record with `:id` = 79, and create a new one with the specified values.
+
+If there is another dataset with a unique identifier set to `myId`, then the following payload:
+    [
+         {
+            "myId" : "UniqueValue",
+            ":deleted" : true
+         },
+         {
+            "myId" : "newUniqueValue",
+            "newValue":"Hello",
+            "newValue2":"World"
+         }
+    ]
+
+
+Will delete the row with `myId`="UniqueValue", and will add the row with `myId`="newUniqueValue" (unless of course a
+row with that value already exists in which case it will update it).
+
+
+## Bulk Replace
+
+A "replace" is a PUT opereration that takes the same payload as an upsert, but will completely replace the dataset
+instead of updating it.  It is like an efficient way to do a truncate and then upsert of a dataset.
+
+## Errors in Bulk Operations
+
+When sending up a bulk POST or PUT operation there is always the possibility that some of the operations may fail, while some may succeed.
+In the case of any failures, a 500 will be returned.  The body of the response will contain a list of all the failures.
+
+In the case of failures, POST and PUT operations may continue in the face of failures.  If this occurs, all failed row ids will be returned.
+
+The response JSON object for a failed response will contain all the same members from a successful POST, with the following additions:
+
+*  **update_aborted.**  This is true if this operation had enough failures to cacnel the rest of the processing.
+*  **errors.**  This is a JSON array containing the actual error objects, and mapping them back to the posted or put resource.  Within the errors array, each error object will have:
+*    **input_index.**  This is the 0-based index of this record in the input stream.
+*    **primary_key.**  The primary key of the record that got inserted.
+*    **error.**  The error string for why this record resulted in an error.
+
