@@ -5,7 +5,8 @@ In addition to updating single rows, SODA2 allows you to stream up bulk updates 
 ## Bulk Upserts
 
 An "Upsert" is a POST operation that allows row addition, updates and deletions in one efficient call.  It takes an set
-  records (as a JSON list or a CSV) and add, inserts or deletes appropriately.  It will do so for each row, according to the following rules:
+records (as a JSON list or a CSV) that is POST-ed to a dataset's endpoint.  It then adds, inserts or deletes appropriately.
+It will do so for each row, according to the following rules:
 
 1.  If the ID of the row exists and new row has the field, `:deleted=true` it will delete the row.
 2.  If the ID of the row exists, the row will be updated with the values passed in the upsert.
@@ -16,6 +17,7 @@ Namely, if the dataset does NOT have a unique identifier set it will default to 
 value used will be the unique identifier.
 
 For example, the following payload:
+
     [
          {
             ":id" : 79,
@@ -27,7 +29,7 @@ For example, the following payload:
          }
     ]
 
-Will delete the record with `:id` = 79, and create a new one with the specified values.
+POST-ed to the appropriate endpoint, will delete the record with `:id` = 79, and create a new one with the specified values.
 
 If there is another dataset with a unique identifier set to `myId`, then the following payload:
     [
@@ -67,3 +69,8 @@ The response JSON object for a failed response will contain all the same members
 *    **primary_key.**  The primary key of the record that got inserted.
 *    **error.**  The error string for why this record resulted in an error.
 
+
+## Truncate ##
+
+A truncate operation will delete all the records in a dataset without deleting the dataset itself.  This is done by
+ simply sending a DELETE operation to the dataset's endpoint.

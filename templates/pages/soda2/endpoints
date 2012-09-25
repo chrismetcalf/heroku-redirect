@@ -64,7 +64,7 @@ The full list of currently supported formats are:
 |[JSON](/soda2/jsonFormat)|`.json`|`application/json`|
 |[CSV](/soda2/csvFormat)|`.csv`|???|
 |[XML](/soda2/xmlFormat)|`.xml`|`application/xml`|
-|[RDF](/soda2/rdfFormat)|`.rdgf`|???|
+|[RDF](/soda2/rdfFormat)|`.rdf`|???|
 
 ## Authentication and Authorization
 

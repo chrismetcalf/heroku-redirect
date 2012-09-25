@@ -19,10 +19,42 @@ Operations on Strings are case insensitive.  This includes sorting as well as co
 When using SoQL, string literals are created using the single quote (`'`).
     myColumn='string literal'
 
+
+|Operation|Description|
+|---|---|
+|<|True for strings that are before this string.|
+|<=|True for strings that are before or equal to this string.|
+|=|True for strings that are equal to this string.|
+|!=|True for strings that are not equal to this string.|
+|>|True for strings that are after this string.|
+|>=|True for strings that are after or equal to this string.|
+|upper(x)|Returns the uppercase version of this string|
+|lower(x)|Returns the lowercase version of this string|
+|starts_with(x, y)|Returns true if the string x starts with the string y|
+|contains(x, y)|Returns true if the string x contains the string y|
+
+
+
+
 #### Number
 Numbers are arbitrary precision, arbitrary scale numbers.  They can represent any number exactly, except for some numbers that repeat infinitely.
 
 Since, numbers can be larger than doubles allow and more precise, many formats need to serialize them as strings.
+
+|Operation|Description|
+|---|---|
+|<|True for numbers less than this one.|
+|<=|True for numbers that are less than or equal to this one.|
+|=|True for numbers that are equal to this one.|
+|!=|True for numbers that are not equal to this one.|
+|>|True for numbers that are greater than this one.|
+|>=|True for numbers that are greater than or equal to this one.|
+|*|Multiplies two numbers|
+|/|Divides one number by another|
+|+|Adds two numbers|
+|-|subtracts one number from another|
+
+
 
 #### Double
 A double (used to be number) is an IEEE floating point double. They are easy to use and are represented as numbers in
@@ -31,8 +63,29 @@ all the response formats, however, they have less precision than the regular Num
 Currently, all numbers are stored as Numbers.  Doubles exist as a way of making responses easier to consume, in the case
 the caller wants results that are easier to parse and can potentially give up precision to do so.
 
+|Operation|Description|
+|---|---|
+|<|True for numbers less than this one.|
+|<=|True for numbers that are less than or equal to this one.|
+|=|True for numbers that are equal to this one.|
+|!=|True for numbers that are not equal to this one.|
+|>|True for numbers that are greater than this one.|
+|>=|True for numbers that are greater than or equal to this one.|
+|*|Multiplies two numbers|
+|/|Divides one number by another|
+|+|Adds two numbers|
+|-|subtracts one number from another|
+
+
 #### Boolean
 Booleans can be either true or false.
+
+|Operator|Description|
+|---|---|
+|AND|The logical **and** of two expressions.|
+|OR|The logical **or** of two expressions.|
+|NOT|The logical **not** of an expression.|
+
 
 #### Fixed Timestamp
 Fixed timestamps represent an instant in time with millisecond precision.  These timestamps MUST have timezone offset information
@@ -54,6 +107,10 @@ Location is a type that contains latitude, longitude and address. Location is ac
     * state -- The state this address is in
     * zip -- The zip code for this address
 
+|Operator|Description|
+|---|---|
+|within_box|Returns true if the location is within the specified box|
+
 
 ## Conversion Functions
 
@@ -70,4 +127,14 @@ following are all the conversion functions:
 |to_boolean(String)|The case-insensitive strings:<br/> **true, 1** -- will yield true.<br/> **false, 0** -- will yield false All else will yield an exception.|
 |to_fixed_timestamp(String)|Casts to a fixed timestamp. A fixed timestamp will have offset from UTC information. Accepted Timestamps will be extended ISO-8601 strings and have a “Z” appended. If no timezone is set, then the DataSet default will be used. Calling this on anything that is not of the format 'yyyy-mm-ddThh:mm:ssZ', 'yyyy-mm-ddThh:mm:ss+offs', or 'yyyy-mm-ddThh:mm:ss-offs' is undefined behaviour.|
 |to_floating_timestamp(String)|Casts to a floating timestamp.  This timestamp won’t contain any offset information to UTC. Calling this on anything that is not of the format 'yyyy-mm-ddThh:mm:ss' is undefined behaviour.|
+
+
+## Trying out examples
+
+If you want to play around with examples of all our datatypes, look at the **dataTypeTest** dataset in the sandbox domain.
+
+[https://sandbox.demo.socrata.com/resource/dataTypeTest.json](https://sandbox.demo.socrata.com/resource/dataTypeTest.json)
+[https://sandbox.demo.socrata.com/resource/dataTypeTest.xml](https://sandbox.demo.socrata.com/resource/dataTypeTest.xml)
+[https://sandbox.demo.socrata.com/resource/dataTypeTest.csv](https://sandbox.demo.socrata.com/resource/dataTypeTest.csv)
+[https://sandbox.demo.socrata.com/resource/dataTypeTest.rdf](https://sandbox.demo.socrata.com/resource/dataTypeTest.rdf)
 
