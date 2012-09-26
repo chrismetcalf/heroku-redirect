@@ -55,7 +55,7 @@ a copy of some data that has geo data:
 
 1. [Accessing an Endpoint] (/soda2/endpoints)
 2. [Data Types] (/soda2/dataTypes)
-3. [Updating a Dataset] (/soda2/updating)
+3. [Updating a Dataset] (/soda2/updates)
 4. [Bulk Updates] (/soda2/bulkUpdates)
-5. [Queries]  (/soda2/bulkUpdates)
+5. [Queries]  (/soda2/query)
 

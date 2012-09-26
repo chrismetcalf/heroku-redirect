@@ -146,8 +146,8 @@ following are all the conversion functions:
 
 If you want to play around with examples of all our datatypes, look at the **dataTypeTest** dataset in the sandbox domain.
 
-[https://sandbox.demo.socrata.com/resource/dataTypeTest.json](https://sandbox.demo.socrata.com/resource/dataTypeTest.json)
-[https://sandbox.demo.socrata.com/resource/dataTypeTest.xml](https://sandbox.demo.socrata.com/resource/dataTypeTest.xml)
-[https://sandbox.demo.socrata.com/resource/dataTypeTest.csv](https://sandbox.demo.socrata.com/resource/dataTypeTest.csv)
-[https://sandbox.demo.socrata.com/resource/dataTypeTest.rdf](https://sandbox.demo.socrata.com/resource/dataTypeTest.rdf)
+*  [https://sandbox.demo.socrata.com/resource/dataTypeTest.json](https://sandbox.demo.socrata.com/resource/dataTypeTest.json)
+*  [https://sandbox.demo.socrata.com/resource/dataTypeTest.xml](https://sandbox.demo.socrata.com/resource/dataTypeTest.xml)
+*  [https://sandbox.demo.socrata.com/resource/dataTypeTest.csv](https://sandbox.demo.socrata.com/resource/dataTypeTest.csv)
+*  [https://sandbox.demo.socrata.com/resource/dataTypeTest.rdf](https://sandbox.demo.socrata.com/resource/dataTypeTest.rdf)
 
