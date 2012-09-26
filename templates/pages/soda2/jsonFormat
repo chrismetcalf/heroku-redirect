@@ -52,3 +52,7 @@ Locations will be returned as JSON objects, with longitude, latitude and address
         "latitude" : 89.5555555,
         "longitude" : 89.5555555
     }
+
+## Checkboxes
+
+Checkboxes have slightly strange behaviour.  They will often be `null` instead of false.  This means

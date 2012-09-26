@@ -112,6 +112,19 @@ Location is a type that contains latitude, longitude and address. Location is ac
 |within_box|Returns true if the location is within the specified box|
 
 
+#### Checkboxes
+Checkbox is a non-intuitive datatype.  The reason is that it is really a datatype built for front-end web uis.  As a result, it treats
+null and false the same.  This can be a little non-intuitive when creating queries against a Checkbox type.  The UI will treat `null` and
+false as the same values.  This means that for:
+
+1.  Datasets imported with `false` or `null` values, the imported value will be honored.
+2.  If using the Socrata UI for setting checkbox values, `null` will be used for false.
+
+This means that if you are using the Socrata UI for importing data, a query to check for false, should check for null.  E.g.
+
+[https://sandbox.demo.socrata.com/resource/6cpn-3h7n.json?$where=confirmed=false+OR+confirmed+IS+NULL](https://sandbox.demo.socrata.com/resource/6cpn-3h7n.json?$where=confirmed=false+OR+confirmed+IS+NULL)
+
+
 ## Conversion Functions
 
 In SODA2, there is no automatic type conversion.  Instead, all type conversion has to be done explicitly through conversion functions.  The
