@@ -1,0 +1,82 @@
+# Updating rows in a dataset
+
+SODA2 allows rows in a dataset to be added, removed and updated though standard REST operations.  These operations will
+mostly occur on the row's endpoint.  See the [endpoint](/soda2/endpoints) documentation to see how these are constructed.
+
+## Adding a row
+
+To add a row in SODA2, simply post a JSON representation of the object to add.  For example, to add a new nomination
+to the `nominationsCopy` dataset, you would post:
+
+      {
+        "position" : "Test Agent",
+        "nomination_date" : "2012-09-10T13:32:10.000",
+        "agency_website" : "https://sandbox.demo.socrata.com",
+        "holdover" : false,
+        "agency_name" : "Department of Testing",
+        "confirmed" : false,
+        "name" : "cd4a3311-2035-4ec0-9cec-3fef78695a3c"
+      }
+
+to the URL
+
+  https://sandbox.demo.socrata.com/resource/nominationsCopy
+
+This will add the new record to the dataset, and will return with the following response:
+
+      {
+        ":id" : 79,
+        ":created_at" : "2012-09-17T20:32:46.781Z",
+        ":updated_at" : "2012-09-17T20:32:46.781Z",
+        ":created_meta" : "692989",
+        ":updated_meta" : "692989",
+        ":position" : 79,
+        "position" : "Test Agent",
+        "nomination_date" : "2012-09-10T13:32:10.000",
+        "agency_website" : "https://sandbox.demo.socrata.com",
+        "holdover" : false,
+        "agency_name" : "Department of Testing",
+        "confirmed" : false,
+        "name" : "cd4a3311-2035-4ec0-9cec-3fef78695a3c"
+      }
+
+Notice, that there are a few system fields automatically added.  These all start with a '**:**', these are all for internal
+bookkeeping.  They can all be added to a select statement in queries to be returned, however, only three of these are generally useful
+to a user.
+
+|System Field|Description|
+|---|---|
+|:id|This is the id the system created for this record.  If the dataset does not have a unique identifier set, this will be the unique identifier.|
+|:created_at|This is the timestamp for when this record was created.|
+|:updated_at|This is the timestamp for when this record was last updated.|
+
+## Updating a row
+
+Updating a row is very similiar to adding a row, only you POST the row to the row's endpoint.  For example, you would post
+
+      {
+        "position" : "Test Agent",
+        "nomination_date" : "2012-09-10T13:32:10.000",
+        "agency_website" : "https://sandbox.demo.socrata.com",
+        "holdover" : false,
+        "agency_name" : "Department of Testing",
+        "confirmed" : false,
+        "name" : "cd4a3311-2035-4ec0-9cec-3fef78695a3c"
+      }
+
+to the URL
+
+    https://sandbox.demo.socrata.com/resource/nominationsCopy/79
+
+The response will be the same as for adding a row.
+
+## Getting a row
+
+To get a row, you simply need to do a GET against the row's endpoint.  You can use the same ways of specifying format
+as general queries.  E.g.
+
+    https://sandbox.demo.socrata.com/resource/nominationsCopy/79.json
+
+## Deleting a row
+
+To delete a row, you simple need to do an HTTP DELETE operation on the row's endpoint.
