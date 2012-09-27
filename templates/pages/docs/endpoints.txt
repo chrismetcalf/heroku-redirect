@@ -1,8 +1,8 @@
-# Accessing Endpoints in SODA 2
+# Accessing Endpoints in SODA 2.0
 
 ## Creating an Endpoint
 
-An endpoint in SODA2 is a URL that references an object.  In Socrata, every Dataset, View or Row has it's own endpoint without
+An endpoint in SODA 2.0 is a URL that references an object.  In Socrata, every Dataset, View or Row has it's own endpoint without
 the creater doing any additional work.  However, the Socrata platform also has several ways to customize your endpoints
 that refer to your objects.
 
@@ -42,7 +42,7 @@ NOTE:  If you want to actually see the `:id` values, you can put it in a select 
 
 ## Response Formats
 
-SODA 2 deliberately separates the core API and data structures from the response types returned.  This allows it to be
+SODA 2.0 deliberately separates the core API and data structures from the response types returned.  This allows it to be
 very flexible in terms of providing multiple formats as well as adding new ones in the future.  Currently, it supports
 JSON, CSV, XML and RDF.  In the future many other formats or more sophisticated mappings can be added without having to
 affect the core capabilities of the system.
@@ -61,19 +61,19 @@ The full list of currently supported formats are:
 
 |Format|Extension|Accept Type|
 |---|---|---|
-|[JSON](/soda2/jsonFormat)|`.json`|`application/json`|
-|[CSV](/soda2/csvFormat)|`.csv`|???|
-|[XML](/soda2/xmlFormat)|`.xml`|`application/xml`|
-|[RDF](/soda2/rdfFormat)|`.rdf`|???|
+|[JSON](/docs/formats/json)|`.json`|`application/json`|
+|[CSV](/docs/formats/csv)|`.csv`|???|
+|[XML](/docs/formats/xml)|`.xml`|`application/xml`|
+|[RDF](/docs/formats/rdf)|`.rdf`|???|
 
 ## Authentication and Authorization
 
-The authentication and authorization for SODA 2 is exactly the same as for the rest of the Socrata platform.  You can
+The authentication and authorization for SODA 2.0 is exactly the same as for the rest of the Socrata platform.  You can
  read more about it [here](/authentication)
 
 ## Errors
 
-SODA2 follows the HTTP and REST standards for returning error codes, and in addition has a standard structure to return
+SODA 2.0 follows the HTTP and REST standards for returning error codes, and in addition has a standard structure to return
 additional error responses.  The breakdown of error codes is:
 
 |Code|Explaination|

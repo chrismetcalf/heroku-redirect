@@ -1,13 +1,12 @@
-# Introducing the Socrata Open Data API Version 2 (SODA2 for short)
-
+# Introducing the Socrata Open Data API Version 2 (SODA 2.0 for short)
 
 ## What's new?
 
-<p>SODA2 brings together the best of REST and SQL.  It is tailored to the requirements of web and mobile applications,
+SODA 2.0 brings together the best of REST and SQL.  It is tailored to the requirements of web and mobile applications,
 and improves on the original SODA by creating a much simpler way to express powerful queries.  Instead of having to
-create inline views, SODA2 provides a SQL-like language that applications can issue directly.  In addition, it provides
+create inline views, SODA 2.0 provides a SQL-like language that applications can issue directly.  In addition, it provides
 built-in result limits to make it harder to accidentally create queries that return millions of rows (those queries are
-more reasonable for export operations that web or mobile applications).  SDOA2 offers:</p>
+more reasonable for export operations that web or mobile applications).  SDOA2 offers:
 
 * Simple Add/Update/Delete operations available on individual rows in the dataset using simple POST/DELETE operations.</li>
 * Simple bulk publish APIs using PUT/POST/DELETE on the entire dataset.</li>
@@ -18,8 +17,8 @@ more reasonable for export operations that web or mobile applications).  SDOA2 o
 ## Quick Examples
 
 #### Easy Endpoints
-<p>In the Socrata platform, every Dataset and View has a SODA endpoint automatically created for it.  These endpoints make
-it very easy to access any dataset, view or row on the Socrata platform.  They are all built using a standard form:</p>
+In the Socrata platform, every Dataset and View has a SODA endpoint automatically created for it.  These endpoints make
+it very easy to access any dataset, view or row on the Socrata platform.  They are all built using a standard form:
 
 https://**[myDomain]**/resource/**[resourceId]**.json
 
@@ -29,9 +28,9 @@ Refers to an example dataset on `sandbox.demo.socrata.com` that we use for testi
 
 
 #### Simple Queries
-<p>If you simply point a browser (or any tool like wget) to this endpoint, you will get the first 1000 records from the dataset.
-In addition to this base functionality, SODA 2 adds a rich query language to let you build  expressive queries.
-Here is set of progressively more complex queries that could be added to the endpoint for more interesting results:</p>
+If you simply point a browser (or any tool like wget) to this endpoint, you will get the first 1000 records from the dataset.
+In addition to this base functionality, SODA 2.0 adds a rich query language to let you build  expressive queries.
+Here is set of progressively more complex queries that could be added to the endpoint for more interesting results:
 
 | Example Queries (https://sandbox.demo.socrata.com/resource/nominationsCopy.json) |
 |------|
@@ -51,11 +50,11 @@ a copy of some data that has geo data:
 |[?$where=within_box(location_1,43,-73,42,-72)**&$select=tri_facility_id,location_1.latitude as lat, location_1.longitude as lon**](https://sandbox.demo.socrata.com/resource/Test-Data.json?$where=within_box(location_1,43,-73,42,-72)&$select=tri_facility_id,location_1.latitude+as+lat,location_1.longitude+as+lon)|
 |[?$where=within_box(location_1,43,-73,42,-72)&$select=tri_facility_id,location_1.latitude as lat, location_1.longitude as lon**&$order=lat desc**](https://sandbox.demo.socrata.com/resource/Test-Data.json?$where=within_box(location_1,43,-73,42,-72)&$select=tri_facility_id,location_1.latitude+as+lat,location_1.longitude+as+lon&$order=lat+desc)|
 
-## SODA2 Reference
+## SODA 2.0 Reference
 
-1. [Accessing an Endpoint] (/soda2/endpoints)
-2. [Data Types] (/soda2/dataTypes)
-3. [Updating a Dataset] (/soda2/updating)
-4. [Bulk Updates] (/soda2/bulkUpdates)
-5. [Queries]  (/soda2/bulkUpdates)
+1. [Accessing an Endpoint] (/docs/endpoints)
+2. [Data Types] (/docs/datatypes)
+3. [Updating a Dataset] (/docs/publisher/updating-rows)
+4. [Bulk Updates] (/docs/publisher/bulk-updates)
+5. [Queries]  (/docs/query)
 
