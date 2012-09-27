@@ -34,9 +34,7 @@ toto = Toto::Server.new({
 
   # Simple error page
   set :error, lambda { |code|
-    output = MultiMarkdown.new(File.read("templates/#{code}.txt").strip).to_html
-    puts output
-    output
+    MultiMarkdown.new(File.read("templates/#{code}.txt").strip).to_html
   }
 
   # Magic to allow me to use Markdown for static pages

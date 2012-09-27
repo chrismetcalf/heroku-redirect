@@ -26,6 +26,7 @@ GEM
       nokogiri (>= 1.4.1)
       rack (>= 1.0.0)
     rack-rewrite (1.2.1)
+    rb-fsevent (0.9.2)
     rdiscount (1.6.8)
     rerun (0.7.1)
       listen
@@ -51,6 +52,7 @@ DEPENDENCIES
   rack (= 1.4.1)
   rack-codehighlighter (= 0.5.0)
   rack-rewrite (= 1.2.1)
+  rb-fsevent (~> 0.9.1)
   rdiscount (= 1.6.8)
   rerun
   rpeg-multimarkdown (= 0.1.1)
