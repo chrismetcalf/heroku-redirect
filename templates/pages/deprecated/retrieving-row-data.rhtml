@@ -1,5 +1,9 @@
 <h1>Retrieving Row Data</h1>
 
+<div class="alert-box">
+  <p>The Socrata Open Data API version 1.0 is in the process of being deprecated and replaced by the new SODA 2.0 API. For more information view <a href="#">SODA 2.0 release announcement</a>. For information on the deprecated SODA 1.0 APIs is available <a href="/deprecated">here</a>.</p>
+</div>
+
 <p>Using the Socrata Open Data API, it is very easy to retrieve row data from a tabular dataset. To retrieve all of the rows for a given dataset, simply call its <code>rows</code> resource with no parameters: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json") %></p>
 
 <p>For larger datasets, you'll want to page through the data a bit at a time instead, to avoid overwhelming your system with row data. To do this, you can use the <code>getRows</code> method along with a <code>start</code> count and <code>length</code> parameter to "page" data from a dataset. For example: <%= get("http://opendata.socrata.com/api/views/n5m4-mism/rows.json?method=getRows&start=340&length=10") %></p>

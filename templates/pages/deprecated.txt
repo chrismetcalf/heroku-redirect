@@ -1,0 +1,6 @@
+# This page has been moved
+
+<div class="alert-box">
+  <p>The Socrata Open Data API version 1.0 is in the process of being deprecated and replaced by the new SODA 2.0 API. For more information view <a href="#">SODA 2.0 release announcement</a>. For information on the deprecated SODA 1.0 APIs is available <a href="/deprecated">here</a>.</p>
+</div>
+

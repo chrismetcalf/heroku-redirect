@@ -108,8 +108,16 @@ use Rack::Rewrite do
   r302 %r{/register/?}, 'http://opendata.socrata.com/profile/app_tokens'
 
   # Rewrite /publisher URLs
-  rewrite %r{/publisher/(.+)}, '/publisher-$1'
-  r302 %r{/publisher/?$}, '/publisher/getting-started'
+  r302 %r{/publisher/(.*)}, '/publishers/$1'
+
+  # Rewrite old pages
+  ["/accessing-socrata-datasites", 
+   "/querying-datasets",
+   "/accessing-view-metadata",
+   "/what-is-the-consumer-api",
+   "/retrieving-row-data"].each { |path|
+    r302 path, "/deprecated#{path}"
+  }
 end
 
 # Set up code highlighting
