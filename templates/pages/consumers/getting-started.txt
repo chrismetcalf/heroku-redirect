@@ -38,7 +38,7 @@ The schema of the output of SODA 2.0 APIs is determined either by the structure 
 
 The actual format differs depending on the output type you have selected (see the Available Data Formats section below), but take, for example, the JSON output for the [USGS Earthquakes API](https://soda.demo.socrata.com/developers/docs/earthquakes) we've been working with:
 
-<pre>
+<pre class="prettyprint">
 [
     {
         "region": "British Columbia, Canada",
@@ -59,7 +59,7 @@ The actual format differs depending on the output type you have selected (see th
 
 Each column is represented by a unique field name. Conveniently, the schema details for the API are included in the HTTP response headers with every request as `X-SODA2-Fields` and `X-SODA2-Types`:
 
-<pre>
+<pre class="prettyprint">
 X-SODA2-Fields: ["region",":updated_at","source","location","magnitude ","number_of_stations",":id","datetime",":created_at","earthquake_id","d epth","version"]
 X-SODA2-Types: ["text","meta_data","text","location","number","number" ,"meta_data","calendar_date","meta_data","text","number","text"]
 </pre>
