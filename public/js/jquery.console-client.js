@@ -3,8 +3,8 @@
     var visor = this;
 
     // Set up the placeholder for the iframe and associated goodies.
-    visor.append('<iframe id="tester" width="800" height="290"></iframe>');
-    visor.append('<p><a id="close" href="#close">close console</a></p>');
+    visor.append('<iframe seamless="seamless" frameborder="0" id="tester" width="790" height="630"></iframe>');
+    visor.append('<p><a id="close" href="#close">close</a></p>');
 
     // Hide it by default
     visor.hide();
@@ -51,8 +51,8 @@
   };
 
   // Set up the visor and links
-  $("#visor").setupVisor($('a[href*="soda.demo.socrata.com"]'));
-  $('a[href*="soda.demo.socrata.com"]').addClass("exec");
+  $("#visor").setupVisor($('a[href*="soda.demo.socrata.com"][href*=json]'));
+  $('a[href*="soda.demo.socrata.com"][href*=json]').addClass("exec");
 }) (jQuery);
 
 
