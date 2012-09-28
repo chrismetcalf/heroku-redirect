@@ -60,18 +60,18 @@ The `redirect_uri` must be the same as the one you provide previously. The `code
 <pre>{ access_token: <em>ACCESS_TOKEN</em> }
 </pre>
 
-Use this `access_token` in your requests when you have to do work on behalf of the now-authenticated user, as described below in the *â€˜Using an access_tokenâ€™* section.
+Use this `access_token` in your requests when you have to do work on behalf of the now-authenticated user, as described below in the "Using an OAuth 2 access token" section.
 
 We have a **sample app** available [on GitHub][5] that illustrates how to do all of the above with the Ruby `OAuth2` gem.
 
-### Using an OAuth 2 `access_token`
+### Using an OAuth 2 access token
 
 Once you have obtained an `access_token`, you should include it on requests which need to happen on behalf of the user. The only supported way to do this is via the `Authorization` HTTP Header field. You want to set the header as follows in your request:
 
 <pre>Authorization: OAuth <em>YOUR_ACCESS_TOKEN</em>
 </pre>
 
-Note that all authenticated requests *must* be performed over a secure connection (`https:`). Any attempt to use an `access_token` over a non-secure connection will result in immediate revocation of the token.
+Note that all authenticated requests *must* be performed over a secure connection (`https`). Any attempt to use an `access_token` over a non-secure connection will result in immediate revocation of the token.
 
 ### Who am I?
 
@@ -84,7 +84,7 @@ One quirk of authenticating via OAuth 2 is that the entire process happens witho
 
 Requests can also be authenticated by passing in HTTP Basic Authentication headers. We only support this method for legacy reasons, and encourage all our API users to use the OAuth workflow to authenticate their users. We may deprecate this authentication method in the future.
 
-All HTTP-basic-authenticated requests *must* be performed over a secure (`https:`) connection, and *must* include an Application Token. Authenticated requests made over an insecure connection or without an application token will be denied.
+All HTTP-basic-authenticated requests *must* be performed over a secure (`https`) connection, and *must* include an Application Token. Authenticated requests made over an insecure connection or without an application token will be denied.
 
 Here is a sample on how to use HTTP Basic Authentication:
 
