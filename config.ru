@@ -99,19 +99,19 @@ use Rack::Rewrite do
 
   # Better endpoints for RSS and ATOM
   rewrite '/atom.xml', 'index.xml'
-  r302 %r{/feed/?}, 'http://feeds.feedburner.com/socrata-soda'
+  r302 %r{^/feed/?}, 'http://feeds.feedburner.com/socrata-soda'
 
   # Simpler URL for the GetSatisfaction forums
-  r302 %r{/forums/?}, 'http://support.socrata.com/forums/344875-developers-forum'
+  r302 %r{^/forums/?}, 'http://support.socrata.com/forums/344875-developers-forum'
 
   # Redirect for app token registration
-  r302 %r{/register/?}, 'http://opendata.socrata.com/profile/app_tokens'
+  r302 %r{^/register/?}, 'http://opendata.socrata.com/profile/app_tokens'
 
   # Rewrite /publisher URLs
-  r302 %r{/publisher/(.*)}, '/publishers/$1'
+  r302 %r{^/publisher/(.*)}, '/publishers/$1'
 
   # We moved getting-started
-  r302 %r{/getting-started.*}, '/consumers/getting-started'
+  r302 %r{^/getting-started.*}, '/consumers/getting-started'
 
   # Rewrite old pages
   ["/accessing-socrata-datasites", 
