@@ -9,7 +9,7 @@ In addition to our [code samples on Github][1], we also provide simple runnable 
 A few examples:
 
 * Retrieve the last five earthquakes: <http://soda.demo.socrata.com/resource/earthquakes.json?$limit=5&$order=datetime DESC>
-* Retrieve only quakes with a source of "uw": <http://soda.demo.socrata.com/resource/earthquakes.json?$source=uw>
+* Retrieve only quakes with a source of "uw": <http://soda.demo.socrata.com/resource/earthquakes.json?source=uw>
 * Retrieve only quakes with a magnitude greater than 5: [http://soda.demo.socrata.com/resource/earthquakes.json?$where=magnitude > 5](http://soda.demo.socrata.com/resource/earthquakes.json?$where=magnitude%3E5)
 
 
