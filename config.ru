@@ -111,7 +111,7 @@ use Rack::Rewrite do
   r302 %r{/publisher/(.*)}, '/publishers/$1'
 
   # We moved getting-started
-  r302 '/getting-started', '/consumers/getting-started'
+  r302 %r{/getting-started.*}, '/consumers/getting-started'
 
   # Rewrite old pages
   ["/accessing-socrata-datasites", 
