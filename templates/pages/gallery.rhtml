@@ -26,7 +26,7 @@
             <% if apps["featured"]["code"] %>
               <p class="app-code"><em>source code:</em> <a href="<%= apps["featured"]["code"]%>"><%= apps["featured"]["code"] %></a></p>
             <% end %>
-            <p class="app-sources"><em>data sources:</em> <%= apps["featured"]["data_sources"].collect {|d| "<a href=\"#{d}\">#{d}</a>" }.join(", ") %></p>
+            <p class="app-sources"><em>data sources:</em> <%= apps["featured"]["data_sources"].collect {|d| "<a href=\"http://#{d}\">#{d}</a>" }.join(", ") %></p>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
               <% if app["code"] %>
                 <p class="app-code"><em>source code:</em> <a href="<%= app["code"]%>"><%= app["code"] %></a></p>
               <% end %>
-              <p class="app-sources"><em>data sources:</em> <%= app["data_sources"].collect {|d| "<a href=\"#{d}\">#{d}</a>" }.join(", ") %></p>
+              <p class="app-sources"><em>data sources:</em> <%= app["data_sources"].collect {|d| "<a href=\"http://#{d}\">#{d}</a>" }.join(", ") %></p>
             </div>
           </div>
         </div>

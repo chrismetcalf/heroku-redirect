@@ -109,6 +109,7 @@ use Rack::Rewrite do
 
   # Rewrite /publisher URLs
   r302 %r{^/publisher/(.*)}, '/publishers/$1'
+  r302 %r{^/publishers?/?$}, '/publishers/getting-started'
 
   # We moved getting-started
   r302 %r{^/getting-started.*}, '/consumers/getting-started'

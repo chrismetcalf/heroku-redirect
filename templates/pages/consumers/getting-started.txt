@@ -17,7 +17,7 @@ A few examples:
 
 On the Socrata platform, every `dataset` is automatically provided with a simple API. That ensures that every developer has at least programmatic access to every dataset on our platform, regardless of the actions of the dataset owner.
 
-Some data publishers may opt to use Socrata's [API Foundry](http://www.socrata.com/api-foundry) product to create `custom APIs` for their datasets. When creating a custom API, data publishers can customize the schema, functionality, and endpoint of their API to their needs. Custom APIs also are provided automatically generated, customizable documentation pages and entry in that site's API catalog, like [the developer portal for soda.demo.socrata.com](http://soda.demo.socrata.com/developers).
+Some data publishers may opt to use Socrata's [API Foundry](http://www.socrata.com/api-foundry) product to create `custom APIs` for their datasets. When creating a custom API, data publishers can customize the schema, functionality, and endpoint of their API to their needs. Custom APIs also are provided automatically generated, customizable documentation pages and entry in that site's API catalog, like [the developer portal for soda.demo.socrata.com](https://soda.demo.socrata.com/browse?limitTo=apis).
 
 ## SODA 2.0 Endpoints
 

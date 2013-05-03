@@ -7,7 +7,7 @@ for quickly and easily retrieving data.
 At the root of the query API is a language called SoQL, however, there are several ways to express the SoQL in a query
 to make it easier for different programming languages as uses.
 
-SoQl can then be used on any of the dataset [endpoints](/soda2/endpoints).
+SoQl can then be used on any of the dataset [endpoints](/docs/endpoints).
 
 ## SoQL Clauses
 
@@ -64,7 +64,7 @@ restrictions may be relaxed in the future.
 #### Column Expressions
 
 In SoQL we provide the ability to create expressions in the select clause as well.  This provides a way to have the reponses converted into more readily usable
-values.  Look at the [datatypes](/soda2/datatypes) section to get a list of all the expressions supported per datatype.
+values.  Look at the [datatypes](/docs/datatypes) section to get a list of all the expressions supported per datatype.
 
 [https://sandbox.demo.socrata.com/resource/nominationsCopy.json?$select=**upper(agency_name)**&position=Member](https://sandbox.demo.socrata.com/resource/nominationsCopy.json?$select=upper(agency_name)&position=Member)
 
@@ -100,7 +100,7 @@ So, "Agency Name" becomes `agency_name`.
 ### Where Clause
 
 The Where clause contains any filtering for the request.  This is how filters are added to the statement.  Where clauses
-support a variety of different comparison operations.  See the [datatypes](/soda2/datatypes) section to get the full
+support a variety of different comparison operations.  See the [datatypes](/docs/datatypes) section to get the full
 list of operations.
 
 In addition to the data type specific operations, the Where clause supports:
