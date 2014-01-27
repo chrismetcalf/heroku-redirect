@@ -37,8 +37,8 @@ Here is set of progressively more complex queries that could be added to the end
 |[**?position=Member**](https://sandbox.demo.socrata.com/resource/nominationsCopy.json?position=Member)|
 |[?position=Member**&$select=agency_name**](https://sandbox.demo.socrata.com/resource/nominationsCopy.json?position=Member&$select=agency_name)|
 |[?position=Member&$select=agency_name**,count(position)&$group=agency_name**](https://sandbox.demo.socrata.com/resource/nominationsCopy.json?position=Member&$select=agency_name,count(position)&$group=agency_name)|
-|[?position=Member&$select=agency_name,count(position) **as positions**&$group=agency_name**&$orderBy=positions desc**](https://sandbox.demo.socrata.com/resource/nominationsCopy.json?position=Member&$select=agency_name,count(position)+as+positions&$group=agency_name&$order=positions+desc)|
-|[?position=Member&$select=agency_name,count(position) as positions&$group=agency_name&$orderBy=positions desc**&$limit=1&$offset=1**](https://sandbox.demo.socrata.com/resource/nominationsCopy.json?position=Member&$select=agency_name,count(position)+as+positions&$group=agency_name&$order=positions+desc&$limit=1&$offset=1)|
+|[?position=Member&$select=agency_name,count(position) **as positions**&$group=agency_name**&$order=positions desc**](https://sandbox.demo.socrata.com/resource/nominationsCopy.json?position=Member&$select=agency_name,count(position)+as+positions&$group=agency_name&$order=positions+desc)|
+|[?position=Member&$select=agency_name,count(position) as positions&$group=agency_name&$order=positions desc**&$limit=1&$offset=1**](https://sandbox.demo.socrata.com/resource/nominationsCopy.json?position=Member&$select=agency_name,count(position)+as+positions&$group=agency_name&$order=positions+desc&$limit=1&$offset=1)|
 
 For those looking for a little more in the way of geo-queries.  We offer those as well.  Let's look at another dataset that uses Geo data.  For this one we will use
 a copy of some data that has geo data:

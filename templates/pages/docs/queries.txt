@@ -18,7 +18,7 @@ as a URL parameter or as a SoQL statement.  The clauses for SoQL are:
 |---|---|---|
 |**select**|$select|Which columns to return.  If not specified, all columns will be returned.|
 |**where**|$where|Filter on results to return.  If not specified all results will be returned, up to the limit.|
-|**order**|$orderBy|Order to return the results.  If not specified, the order will be consistent across paging, but unspecified.|
+|**order**|$order|Order to return the results.  If not specified, the order will be consistent across paging, but unspecified.|
 |**group**|$group|Column to group results on.  This is similar to SQL Grouping.|
 |**limit**|$limit|Maximum number of results to return.  If not specified, defaults to 1000.|
 |**offset**|$offset|Offset count into the results to start at.  If not specified, defaults to 0.|
