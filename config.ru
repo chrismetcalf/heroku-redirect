@@ -107,6 +107,9 @@ use Rack::Rewrite do
   # Redirect for app token registration
   r302 %r{^/register/?}, 'http://opendata.socrata.com/profile/app_tokens'
 
+  # Redirect for OData docs
+  r302 %r{^/odata/?(.*)?}, 'http://beta.dev.socrata.com/odata/$1'
+
   # Rewrite /publisher URLs
   r302 %r{^/publisher/(.*)}, '/publishers/$1'
   r302 %r{^/publishers?/?$}, '/publishers/getting-started'
