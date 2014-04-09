@@ -1,8 +1,0 @@
-# Data Formats
-
-A number of different data formats are available from the SODA APIs:
-
-* [JSON](/docs/formats/json)
-* [XML](/docs/formats/xml)
-* [CSV](/docs/formats/csv)
-* [RDF](/docs/formats/rdf)
